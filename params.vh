@@ -5,7 +5,7 @@
 `define WWIDTH 32
 
 // Immediate value width (for immediate instructions)
-`define IMM_WIDTH 12
+`define IMM_WIDTH 8
 
 // Address width
 `define AWIDTH 8

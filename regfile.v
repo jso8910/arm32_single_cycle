@@ -7,6 +7,7 @@ module regfile
     input [3:0]         wr_addr_b,  // new
     input [3:0] 	    rd_addr_a,
     input [3:0] 	    rd_addr_b,
+    input [3:0] 	    rd_addr_c,  // new
     input 		        wr_en_a,    // changed
     input 		        wr_en_b,    // new
     input 		        clk,
@@ -14,7 +15,7 @@ module regfile
     input [RWIDTH-1:0]  next_pc,    // new
     input [RWIDTH-1:0]  data_in_a,  // changed
     input [RWIDTH-1:0]  data_in_b,  // new
-    output [RWIDTH-1:0] reg_a, reg_b
+    output [RWIDTH-1:0] reg_a, reg_b, reg_c
 );
     // Register file with two read ports, and two write port (this is a change)
     // Asynchronous read, synchronous write
@@ -42,4 +43,5 @@ module regfile
     // Read logic
     assign reg_a = (rd_addr_a == 4'b1111) ? next_pc : regarray[rd_addr_a];
     assign reg_b = (rd_addr_b == 4'b1111) ? next_pc : regarray[rd_addr_b];
+    assign reg_c = (rd_addr_c == 4'b1111) ? next_pc : regarray[rd_addr_c];
 endmodule
