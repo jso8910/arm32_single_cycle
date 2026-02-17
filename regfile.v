@@ -1,6 +1,7 @@
 `include "params.vh"
 
 module regfile
+#(parameter RWIDTH = WWIDTH)
 (
     input [4:0]         wr_addr,
     input [4:0] 	    rd_addr_a,
@@ -8,8 +9,8 @@ module regfile
     input 		        wr_en,
     input 		        clk,
     input 		        rst,
-    input [DWIDTH-1:0]  data_in,
-    output [DWIDTH-1:0] reg_a, reg_b
+    input [RWIDTH-1:0]  data_in,
+    output [RWIDTH-1:0] reg_a, reg_b
 );
     // Register file with two read ports, and one write port
     // Asynchronous read, synchronous write
