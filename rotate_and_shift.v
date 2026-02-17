@@ -6,7 +6,7 @@
 `define ROR 2'b11
 
 module register_shift_unit
-#(parameter IN_WIDTH = `DWIDTH)
+#(parameter IN_WIDTH = `WWIDTH)
 (
     input [IN_WIDTH-1:0]        in,
     input [1:0]                 func,
@@ -42,4 +42,21 @@ module register_shift_unit
         end else
             result = in;
     end
+endmodule
+
+module immediate_rotate_unit
+#(parameter OUT_WIDTH = `WWIDTH)
+(
+    input [7:0]             in,
+    input [3:0]             amount,
+    output [OUT_WIDTH-1:0]  result
+);
+    // Rotate unit used to rotate Imm12 values
+
+    wire [OUT_WIDTH-1:0] zext_val;
+    // Initialize zero extender
+    extender #(.IN_WIDTH(8), .TOT_WIDTH(OUT_WIDTH)) zext_imm_rotate(.ext_in(in), .ExtOp(1'b0), .ext_out(zext_val));
+    wire [OUT_WIDTH*2 - 1:0] in_double = {zext_val, zext_val};
+    // Rotate right by 2*amount
+    assign result = in_double[amount*2 +: OUT_WIDTH];
 endmodule

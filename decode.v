@@ -5,14 +5,17 @@
 module decode(
     input [`IWIDTH-1:0]         inst,
     input [`WWIDTH-1:0] 	    next_pc,
-    output wire                 imm_flag,
+    output wire                 imm_flag,   // Immediate flag for op2, bit position 25
                                 we_data,
                                 cs_data,
                                 wr_en_a,
                                 wr_en_b,
+                                op2_sel,    // 0 
     output wire [3:0]           wr_addr_a, wr_addr_b,
     output wire [3:0]           rd_addr_a, rd_addr_b, rd_addr_c,
-    output wire [1:0]           op2_shift_func
+    output wire [1:0]           op2_shift_func,
+    output wire [3:0]           imm_rot_amt
+    output wire [7:0]           imm_val,
 
     // output wire                 mux_alu_dmem,
     //                             mux_alu_ext, 
