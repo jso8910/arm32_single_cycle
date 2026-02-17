@@ -1,5 +1,5 @@
-// Data width
-`define DWIDTH = 32;
+// Data width — needs to be 64 bit for dual load/store operations
+`define DWIDTH = 64;
 
 // Immediate value width (for immediate instructions)
 `define IMM_WIDTH = 12;
