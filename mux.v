@@ -1,6 +1,6 @@
 `include "params.vh"
 module mux_2_to_1
-#(parameter MWIDTH = DWIDTH)
+#(parameter MWIDTH = `DWIDTH)
 (
     input [MWIDTH-1:0]  in_1,
     input [MWIDTH-1:0]  in_2,
