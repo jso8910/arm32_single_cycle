@@ -47,16 +47,22 @@ endmodule
 module immediate_rotate_unit
 #(parameter OUT_WIDTH = `WWIDTH)
 (
-    input [7:0]             in,
+    input [23:0]            in,
     input [3:0]             amount,
+    input                   ext_mode,
     output [OUT_WIDTH-1:0]  result
 );
     // Rotate unit used to rotate Imm12 values
+    // Normally, the immediate is 8 (in) + 4 (amount) bits
+    // But sometimes, it is 12 (in) + 0 (amount) bits, so this needs to account for that
+    // And during a branch instruction, it is 24 bits!
 
     wire [OUT_WIDTH-1:0] zext_val;
-    // Initialize zero extender
-    extender #(.IN_WIDTH(8), .TOT_WIDTH(OUT_WIDTH)) zext_imm_rotate(.ext_in(in), .ExtOp(1'b0), .ext_out(zext_val));
-    wire [OUT_WIDTH*2 - 1:0] in_double = {zext_val, zext_val};
+
+    // Initialize extender
+    extender #(.IN_WIDTH(24), .TOT_WIDTH(OUT_WIDTH)) zext_imm_rotate(.ext_in(in), .ExtOp(ext_mode), .ext_out(zext_val));
+
     // Rotate right by 2*amount
+    wire [OUT_WIDTH*2 - 1:0] in_double = {zext_val, zext_val};
     assign result = in_double[amount*2 +: OUT_WIDTH];
 endmodule

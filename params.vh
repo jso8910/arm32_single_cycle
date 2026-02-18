@@ -1,5 +1,5 @@
-// Data width — needs to be 64 bit for dual load/store operations
-`define DWIDTH 64
+// Data width
+`define DWIDTH 32
 
 // Word size - don't change to anything but 32
 `define WWIDTH 32
