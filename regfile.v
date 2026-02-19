@@ -8,14 +8,16 @@ module regfile
     input [3:0] 	    rd_addr_a,
     input [3:0] 	    rd_addr_b,
     input [3:0] 	    rd_addr_c,  // new
+    input [3:0] 	    rd_addr_d,  // new
     input 		        wr_en_a,    // changed
     input 		        wr_en_b,    // new
     input 		        clk,
     input 		        rst,
+    input [3:0]         pc_offset,  // new
     input [RWIDTH-1:0]  next_pc,    // new
     input [RWIDTH-1:0]  data_in_a,  // changed
     input [RWIDTH-1:0]  data_in_b,  // new
-    output [RWIDTH-1:0] reg_a, reg_b, reg_c
+    output [RWIDTH-1:0] reg_a, reg_b, reg_c, reg_d
 );
     // Register file with two read ports, and two write port (this is a change)
     // Asynchronous read, synchronous write
@@ -33,7 +35,6 @@ module regfile
         // sending a value to nextPcLogic and setting pc_write
         if (wr_en_b && wr_addr_b != 15)
             regarray[wr_addr_b] <= data_in_b;
-
         // Port A is second to give priority
         if (wr_en_a && wr_addr_a != 15)
             regarray[wr_addr_a] <= data_in_a;
@@ -41,7 +42,8 @@ module regfile
     end
 
     // Read logic
-    assign reg_a = (rd_addr_a == 4'b1111) ? next_pc : regarray[rd_addr_a];
-    assign reg_b = (rd_addr_b == 4'b1111) ? next_pc : regarray[rd_addr_b];
-    assign reg_c = (rd_addr_c == 4'b1111) ? next_pc : regarray[rd_addr_c];
+    assign reg_a = (rd_addr_a == 4'b1111) ? (next_pc + pc_offset) : regarray[rd_addr_a];
+    assign reg_b = (rd_addr_b == 4'b1111) ? (next_pc + pc_offset) : regarray[rd_addr_b];
+    assign reg_c = (rd_addr_c == 4'b1111) ? (next_pc + pc_offset) : regarray[rd_addr_c];
+    assign reg_d = (rd_addr_d == 4'b1111) ? (next_pc + pc_offset) : regarray[rd_addr_d];
 endmodule

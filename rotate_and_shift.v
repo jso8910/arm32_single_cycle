@@ -19,7 +19,7 @@ module register_shift_unit
     // Unit used for instructions where the register Rm is shifted by Rs's bottom 8 bits
     reg [IN_WIDTH*2 - 1:0] in_double;
     always @(*) begin
-        if (amount != 7'b0 && amount <= 8'd31) begin
+        if (amount != 8'b0 && amount < IN_WIDTH) begin
             case (func)
                 `LSL: begin
                     // Eg if in = 0101, in_double = 01010000
@@ -69,7 +69,7 @@ module register_shift_unit
                     // NOTE: when changing the word width, this logic must be changed
                     result = in_double[amount[3:0] +: IN_WIDTH];
                     // cout is bit 31 if amount == 32
-                    cout = amount == IN_WIDTH ? in[IN_WIDTH] : in_double[amount[3:0] + IN_WIDTH];
+                    cout = amount == IN_WIDTH ? in[IN_WIDTH-1] : in_double[amount[3:0] + IN_WIDTH];
                 end
             endcase
         end else if (func == `ROR && ~is_imm_rot) begin
@@ -82,9 +82,10 @@ module register_shift_unit
             in_double = {in, in};
             result = {IN_WIDTH{1'b0}};
             cout = in[31];
-        end else
+        end else begin
             in_double = {in, in};
             result = in;
             cout = func == `LSL ? cin : 1'b0;   // If LSL 0, C bit is preserved
+        end
     end
 endmodule

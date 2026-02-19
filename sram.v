@@ -36,7 +36,7 @@ module sram
                 // If the word is not on a word boundary (addr[1:0] == 00), we must handle that
                 // ARM32 handles this by rotating bytes right such that the address is in the least significant 4 bits
                 raw_word = {MEM[addr + 3], MEM[addr + 2], MEM[addr + 1], MEM[addr]};
-                aligned_addr = {addr[31:2], 2'b00};
+                aligned_addr = {addr[`AWIDTH-1:2], 2'b00};
                 case (addr[1:0])
                     2'b00: dataOut = raw_word;
                     2'b01: dataOut = {raw_word[7:0], raw_word[31:8]};   // ROR 8
@@ -65,7 +65,7 @@ module sram
                     MEM[addr + 2] <= dataIn[23:16];
                     MEM[addr + 3] <= dataIn[31:24];
                 end
-                default: dataOut = {`DWIDTH {1'b1}};    // Undefined behavior
+                default: dataOut <= {`DWIDTH {1'b1}};    // Undefined behavior
             endcase
         end
     end
