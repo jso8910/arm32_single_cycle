@@ -50,6 +50,8 @@
 `define HW_TFR      2'b00
 `define SHBIT_SWP   2'b00
 `define BLOCK_TFR   3'b100
+`define SWP_UPPER   5'b00010
+`define SWP_LOWER   8'b00001001
 
 // ALU operations
 `define ALU_AND     5'b00000    // Op1 AND Op2
@@ -510,6 +512,42 @@ module decode(
             rd_addr_a = inst[19:16];   // Rn
             rd_addr_b = 4'b0;
             rd_addr_c = 4'b0;
+            rd_addr_d = 4'b0;
+        // SWP
+        end else if (inst[27:23] == `SWP_UPPER && inst[11:4] == `SWP_LOWER) begin
+            pc_op = 0;    // PC cannot be an operand
+            set_cpsr = 1'b0;
+
+            // Memory
+            mem_op = 1'b1;
+            we_data = 1'b1;     // We always write to memory on a swap
+            address_gen_mode = `OFFSET;   // This doesn't matter, but using offset just to avoid writeback
+            // Always unsigned, either word or byte
+            load_addressing_mode = `ZEXT | (inst[22] ? `WORD : `BYTE);
+            bulk_store_enable = 1'b0;
+            bulk_load_enable = 1'b0;
+            bulk_reglist = 16'b0;
+            bulk_writeback = 1'b0;
+
+            // ALU operation
+            // inst[23] indicates whether to do Rn + Offset or Rd - Offset
+            alu_op = `ALU_ADD;
+            imm_flag = 1'b1;
+            imm_val = 32'b0;
+            op2_shift_func = 2'b00;      // LSL (00)
+            op2_imm_shift_by = 8'b0;
+            op2_is_imm_shift = 1'b1;
+
+            // Registers
+            // Port B is used for writing the value from memory
+            wr_en_a = 1'b0;
+            wr_en_b = 1'b1;
+            wr_addr_a = 4'b0;
+            wr_addr_b = inst[15:12];    // Rd - memory is put into this register
+            rd_addr_a = inst[19:16];    // Rn, memory address
+            rd_addr_b = 4'b0000;        // No addition
+            rd_addr_c = 4'b0000;        // No shift
+            rd_addr_d = inst[3:0];      // Rm - value to put into memory. Read port D is connected to the input of memory
         end else begin // Undefined instuction, do nothing
             // This also includes instuctions I have not implemented, like:
             //      - MRS, MSR (PSR transfer)
