@@ -34,6 +34,12 @@ module arm32_core(
     wire [3:0] pc_offset;
     wire [4:0] alu_op;
 
+    //--Bulk operations
+    wire bulk_store_enable, bulk_load_enable, bulk_writeback;
+    wire [15:0] bulk_reglist;
+    wire [`AWIDTH-1:0] bulkAddrResult;
+    wire [`WWIDTH*16-1:0] bulk_data_sram, bulk_data_reg;
+
     //--ALU
     wire [`WWIDTH-1:0] op_a, op_b, op_c, op_d;
     reg [3:0] prev_nzcv;
@@ -48,10 +54,16 @@ module arm32_core(
     // Data RAM
     sram dram (
         .dataOut(dram_dout),
+        .bulk_data_sram(bulk_data_sram),
+        .bulkAddrResult(bulkAddrResult),
+        .bulk_store_enable(bulk_store_enable & condition_fulfilled),
+        .bulk_load_enable(bulk_load_enable & condition_fulfilled),
+        .bulk_reglist(bulk_reglist),
+        .bulk_data_reg(bulk_data_reg),
         .func(load_addressing_mode),
         .dataIn(op_d),
         .cs(cs),
-        .we(we_data),
+        .we(we_data & condition_fulfilled),
         .clk(clk),
         .addr(address_gen_mode[0] ? alu_out_1[7:0] : op_a[7:0])  // If pre_index/offset, use alu output
     );
@@ -69,6 +81,7 @@ module arm32_core(
     fetchLogic fetch(
         .clk(clk),
         .rst(rst),
+        // We want to select the value from SRAM 
         .next_pc(next_pc),
         .this_pc(this_pc),
         .inst(inst)
@@ -93,7 +106,14 @@ module arm32_core(
         .reg_a(op_a),
         .reg_b(reg_b),
         .reg_c(op_c),
-        .reg_d(op_d)
+        .reg_d(op_d),
+        .bulk_store_enable(bulk_store_enable & condition_fulfilled),
+        .bulk_load_enable(bulk_load_enable & condition_fulfilled),
+        .bulk_writeback(bulk_writeback),
+        .bulk_reglist(bulk_reglist),
+        .bulkAddrResult(bulkAddrResult),
+        .bulk_data_sram(bulk_data_sram),
+        .bulk_data_reg(bulk_data_reg)
     );
 
     // Shifter
@@ -155,7 +175,11 @@ module arm32_core(
         .address_gen_mode(address_gen_mode),
         .load_addressing_mode(load_addressing_mode),
         .mem_op(mem_op),
-        .pc_offset(pc_offset)
+        .pc_offset(pc_offset),
+        .bulk_store_enable(bulk_store_enable),
+        .bulk_load_enable(bulk_load_enable),
+        .bulk_reglist(bulk_reglist),
+        .bulk_writeback(bulk_writeback)
     );
 
     always @(posedge clk or negedge rst) begin
@@ -201,6 +225,36 @@ module arm32_core_tb;
         // to force values directly into your internal register file.
         $readmemh("test.mem", uut.dram.MEM);
         $readmemh("test.mem", uut.fetch.inst_mem.MEM);
+
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+        @(posedge clk);
+        $display("%d\t%d\t%d", uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[3]);
+
         
         // @(posedge clk);
         // $display("%d", $signed(uut.regfile_inst.regarray[0]));

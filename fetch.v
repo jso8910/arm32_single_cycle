@@ -27,6 +27,10 @@ module fetchLogic(
         .cs(1'b0),
         .we(1'b0),
         .clk(clk),
-        .addr(this_pc[`AWIDTH-1:0])
+        .addr(this_pc[`AWIDTH-1:0]),
+        .bulk_store_enable(1'b0),
+        .bulk_load_enable(1'b0),
+        .bulk_reglist(16'b0),
+        .bulk_data_reg(512'b0)
     );
 endmodule
