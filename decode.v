@@ -404,7 +404,7 @@ module decode(
             rd_addr_c = 4'b0000;        // A register cannot be used as the shift
             rd_addr_d = inst[15:12];    // Rd - Read port D is connected to the input
         // Halfword data transfer, register offset. Explicitly excluding swap operations from this
-        end else if (inst[27:25] == `HW_TFR && inst[7] == 1'b1 && inst[4] == 1'b1 && inst[6:5] != `SHBIT_SWP) begin
+        end else if (inst[27:25] == `HW_TFR && inst[22] == 1'b0 && inst[7] == 1'b1 && inst[4] == 1'b1 && inst[6:5] != `SHBIT_SWP) begin
             pc_op = inst[15:12] == 4'b1111;    // Rd is PC. If Rn is PC, writeback cannot be specified
             set_cpsr = 1'b0;
 
@@ -439,7 +439,7 @@ module decode(
             rd_addr_c = 4'b0000;        // No shift
             rd_addr_d = inst[15:12];    // Rd - Read port D is connected to the input of memory
         // Halfword data transfer, immediate offset. Explicitly excluding swap operations from this
-        end else if (inst[27:25] == `HW_TFR && inst[7] == 1'b1 && inst[4] == 1'b1 && inst[6:5] != `SHBIT_SWP) begin
+        end else if (inst[27:25] == `HW_TFR && inst[22] == 1'b1 && inst[7] == 1'b1 && inst[4] == 1'b1 && inst[6:5] != `SHBIT_SWP) begin
             pc_op = inst[15:12] == 4'b1111;    // Rd is PC. If Rn is PC, writeback cannot be specified
             set_cpsr = 1'b0;
 
@@ -475,7 +475,6 @@ module decode(
             rd_addr_d = inst[15:12];    // Rd - Read port D is connected to the input of memory
         end else if (inst[27:25] == `BLOCK_TFR) begin
             // My single cycle block transfer is an atrocity, but at least it's easy to decode?
-            $display("jher");
 
             // Memory
             mem_op = 1'b0;

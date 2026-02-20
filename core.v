@@ -289,10 +289,6 @@ module arm32_core_tb;
         // @(posedge clk);
         // $display("%d", $signed(uut.regfile_inst.regarray[2]));
         // $display("%b", uut.alu_op);
-        while (uut.regfile_inst.regarray[3] == 0) begin
-            @(posedge clk);
-            $display("%d, %d, %b", $signed(uut.regfile_inst.regarray[2]), $signed(uut.regfile_inst.regarray[3]), uut.nzcv);
-        end
         
         // #100;
         
