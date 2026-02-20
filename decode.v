@@ -152,7 +152,8 @@ module decode(
     // If the shift value comes from an immediate, add 4 to PC, else add 8 to PC (when used as an operand)
     // This accounts for the PC+4+offset in a branch instuction
     // Keep in mind, when I say add 4 or 8 to PC, that means add 4 to next_pc. So it's actually an offset of 8 or 12 from the current instuction
-    assign pc_offset = op2_is_imm_shift ? 4'd4 : 4'd8;
+    // For a bl instruction, we need to keep the original PC + 4
+    assign pc_offset = inst[27:25] == `B_INST ? 4'd0 : (op2_is_imm_shift ? 4'd4 : 4'd8);
 
     always @(*) begin
         // This is probably going to end up being quite bad, but I'm curious to what extent a synthesis software would optimize it
@@ -203,7 +204,8 @@ module decode(
             // So set rd_a = Rn, imm_val = 0
             alu_op = `ALU_ADD;
             imm_flag = 1'b1;
-            imm_val = {{6{inst[23]}}, inst[23:0], 2'b00};  // 26 bit value, sign extended with 6 bits
+            // Must add 4 to the imm_val for the branch to work correctly
+            imm_val = {{6{inst[23]}}, inst[23:0], 2'b00} + 4;  // 26 bit value, sign extended with 6 bits
             op2_shift_func = 2'b0;      // LSL is used as a placeholder, since LSL #0 has no meaning
             op2_imm_shift_by = 8'b0;
             op2_is_imm_shift = 1'b1;
@@ -492,7 +494,7 @@ module decode(
             bulk_reglist = inst[15:0];
             bulk_writeback = inst[21];
 
-            pc_op = bulk_reglist[15];
+            pc_op = bulk_reglist[15] & bulk_load_enable;
             set_cpsr = 1'b0;
 
             // ALU operation

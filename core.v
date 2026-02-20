@@ -72,7 +72,7 @@ module arm32_core(
 
     nextPcLogic pcgen(
         .this_pc(this_pc),
-        .pc_mod(alu_out_1),
+        .pc_mod(bulk_load_enable ? bulk_data_sram[15*32 +: 32] : alu_out_1),
         .pc_write(pc_op & condition_fulfilled),
         .next_pc(next_pc),
         .next_pc_seq(next_pc_seq)
@@ -227,33 +227,33 @@ module arm32_core_tb;
         $readmemh("test.mem", uut.fetch.inst_mem.MEM);
 
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[3]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
 
         
         // @(posedge clk);
