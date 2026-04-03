@@ -161,7 +161,7 @@ module sram
                     MEM[addr + 2] <= dataIn[23:16];
                     MEM[addr + 3] <= dataIn[31:24];
                 end
-                default:			// Undefined behavior
+                default: ;			// Undefined behavior
             endcase
         end
 
