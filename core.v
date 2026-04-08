@@ -1,72 +1,69 @@
+`timescale 1ns / 1ps
 `include "params.vh"
 
 module arm32_core(
     input clk,
-    input rst
+    input rst,
+    input [`IWIDTH-1:0]     inst,
+    input [`DWIDTH-1:0]     dram_dout,
+    input [`WWIDTH*16-1:0]  bulk_data_sram,
+    input [`AWIDTH-1:0]     bulkAddrResult,
+    input [`WWIDTH-1:0]     op_a, reg_b, op_c, op_d,
+
+    // Regfile inputs
+
+    output                  condition_fulfilled,
+    // DMEM controls
+    output                  cs_data,
+    output [2:0]            load_addressing_mode,
+    output                  bulk_store_enable,
+    output                  bulk_load_enable,
+    output [15:0]           bulk_reglist,
+    output [`WWIDTH*16-1:0] bulk_data_reg,
+    output                  we_data,
+
+    // Operand outputs
+
+    // ALU outputs
+    output [`DWIDTH-1:0]    alu_out_1, alu_out_2,
+
+    // Regfile control signals
+    output [3:0]            rd_addr_a, rd_addr_b, rd_addr_c, rd_addr_d,
+    output [3:0]            wr_addr_a, wr_addr_b,
+    output                  wr_en_a, wr_en_b,
+    output [3:0]            pc_offset,
+    output [`WWIDTH-1:0]    next_pc_seq,
+    output                  bulk_writeback,
+    output [1:0]            address_gen_mode,
+
+    // IMEM controls
+    output [`AWIDTH-1:0] pc
+
 );
     // Net declarations
     // ---Fetch
     wire [`WWIDTH-1:0] this_pc;
     wire [`WWIDTH-1:0] next_pc;
-    wire [`WWIDTH-1:0] next_pc_seq;
-
-    // ---Register file
-    wire [`WWIDTH-1:0] reg_b;
 
     // ---Decoder
-    wire [`IWIDTH-1:0] inst;
-    wire cs_data;
     wire imm_flag;
     wire pc_op;
     wire set_cpsr;
     wire [3:0] condition_code;
-    wire we_data;
-    wire wr_en_a, wr_en_b;
-    wire [3:0] wr_addr_a, wr_addr_b;
-    wire [3:0] rd_addr_a, rd_addr_b, rd_addr_c, rd_addr_d;
     wire [1:0] op2_shift_func;
     wire [7:0] op2_imm_shift_by;
     wire op2_is_imm_shift;
     wire [`WWIDTH-1:0] imm_val;
-    wire [1:0] address_gen_mode;
-    wire [2:0] load_addressing_mode;
     wire mem_op;
-    wire [3:0] pc_offset;
     wire [4:0] alu_op;
 
-    //--Bulk operations
-    wire bulk_store_enable, bulk_load_enable, bulk_writeback;
-    wire [15:0] bulk_reglist;
-    wire [`AWIDTH-1:0] bulkAddrResult;
-    wire [`WWIDTH*16-1:0] bulk_data_sram, bulk_data_reg;
-
     //--ALU
-    wire [`WWIDTH-1:0] op_a, op_b, op_c, op_d;
+    wire [`WWIDTH-1:0] op_b;
     reg [3:0] prev_nzcv;
     wire shifter_cout;
-    wire [31:0] alu_out_1, alu_out_2;
     wire [3:0] nzcv;
-    wire condition_fulfilled;
-
-    //--SRAM
-    wire [`DWIDTH-1:0] dram_dout;
-
-    // Data RAM
-    sram dram (
-        .dataOut(dram_dout),
-        .bulk_data_sram(bulk_data_sram),
-        .bulkAddrResult(bulkAddrResult),
-        .bulk_store_enable(bulk_store_enable & condition_fulfilled),
-        .bulk_load_enable(bulk_load_enable & condition_fulfilled),
-        .bulk_reglist(bulk_reglist),
-        .bulk_data_reg(bulk_data_reg),
-        .func(load_addressing_mode),
-        .dataIn(op_d),
-        .cs(cs),
-        .we(we_data & condition_fulfilled),
-        .clk(clk),
-        .addr(address_gen_mode[0] ? alu_out_1[7:0] : op_a[7:0])  // If pre_index/offset, use alu output
-    );
+    // External memory control signals
+    assign pc = this_pc;
 
     // Fetch logic
 
@@ -83,37 +80,7 @@ module arm32_core(
         .rst(rst),
         // We want to select the value from SRAM 
         .next_pc(next_pc),
-        .this_pc(this_pc),
-        .inst(inst)
-    );
-
-    // Register file
-    regfile regfile_inst (
-        .wr_addr_a(wr_addr_a),
-        .wr_addr_b(wr_addr_b),
-        .rd_addr_a(rd_addr_a),
-        .rd_addr_b(rd_addr_b),
-        .rd_addr_c(rd_addr_c),
-        .rd_addr_d(rd_addr_d),
-        .wr_en_a(wr_en_a & condition_fulfilled),
-        .wr_en_b(wr_en_b & condition_fulfilled),
-        .clk(clk),
-        .rst(rst),
-        .pc_offset(pc_offset),
-        .next_pc(next_pc_seq),
-        .data_in_a(alu_out_1),
-        .data_in_b(mem_op ? dram_dout : alu_out_2),
-        .reg_a(op_a),
-        .reg_b(reg_b),
-        .reg_c(op_c),
-        .reg_d(op_d),
-        .bulk_store_enable(bulk_store_enable & condition_fulfilled),
-        .bulk_load_enable(bulk_load_enable & condition_fulfilled),
-        .bulk_writeback(bulk_writeback),
-        .bulk_reglist(bulk_reglist),
-        .bulkAddrResult(bulkAddrResult),
-        .bulk_data_sram(bulk_data_sram),
-        .bulk_data_reg(bulk_data_reg)
+        .this_pc(this_pc)
     );
 
     // Shifter
@@ -188,10 +155,134 @@ module arm32_core(
         end else if (set_cpsr)
             prev_nzcv <= nzcv;
     end
-
 endmodule
 
-`timescale 1ns / 1ps
+module arm32_core_system(
+    input clk,
+    input rst
+);
+    wire [`IWIDTH-1:0]     inst;
+    wire [`DWIDTH-1:0]     dram_dout;
+    wire [`WWIDTH*16-1:0]  bulk_data_sram;
+    wire [`AWIDTH-1:0]     bulkAddrResult;
+    wire [`WWIDTH-1:0]     op_a, reg_b, op_c, op_d;
+
+    wire                  condition_fulfilled;
+    // DMEM controls
+    wire                  cs_data;
+    wire [2:0]            load_addressing_mode;
+    wire                  bulk_store_enable;
+    wire                  bulk_load_enable;
+    wire [15:0]           bulk_reglist;
+    wire [`WWIDTH*16-1:0] bulk_data_reg;
+    wire                  we_data;
+
+    // Operand outputs
+
+    // ALU outputs
+    wire [`DWIDTH-1:0]    alu_out_1, alu_out_2;
+
+    // Regfile control signals
+    wire [3:0]            rd_addr_a, rd_addr_b, rd_addr_c, rd_addr_d;
+    wire [3:0]            wr_addr_a, wr_addr_b;
+    wire                  wr_en_a, wr_en_b;
+    wire [3:0]            pc_offset;
+    wire [`WWIDTH-1:0]    next_pc_seq;
+    wire                  bulk_writeback;
+    wire [1:0]            address_gen_mode;
+
+    // Instruction memory
+    wire [`AWIDTH-1:0] pc;
+    wire [`DWIDTH-1:0] inst_mem_out;
+    assign inst = inst_mem_out[`IWIDTH-1:0];
+    sram inst_mem (
+        .dataOut(inst_mem_out),
+        .func(3'b010),   // Read a single word
+        .dataIn({32{1'b0}}),
+        .cs(1'b0),
+        .we(1'b0),
+        .clk(clk),
+        .addr(pc[`AWIDTH-1:0]),
+        .bulk_store_enable(1'b0),
+        .bulk_load_enable(1'b0),
+        .bulk_reglist(16'b0),
+        .bulk_data_reg(512'b0)
+    );
+
+    // Data memory
+    sram dram (
+        .dataOut(dram_dout),
+        .bulk_data_sram(bulk_data_sram),
+        .bulkAddrResult(bulkAddrResult),
+        .bulk_store_enable(bulk_store_enable & condition_fulfilled),
+        .bulk_load_enable(bulk_load_enable & condition_fulfilled),
+        .bulk_reglist(bulk_reglist),
+        .bulk_data_reg(bulk_data_reg),
+        .func(load_addressing_mode),
+        .dataIn(op_d),
+        .cs(cs_data),
+        .we(we_data & condition_fulfilled),
+        .clk(clk),
+        .addr(address_gen_mode[0] ? alu_out_1[7:0] : op_a[7:0])  // If pre_index/offset, use alu output
+    );
+
+    // Register file
+    regfile regfile_inst (
+        .wr_addr_a(wr_addr_a),
+        .wr_addr_b(wr_addr_b),
+        .rd_addr_a(rd_addr_a),
+        .rd_addr_b(rd_addr_b),
+        .rd_addr_c(rd_addr_c),
+        .rd_addr_d(rd_addr_d),
+        .wr_en_a(wr_en_a & condition_fulfilled),
+        .wr_en_b(wr_en_b & condition_fulfilled),
+        .clk(clk),
+        .rst(rst),
+        .pc_offset(pc_offset),
+        .next_pc(next_pc_seq),
+        .data_in_a(alu_out_1),
+        .data_in_b(mem_op ? dram_dout : alu_out_2),
+        .reg_a(op_a),
+        .reg_b(reg_b),
+        .reg_c(op_c),
+        .reg_d(op_d),
+        .bulk_store_enable(bulk_store_enable & condition_fulfilled),
+        .bulk_load_enable(bulk_load_enable & condition_fulfilled),
+        .bulk_writeback(bulk_writeback),
+        .bulk_reglist(bulk_reglist),
+        .bulkAddrResult(bulkAddrResult),
+        .bulk_data_sram(bulk_data_sram),
+        .bulk_data_reg(bulk_data_reg)
+    );
+
+    // CPU core
+    arm32_core core_inst (
+        .clk(clk),
+        .rst(rst),
+        .inst(inst),
+        .dram_dout(dram_dout),
+        .bulk_data_sram(bulk_data_sram),
+        .bulkAddrResult(bulkAddrResult),
+        .op_a(op_a), .reg_b(reg_b), .op_c(op_c), .op_d(op_d),
+        .condition_fulfilled(condition_fulfilled),
+        .cs_data(cs_data),
+        .load_addressing_mode(load_addressing_mode),
+        .bulk_store_enable(bulk_store_enable),
+        .bulk_load_enable(bulk_load_enable),
+        .bulk_reglist(bulk_reglist),
+        .bulk_data_reg(bulk_data_reg),
+        .we_data(we_data),
+        .alu_out_1(alu_out_1), .alu_out_2(alu_out_2),
+        .rd_addr_a(rd_addr_a), .rd_addr_b(rd_addr_b), .rd_addr_c(rd_addr_c), .rd_addr_d(rd_addr_d),
+        .wr_addr_a(wr_addr_a), .wr_addr_b(wr_addr_b),
+        .wr_en_a(wr_en_a), .wr_en_b(wr_en_b),
+        .pc_offset(pc_offset),
+        .next_pc_seq(next_pc_seq),
+        .bulk_writeback(bulk_writeback),
+        .address_gen_mode(address_gen_mode),
+        .pc(pc)
+    );
+endmodule
 
 module arm32_core_tb;
 
@@ -200,7 +291,7 @@ module arm32_core_tb;
     reg rst;
 
     // 2. Instantiate the Unit Under Test (UUT)
-    arm32_core uut (
+    arm32_core_system uut (
         .clk(clk),
         .rst(rst)
     );
@@ -224,36 +315,36 @@ module arm32_core_tb;
         // For a "very basic" test, we can use 'hierarchical references' 
         // to force values directly into your internal register file.
         $readmemh("test.mem", uut.dram.MEM);
-        $readmemh("test.mem", uut.fetch.inst_mem.MEM);
+        $readmemh("test.mem", uut.inst_mem.MEM);
 
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
         @(posedge clk);
-        $display("%d:\t%d\t%d\t%d\t%d", uut.this_pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
+        $display("%d:\t%d\t%d\t%d\t%d", uut.pc, uut.regfile_inst.regarray[0], uut.regfile_inst.regarray[1], uut.regfile_inst.regarray[2], uut.regfile_inst.regarray[14]);
 
         
         // @(posedge clk);
