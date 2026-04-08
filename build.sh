@@ -1,0 +1,1 @@
+iverilog -I . -o my_design *.v
