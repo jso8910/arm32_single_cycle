@@ -19,7 +19,6 @@ module arm32_core(
     output                  bulk_store_enable,
     output                  bulk_load_enable,
     output [15:0]           bulk_reglist,
-    output [`WWIDTH*16-1:0] bulk_data_reg,
     output                  we_data,
 
     // Operand outputs
@@ -164,6 +163,7 @@ module arm32_core_system(
     wire [`IWIDTH-1:0]     inst;
     wire [`DWIDTH-1:0]     dram_dout;
     wire [`WWIDTH*16-1:0]  bulk_data_sram;
+    wire [`WWIDTH*16-1:0]  bulk_data_reg;
     wire [`AWIDTH-1:0]     bulkAddrResult;
     wire [`WWIDTH-1:0]     op_a, reg_b, op_c, op_d;
 
@@ -174,7 +174,6 @@ module arm32_core_system(
     wire                  bulk_store_enable;
     wire                  bulk_load_enable;
     wire [15:0]           bulk_reglist;
-    wire [`WWIDTH*16-1:0] bulk_data_reg;
     wire                  we_data;
 
     // Operand outputs
@@ -270,7 +269,6 @@ module arm32_core_system(
         .bulk_store_enable(bulk_store_enable),
         .bulk_load_enable(bulk_load_enable),
         .bulk_reglist(bulk_reglist),
-        .bulk_data_reg(bulk_data_reg),
         .we_data(we_data),
         .alu_out_1(alu_out_1), .alu_out_2(alu_out_2),
         .rd_addr_a(rd_addr_a), .rd_addr_b(rd_addr_b), .rd_addr_c(rd_addr_c), .rd_addr_d(rd_addr_d),
