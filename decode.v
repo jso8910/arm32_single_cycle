@@ -109,38 +109,6 @@ module decode(
     output reg [2:0]            load_addressing_mode,
     output reg                  mem_op,             // Is this a memory operation?
     output wire [3:0]           pc_offset,           // If the PC is used as an operand, it will have 4 or 8 added to it (depending on the shift type)
-    output reg                  bulk_store_enable,
-    output reg                  bulk_load_enable,
-    output reg [15:0]           bulk_reglist,
-    output reg                  bulk_writeback
-
-    // output wire                 mux_alu_dmem,
-    //                             mux_alu_ext, 
-    //                             cs_data,
-    //                             we_data,
-    //                             wr_en,
-    //                             br_flag,
-    //                             jump, 
-    //                             r_type,
-    //                             jalr_flag,
-    //                             jal_flag,
-    //                             u_type,
-    //                             imm_flag,
-    //                             ld_str_flag,
-    //                             ExtOp, 
-    //                             auipc_flag,
-    //                             add_or_sub, 
-    //                             shift_type,
-    // output wire [`IWIDTH-1:0]    pc_plus4,
-
-    // output wire [2:0] 	        func,
-    // output wire [4:0] 	        alu_shift_amt,
-    // output wire [11:0] 	        imm_ld_ext_in,
-    // output wire [11:0] 	        imm_str_ext_in,
-    // output wire [12:0] 	        br_imm,
-
-    // output wire [`WWIDTH-1:0]    jalr_target, jal_target, auipc_target, lui_target,
-    // output wire [`AWIDTH-1:0]    reg_rd_addr_a, reg_rd_addr_b, reg_wr_addr
 );
     // ARMv4 decoder
     // User/privileged modes not implemented - all memory is accessible by anything
@@ -191,10 +159,6 @@ module decode(
             we_data = 1'b0;
             address_gen_mode = 2'b00;       // Irrelevant
             load_addressing_mode = 3'b000;  // Irrelevant
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
         end else if (inst[27:25] == `B_INST) begin
             pc_op = 1'b1;
             set_cpsr = 1'b0;
@@ -226,10 +190,6 @@ module decode(
             we_data = 1'b0;
             address_gen_mode = 2'b00;       // Irrelevant
             load_addressing_mode = 3'b000;  // Irrelevant
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
         end else if (inst[27:25] == `DATA_PROC_I) begin     // Immediate data processing instuction
             // These operations don't write their results
             if (inst[24:21] == `ALU_TST || inst[24:21] == `ALU_TEQ || inst[24:21] == `ALU_CMP || inst[24:21] == `ALU_CMN) begin
@@ -263,10 +223,6 @@ module decode(
             we_data = 1'b0;
             address_gen_mode = 2'b00;       // Irrelevant
             load_addressing_mode = 3'b000;  // Irrelevant
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
         // Shifted register data processing instuction
         // The thing which differentiates this from other operations is that either bit 7 or 4 will be 0
         // Whereas in eg mul, inst[7:4] = 1001
@@ -305,10 +261,6 @@ module decode(
             we_data = 1'b0;
             address_gen_mode = 2'b00;       // Irrelevant
             load_addressing_mode = 3'b000;  // Irrelevant
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
         end else if (inst[27:22] == `MUL_PART_A && inst[7:4] == `MUL_PART_B) begin  // MUL and MLA
             // No register can be the PC
             pc_op = 1'b0;
@@ -337,10 +289,6 @@ module decode(
             we_data = 1'b0;
             address_gen_mode = 2'b00;       // Irrelevant
             load_addressing_mode = 3'b000;  // Irrelevant
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
         end else if (inst[27:23] == `MULL_PART_A && inst[7:4] == `MUL_PART_B) begin  // MULL MLAL
             // No register can be the PC
             pc_op = 1'b0;
@@ -369,10 +317,6 @@ module decode(
             we_data = 1'b0;
             address_gen_mode = 2'b00;       // Irrelevant
             load_addressing_mode = 3'b000;  // Irrelevant
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
         // Single data load, starts with 01. But if 25 (1 if register) is 1 and 4 is 1 (should be 0 for shifted register), this is undefined
         end else if (inst[27:26] == `SDT_START && ~(inst[25] && inst[4])) begin
             pc_op = inst[15:12] == 4'b1111;    // Rd is PC. If Rn is PC, writeback cannot be specified
@@ -384,10 +328,6 @@ module decode(
             address_gen_mode = {inst[21], inst[24]};
             // inst[22] is 0 if word, 1 if byte
             load_addressing_mode = `ZEXT | (inst[22] ? `BYTE : `WORD);
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
 
             // ALU operation
             // inst[23] indicates whether to do Rn + Offset or Rd - Offset
@@ -418,10 +358,6 @@ module decode(
             address_gen_mode = {inst[21], inst[24]};
             // [6:5] = 01 if unsigned halfword, 10 if signed byte, 11 if signed halfword
             load_addressing_mode = (inst[6] ? `SEXT : `ZEXT) | (inst[5] ? `HALF_WORD : `BYTE);
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
 
             // ALU operation
             // inst[23] indicates whether to do Rn + Offset or Rd - Offset
@@ -453,10 +389,6 @@ module decode(
             address_gen_mode = {inst[21], inst[24]};
             // [6:5] = 01 if unsigned halfword, 10 if signed byte, 11 if signed halfword
             load_addressing_mode = (inst[6] ? `SEXT : `ZEXT) | (inst[5] ? `HALF_WORD : `BYTE);
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
 
             // ALU operation
             // inst[23] indicates whether to do Rn + Offset or Rd - Offset
@@ -477,44 +409,6 @@ module decode(
             rd_addr_b = 4'b0000;        // No register addition
             rd_addr_c = 4'b0000;        // No shift
             rd_addr_d = inst[15:12];    // Rd - Read port D is connected to the input of memory
-        end else if (inst[27:25] == `BLOCK_TFR) begin
-            // My single cycle block transfer is an atrocity, but at least it's easy to decode?
-
-            // Memory
-            mem_op = 1'b0;
-            we_data = 1'b0;
-            address_gen_mode = 2'b00;
-            // Here we hijack the load addressing mode
-            // Bit 2 is arbitrary
-            // Bit 1 is post/pre
-            // Bit 0 is down/up
-            load_addressing_mode = {1'b0, inst[24], inst[23]};
-            bulk_store_enable = ~inst[20];
-            bulk_load_enable = inst[20];
-            bulk_reglist = inst[15:0];
-            bulk_writeback = inst[21];
-
-            pc_op = bulk_reglist[15] & bulk_load_enable;
-            set_cpsr = 1'b0;
-
-            // ALU operation
-            // Here we will just output Rn to send to sram
-            alu_op = `ALU_ADD;
-            imm_flag = 1'b0;
-            imm_val = 32'b0;
-            op2_shift_func = 2'b0;
-            op2_imm_shift_by = 8'b0;
-            op2_is_imm_shift = 1'b1;
-
-            // Registers
-            wr_en_a = 1'b0;
-            wr_en_b = 1'b0;
-            wr_addr_a = inst[19:16];    // The register file will writeback to this address if applicable
-            wr_addr_b = 4'b0;
-            rd_addr_a = inst[19:16];   // Rn
-            rd_addr_b = 4'b0;
-            rd_addr_c = 4'b0;
-            rd_addr_d = 4'b0;
         // SWP
         end else if (inst[27:23] == `SWP_UPPER && inst[11:4] == `SWP_LOWER) begin
             pc_op = 0;    // PC cannot be an operand
@@ -526,10 +420,6 @@ module decode(
             address_gen_mode = `OFFSET;   // This doesn't matter, but using offset just to avoid writeback
             // Always unsigned, either word or byte
             load_addressing_mode = `ZEXT | (inst[22] ? `WORD : `BYTE);
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
-            bulk_writeback = 1'b0;
 
             // ALU operation
             // inst[23] indicates whether to do Rn + Offset or Rd - Offset
@@ -553,7 +443,7 @@ module decode(
         end else begin // Undefined instuction, do nothing
             // This also includes instuctions I have not implemented, like:
             //      - MRS, MSR (PSR transfer)
-            //      - 
+            //      - Bulk data transfers (and anything defined in plan.md)
 
             pc_op = 1'b0;
             set_cpsr = 1'b0;
@@ -580,9 +470,6 @@ module decode(
             we_data = 1'b0;
             address_gen_mode = 2'b00;       // Irrelevant
             load_addressing_mode = 3'b000;  // Irrelevant
-            bulk_store_enable = 1'b0;
-            bulk_load_enable = 1'b0;
-            bulk_reglist = 16'b0;
         end
     end
 endmodule

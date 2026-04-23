@@ -6,8 +6,6 @@ module arm32_core(
     input rst,
     input [`IWIDTH-1:0]     inst,
     input [`DWIDTH-1:0]     dram_dout,
-    input [`WWIDTH*16-1:0]  bulk_data_sram,
-    input [`AWIDTH-1:0]     bulkAddrResult,
     input [`WWIDTH-1:0]     op_a, reg_b, op_c, op_d,
 
     // Regfile inputs
@@ -16,9 +14,6 @@ module arm32_core(
     // DMEM controls
     output                  cs_data,
     output [2:0]            load_addressing_mode,
-    output                  bulk_store_enable,
-    output                  bulk_load_enable,
-    output [15:0]           bulk_reglist,
     output                  we_data,
 
     // Operand outputs
@@ -32,7 +27,6 @@ module arm32_core(
     output                  wr_en_a, wr_en_b,
     output [3:0]            pc_offset,
     output [`WWIDTH-1:0]    next_pc_seq,
-    output                  bulk_writeback,
     output [1:0]            address_gen_mode,
 
     // IMEM controls
@@ -68,7 +62,7 @@ module arm32_core(
 
     nextPcLogic pcgen(
         .this_pc(this_pc),
-        .pc_mod(bulk_load_enable ? bulk_data_sram[15*32 +: 32] : alu_out_1),
+        .pc_mod(alu_out_1),
         .pc_write(pc_op & condition_fulfilled),
         .next_pc(next_pc),
         .next_pc_seq(next_pc_seq)
@@ -142,10 +136,6 @@ module arm32_core(
         .load_addressing_mode(load_addressing_mode),
         .mem_op(mem_op),
         .pc_offset(pc_offset),
-        .bulk_store_enable(bulk_store_enable),
-        .bulk_load_enable(bulk_load_enable),
-        .bulk_reglist(bulk_reglist),
-        .bulk_writeback(bulk_writeback)
     );
 
     always @(posedge clk or negedge rst) begin
@@ -162,18 +152,12 @@ module arm32_core_system(
 );
     wire [`IWIDTH-1:0]     inst;
     wire [`DWIDTH-1:0]     dram_dout;
-    wire [`WWIDTH*16-1:0]  bulk_data_sram;
-    wire [`WWIDTH*16-1:0]  bulk_data_reg;
-    wire [`AWIDTH-1:0]     bulkAddrResult;
     wire [`WWIDTH-1:0]     op_a, reg_b, op_c, op_d;
 
     wire                  condition_fulfilled;
     // DMEM controls
     wire                  cs_data;
     wire [2:0]            load_addressing_mode;
-    wire                  bulk_store_enable;
-    wire                  bulk_load_enable;
-    wire [15:0]           bulk_reglist;
     wire                  we_data;
 
     // Operand outputs
@@ -187,7 +171,6 @@ module arm32_core_system(
     wire                  wr_en_a, wr_en_b;
     wire [3:0]            pc_offset;
     wire [`WWIDTH-1:0]    next_pc_seq;
-    wire                  bulk_writeback;
     wire [1:0]            address_gen_mode;
 
     // Instruction memory
@@ -202,21 +185,11 @@ module arm32_core_system(
         .we(1'b0),
         .clk(clk),
         .addr(pc[`AWIDTH-1:0]),
-        .bulk_store_enable(1'b0),
-        .bulk_load_enable(1'b0),
-        .bulk_reglist(16'b0),
-        .bulk_data_reg(512'b0)
     );
 
     // Data memory
     sram dram (
         .dataOut(dram_dout),
-        .bulk_data_sram(bulk_data_sram),
-        .bulkAddrResult(bulkAddrResult),
-        .bulk_store_enable(bulk_store_enable & condition_fulfilled),
-        .bulk_load_enable(bulk_load_enable & condition_fulfilled),
-        .bulk_reglist(bulk_reglist),
-        .bulk_data_reg(bulk_data_reg),
         .func(load_addressing_mode),
         .dataIn(op_d),
         .cs(cs_data),
@@ -245,13 +218,6 @@ module arm32_core_system(
         .reg_b(reg_b),
         .reg_c(op_c),
         .reg_d(op_d),
-        .bulk_store_enable(bulk_store_enable & condition_fulfilled),
-        .bulk_load_enable(bulk_load_enable & condition_fulfilled),
-        .bulk_writeback(bulk_writeback),
-        .bulk_reglist(bulk_reglist),
-        .bulkAddrResult(bulkAddrResult),
-        .bulk_data_sram(bulk_data_sram),
-        .bulk_data_reg(bulk_data_reg)
     );
 
     // CPU core
@@ -260,15 +226,10 @@ module arm32_core_system(
         .rst(rst),
         .inst(inst),
         .dram_dout(dram_dout),
-        .bulk_data_sram(bulk_data_sram),
-        .bulkAddrResult(bulkAddrResult),
         .op_a(op_a), .reg_b(reg_b), .op_c(op_c), .op_d(op_d),
         .condition_fulfilled(condition_fulfilled),
         .cs_data(cs_data),
         .load_addressing_mode(load_addressing_mode),
-        .bulk_store_enable(bulk_store_enable),
-        .bulk_load_enable(bulk_load_enable),
-        .bulk_reglist(bulk_reglist),
         .we_data(we_data),
         .alu_out_1(alu_out_1), .alu_out_2(alu_out_2),
         .rd_addr_a(rd_addr_a), .rd_addr_b(rd_addr_b), .rd_addr_c(rd_addr_c), .rd_addr_d(rd_addr_d),
@@ -276,7 +237,6 @@ module arm32_core_system(
         .wr_en_a(wr_en_a), .wr_en_b(wr_en_b),
         .pc_offset(pc_offset),
         .next_pc_seq(next_pc_seq),
-        .bulk_writeback(bulk_writeback),
         .address_gen_mode(address_gen_mode),
         .pc(pc)
     );

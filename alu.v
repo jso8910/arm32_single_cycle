@@ -33,73 +33,59 @@ module alu(
     output wire [31:0]  alu_out_2,
     output reg [3:0]    nzcv
 );
-    // long multiplication starts with 101
-    wire out_2_is_res;
-    assign out_2_is_res = func[4:2] == 3'b101;   // If out_2 is a result (ie long multiplication)
-    reg [63:0] res_long;
+    reg [32:0] res_long;
     always @(*) begin
         nzcv[3] = alu_out_1[31];  // Negative flag
         nzcv[2] = out_2_is_res ? {alu_out_1, alu_out_2} == 64'b0 : alu_out_1 == 32'b0;  // zero flag
         // Logical operations set to shifter output (which maintains previous carry if op is LSL #0)
         case (func)
-            `ALU_AND, `ALU_EOR, `ALU_TST, `ALU_TEQ,
-                `ALU_ORR, `ALU_MOV,
-                `ALU_BIC, `ALU_MVN: nzcv[1] = shifter_cout;
+            `ALU_MOV, `ALU_MVN: nzcv[1] = shifter_cout;
             default: nzcv[1] = res_long[32];
         endcase
-        // if (func inside {`ALU_AND, `ALU_EOR, `ALU_TST, `ALU_TEQ, `ALU_ORR, `ALU_MOV, `ALU_BIC, `ALU_MVN}) begin
-        //     nzcv[1] = shifter_cout;
-        // end else
-        //     nzcv[1] = res_long[32];
 
         case (func)
             // Addition: (A and B same sign) AND (Result different sign)
-            `ALU_ADD, `ALU_ADC, `ALU_CMN: 
+            `ALU_ADD: //`ALU_ADC, `ALU_CMN: 
                 nzcv[0] = (op_a[31] == op_b[31]) && (res_long[31] != op_a[31]);
 
             // Subtraction (A - B): (A and B different sign) AND (Result == B's sign)
-            `ALU_SUB, `ALU_SBC, `ALU_CMP: 
+            `ALU_SUB, `ALU_CMP: 
                 nzcv[0] = (op_a[31] != op_b[31]) && (res_long[31] == op_b[31]);
-
-            // RSB: (B and A different sign) AND (Result == A's sign)
-            `ALU_RSB, `ALU_RSC: 
-                nzcv[0] = (op_a[31] != op_b[31]) && (res_long[31] == op_a[31]);
 
             // Otherwise V is usually unaffected or unchanged
             default: nzcv[0] = prev_nzcv[0];
         endcase
     end
-    // assign nzcv[1] = func inside {ALU_AND, ALU_EOR, ALU_TST, ALU_TEQ, ALU_ORR, ALU_MOV, ALU_BIC, ALU_MVN}
 
     always @(*) begin
         case (func)
-            `ALU_AND: res_long = op_a & op_b;
-            `ALU_EOR: res_long = op_a ^ op_b;
+            // `ALU_AND: res_long = op_a & op_b;
+            // `ALU_EOR: res_long = op_a ^ op_b;
             `ALU_SUB: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + 1;
-            `ALU_RSB: res_long = {1'b0, op_b} + ~({1'b0, op_a}) + 1;
+            // `ALU_RSB: res_long = {1'b0, op_b} + ~({1'b0, op_a}) + 1;
             `ALU_ADD: res_long = {1'b0, op_a} + op_b;
-            `ALU_ADC: res_long = {1'b0, op_a} + op_b + prev_nzcv[1];
-            `ALU_SBC: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + prev_nzcv[1];
-            `ALU_RSC: res_long = {1'b0, op_b} + ~({1'b0, op_a}) + prev_nzcv[1];
-            `ALU_TST: res_long = op_a & op_b;
-            `ALU_TEQ: res_long = op_a ^ op_b;
+            // `ALU_ADC: res_long = {1'b0, op_a} + op_b + prev_nzcv[1];
+            // `ALU_SBC: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + prev_nzcv[1];
+            // `ALU_RSC: res_long = {1'b0, op_b} + ~({1'b0, op_a}) + prev_nzcv[1];
+            // `ALU_TST: res_long = op_a & op_b;
+            // `ALU_TEQ: res_long = op_a ^ op_b;
             `ALU_CMP: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + 1;
-            `ALU_CMN: res_long = {1'b0, op_a} + op_b;
-            `ALU_ORR: res_long = op_a | op_b;
+            // `ALU_CMN: res_long = {1'b0, op_a} + op_b;
+            // `ALU_ORR: res_long = op_a | op_b;
             `ALU_MOV: res_long = op_b;
-            `ALU_BIC: res_long = op_a & (~op_b);
+            // `ALU_BIC: res_long = op_a & (~op_b);
             `ALU_MVN: res_long = ~op_b;
-            `ALU_MUL: res_long = op_a * op_b;
-            `ALU_MLA: res_long = op_a * op_b + op_c;
-            `ALU_UMULL: res_long = {32'b0, op_a} * {32'b0, op_b};
-            `ALU_SMULL: res_long = $signed({{32{op_a[31]}}, op_a}) * $signed({{32{op_b[31]}}, op_b});
-            `ALU_UMLAL: res_long = {32'b0, op_a} * {32'b0, op_b} + {op_c, op_d};
-            `ALU_SMLAL: res_long = $signed({{32{op_a[31]}}, op_a}) * $signed({{32{op_b[31]}}, op_b}) + $signed({op_c, op_d});
+            // `ALU_MUL: res_long = op_a * op_b;
+            // `ALU_MLA: res_long = op_a * op_b + op_c;
+            // `ALU_UMULL: res_long = {32'b0, op_a} * {32'b0, op_b};
+            // `ALU_SMULL: res_long = $signed({{32{op_a[31]}}, op_a}) * $signed({{32{op_b[31]}}, op_b});
+            // `ALU_UMLAL: res_long = {32'b0, op_a} * {32'b0, op_b} + {op_c, op_d};
+            // `ALU_SMLAL: res_long = $signed({{32{op_a[31]}}, op_a}) * $signed({{32{op_b[31]}}, op_b}) + $signed({op_c, op_d});
             default: res_long = 64'bx;
         endcase
     end
     assign alu_out_1 = res_long[31:0];
 
-    // Output op_a from port 2 if we aren't doing a long mul
-    assign alu_out_2 = out_2_is_res ? res_long[63:32] : op_a;
+    // Output op_a from port 2
+    assign alu_out_2 = op_a;
 endmodule
