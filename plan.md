@@ -55,6 +55,7 @@ Already unimplemented
 Extra ALU output port (only used for branch with link, which I don't need), extra register write port (port B), extra register read ports (C (used for register-shifted registers) and D (D is used for data writing, but I'm never doing that)).
 
 # Results
+Using NangateOpenCellLibrary.
 
 ## Pre-optimization
 Core area:
