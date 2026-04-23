@@ -1,8 +1,8 @@
 file mkdir "../profiling"
 file mkdir "../outputs"
 
-set all_files [glob -nocomplain ../*.v]
-set filtered_files [lsearch -all -inline -not $all_files "core_tb.v"]
+set all_files [glob -nocomplain ../*.v*]
+set filtered_files [lsearch -all -inline -not -exact $all_files "../core_tb.v"]
 
 read_hdl -sv $all_files
 set_db library /vol/ece303/genus_tutorial/NangateOpenCellLibrary_typical.lib
