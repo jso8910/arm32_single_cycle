@@ -34,6 +34,7 @@ module arm32_core(
     output [`WWIDTH-1:0]    next_pc_seq,
     output                  bulk_writeback,
     output [1:0]            address_gen_mode,
+    output                  mem_op,
 
     // IMEM controls
     output [`AWIDTH-1:0] pc
@@ -189,6 +190,7 @@ module arm32_core_system(
     wire [`WWIDTH-1:0]    next_pc_seq;
     wire                  bulk_writeback;
     wire [1:0]            address_gen_mode;
+    wire                  mem_op;
 
     // Instruction memory
     wire [`AWIDTH-1:0] pc;
@@ -278,6 +280,7 @@ module arm32_core_system(
         .next_pc_seq(next_pc_seq),
         .bulk_writeback(bulk_writeback),
         .address_gen_mode(address_gen_mode),
-        .pc(pc)
+        .pc(pc),
+        .mem_op(mem_op)
     );
 endmodule
