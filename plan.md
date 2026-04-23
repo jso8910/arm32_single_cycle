@@ -41,9 +41,6 @@ W: always 0 (no writeback)
 L: always 1 (load)
 Offset: always 0
 
-# Undefined
-Expand this case to include any of the unused instructions (so just put it as a default at the end, if possible). Otherwise just include another default case identical to this one, because iirc it might be important to absorb a specific data transfer case that isn't valid
-
 # Block data transfer
 Unused
 

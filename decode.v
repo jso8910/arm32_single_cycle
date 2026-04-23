@@ -237,23 +237,23 @@ module decode(
 
             // Memory
             mem_op = 1'b1;
-            we_data = ~inst[20];        // inst[20] is 1 if LDR, 0 if STR. So: negate
-            address_gen_mode = {inst[21], inst[24]};
-            // inst[22] is 0 if word, 1 if byte
-            load_addressing_mode = `ZEXT | (inst[22] ? `BYTE : `WORD);
+            we_data = 1'b0;    // We don't write to memory in this simplified core
+            address_gen_mode = `OFFSET;    // We will always use offset addressing mode with a 0 offset
+            // Only byte reads
+            load_addressing_mode = `ZEXT | `BYTE;
 
             // ALU operation
             // inst[23] indicates whether to do Rn + Offset or Rd - Offset
             alu_op = inst[23] ? `ALU_ADD : `ALU_SUB;
-            imm_flag = ~inst[25];                               // inst[25] == 0 if immediate
-            imm_val = {{20{1'b0}}, inst[11:0]};                 // 12 bit immediate, zero extended
-            op2_shift_func = imm_flag ? 2'b00 : inst[6:5];      // A shift function, or LSL (00)
-            op2_imm_shift_by = imm_flag ? 8'b0 : {{3{1'b0}}, inst[11:7]};
+            imm_flag = 1'b1;    // Always immediate
+            imm_val = 32'b0;                 // 12 bit immediate, always 0
+            op2_shift_func = 2'b00;
+            op2_imm_shift_by = 8'b0;
             op2_is_imm_shift = 1'b1;
 
             // Registers
-            wr_en_a = ~(address_gen_mode == `OFFSET);   // All modes other than offset write
-            wr_en_b = inst[20];         // 1 if LDR, 0 if STR
+            wr_en_a = 1'b0;    // Never do writeback
+            wr_en_b = 1'b1;    // We always write to the register file, with the loaded value
             wr_addr_a = inst[19:16];    // Rn, for writeback
             wr_addr_b = inst[15:12];    // Rd, for LDR operations
             rd_addr_a = inst[19:16];    // Rn
