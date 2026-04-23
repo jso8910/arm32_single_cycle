@@ -60,11 +60,11 @@ Also, removing all conditions other than the ones described in the branch sectio
 Using NangateOpenCellLibrary. At default effort level for all synthesis steps. This does not include any modeling of SRAM/DRAM (they should be *much* more efficient with fewer load/store options).
 
 ## Summary
-Core area: 86.3% reduction
+Core area: 86.6% reduction
 
 Register file area: 79.4% reduction
 
-Core power consumption: 90.0% reduction
+Core power consumption: 90.4% reduction
 
 Register file power consumption: 78.2% reduction
 
@@ -94,12 +94,12 @@ The pre-optimization core comes from [commit 2f70516](https://github.com/jso8910
 ### Core area
 | Instance Module | Cell Count | Cell Area | Net Area | Total Area
 | :--- | :--- | :--- | :--- | :--- |
-| arm32_core | 532 | 943.502 | 885.126 | 1828.628 |
+| arm32_core | 522 | 923.818 | 866.354 | 1790.172 |
 
 ### Core power
 | Instance | Cells | Leakage Power(nW) | Dynamic Power(nW) | Total Power(nW) |
 | :--- | :--- | :--- | :--- | :--- |
-| arm32_core | 532 | 20286.430 | 41329.279 | 61615.709
+| arm32_core | 522 | 19351.027 | 39777.089 | 59128.116 |
 
 ### Register file area
 | Instance Module | Cell Count | Cell Area | Net Area | Total Area
