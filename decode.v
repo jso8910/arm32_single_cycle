@@ -260,68 +260,6 @@ module decode(
             rd_addr_b = inst[3:0];      // Rm - or nonsense if imm_flag
             rd_addr_c = 4'b0000;        // A register cannot be used as the shift
             rd_addr_d = inst[15:12];    // Rd - Read port D is connected to the input
-        // Halfword data transfer, register offset. Explicitly excluding swap operations from this
-        end else if (inst[27:25] == `HW_TFR && inst[22] == 1'b0 && inst[7] == 1'b1 && inst[4] == 1'b1 && inst[6:5] != `SHBIT_SWP) begin
-            pc_op = inst[15:12] == 4'b1111;    // Rd is PC. If Rn is PC, writeback cannot be specified
-            set_cpsr = 1'b0;
-
-            // Memory
-            mem_op = 1'b1;
-            we_data = ~inst[20];        // inst[20] is 1 if LDR, 0 if STR. So: negate
-            address_gen_mode = {inst[21], inst[24]};
-            // [6:5] = 01 if unsigned halfword, 10 if signed byte, 11 if signed halfword
-            load_addressing_mode = (inst[6] ? `SEXT : `ZEXT) | (inst[5] ? `HALF_WORD : `BYTE);
-
-            // ALU operation
-            // inst[23] indicates whether to do Rn + Offset or Rd - Offset
-            alu_op = inst[23] ? `ALU_ADD : `ALU_SUB;
-            imm_flag = 1'b0;
-            imm_val = 32'b0;
-            op2_shift_func = 2'b00;      // LSL (00)
-            op2_imm_shift_by = 8'b0;
-            op2_is_imm_shift = 1'b1;
-
-            // Registers
-            // Write Port A is used for writeback, Port B is used for writing for LDR (has value from memory)
-            wr_en_a = ~(address_gen_mode == `OFFSET);   // All modes other than offset write
-            wr_en_b = inst[20];         // 1 if LDR, 0 if STR
-            wr_addr_a = inst[19:16];    // Rn, for writeback
-            wr_addr_b = inst[15:12];    // Rd, for LDR operations
-            rd_addr_a = inst[19:16];    // Rn
-            rd_addr_b = inst[3:0];      // Rm
-            rd_addr_c = 4'b0000;        // No shift
-            rd_addr_d = inst[15:12];    // Rd - Read port D is connected to the input of memory
-        // Halfword data transfer, immediate offset. Explicitly excluding swap operations from this
-        end else if (inst[27:25] == `HW_TFR && inst[22] == 1'b1 && inst[7] == 1'b1 && inst[4] == 1'b1 && inst[6:5] != `SHBIT_SWP) begin
-            pc_op = inst[15:12] == 4'b1111;    // Rd is PC. If Rn is PC, writeback cannot be specified
-            set_cpsr = 1'b0;
-
-            // Memory
-            mem_op = 1'b1;
-            we_data = ~inst[20];        // inst[20] is 1 if LDR, 0 if STR. So: negate
-            address_gen_mode = {inst[21], inst[24]};
-            // [6:5] = 01 if unsigned halfword, 10 if signed byte, 11 if signed halfword
-            load_addressing_mode = (inst[6] ? `SEXT : `ZEXT) | (inst[5] ? `HALF_WORD : `BYTE);
-
-            // ALU operation
-            // inst[23] indicates whether to do Rn + Offset or Rd - Offset
-            alu_op = inst[23] ? `ALU_ADD : `ALU_SUB;
-            imm_flag = 1'b1;
-            imm_val = {{24{1'b0}}, inst[11:8], inst[3:0]};
-            op2_shift_func = 2'b00;      // LSL (00)
-            op2_imm_shift_by = 8'b0;
-            op2_is_imm_shift = 1'b1;
-
-            // Registers
-            // Write Port A is used for writeback, Port B is used for writing for LDR (has value from memory)
-            wr_en_a = ~(address_gen_mode == `OFFSET);   // All modes other than offset write
-            wr_en_b = inst[20];         // 1 if LDR, 0 if STR
-            wr_addr_a = inst[19:16];    // Rn, for writeback
-            wr_addr_b = inst[15:12];    // Rd, for LDR operations
-            rd_addr_a = inst[19:16];    // Rn
-            rd_addr_b = 4'b0000;        // No register addition
-            rd_addr_c = 4'b0000;        // No shift
-            rd_addr_d = inst[15:12];    // Rd - Read port D is connected to the input of memory
         end else begin // Undefined instuction, do nothing
             // This also includes instuctions I have not implemented, like:
             //      - MRS, MSR (PSR transfer)
