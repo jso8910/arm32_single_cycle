@@ -28,4 +28,5 @@ foreach top_module {arm32_core regfile} {
 
     # Clear the design from memory so the next iteration starts fresh
     rm /designs/${top_module}
+}
 exit
