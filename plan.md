@@ -58,47 +58,44 @@ Extra ALU output port (only used for branch with link, which I don't need), extr
 Using NangateOpenCellLibrary. At default effort level for all synthesis steps. This does not include any modeling of SRAM/DRAM (they should be *much* more efficient with fewer load/store options).
 
 ## Pre-optimization
+The pre-optimization core comes from [commit 2f70516](https://github.com/jso8910/arm32_single_cycle/commit/2f705167262c7e440b85862999b1019a05d15e77)
 ### Core area
- Instance  Module  Cell Count  Cell Area  Net Area   Total Area
-----------------------------------------------------------------
-arm32_core               3872   7008.568  6378.705    13387.273
+| Instance Module | Cell Count | Cell Area | Net Area | Total Area
+| :--- | :--- | :--- | :--- | :--- |
+|arm32_core | 3872 | 7008.568 | 6378.705 | 13387.273|
 
 ### Core power
-                    Leakage    Dynamic     Total
- Instance   Cells  Power(nW)  Power(nW)  Power(nW)
----------------------------------------------------
-arm32_core   3872 151261.261 466081.621 617342.882
+| Instance | Cells | Leakage Power(nW) | Dynamic Power(nW) | Total Power(nW) |
+| :--- | :--- | :--- | :--- | :--- |
+| arm32_core | 3872 | 151261.261 | 466081.621 | 617342.882 |
 
 ### Register file area
-Instance Module  Cell Count  Cell Area  Net Area   Total Area
---------------------------------------------------------------
-regfile                3797   6740.706  6779.092    13519.798
+| Instance Module | Cell Count | Cell Area | Net Area | Total Area |
+| :--- | :--- | :--- | :--- | :--- |
+| regfile | 3797 | 6740.706 | 6779.092 | 13519.798 |
 
 ### Register file power
-                  Leakage    Dynamic     Total
-Instance  Cells  Power(nW)  Power(nW)  Power(nW)
--------------------------------------------------
-regfile    3797 122982.806 462685.326 585668.133
+| Instance | Cells | Leakage Power(nW) | Dynamic Power(nW) | Total Power(nW) |
+| :--- | :--- | :--- | :--- | :--- |
+| regfile | 3797 | 122982.806 | 462685.326 | 585668.133 |
 
 ## Post-optimization
 ### Core area
- Instance  Module  Cell Count  Cell Area  Net Area   Total Area
-----------------------------------------------------------------
-arm32_core                532    943.502   885.126     1828.628
+| Instance Module | Cell Count | Cell Area | Net Area | Total Area
+| :--- | :--- | :--- | :--- | :--- |
+| arm32_core | 532 | 943.502 | 885.126 | 1828.628 |
 
 ### Core power
-                   Leakage   Dynamic    Total
- Instance   Cells Power(nW) Power(nW) Power(nW)
-------------------------------------------------
-arm32_core    532 20286.430 41329.279 61615.709
+| Instance | Cells | Leakage Power(nW) | Dynamic Power(nW) | Total Power(nW) |
+| :--- | :--- | :--- | :--- | :--- |
+| arm32_core | 532 | 20286.430 | 41329.279 | 61615.709
 
 ### Register file area
-Instance Module  Cell Count  Cell Area  Net Area   Total Area
---------------------------------------------------------------
-regfile                 517   1792.042   997.864     2789.906
+| Instance Module | Cell Count | Cell Area | Net Area | Total Area
+| :--- | :--- | :--- | :--- | :--- |
+| regfile | 517 | 1792.042 | 997.864 | 2789.906 |
 
 ### Register file power
-                 Leakage   Dynamic     Total
-Instance  Cells Power(nW) Power(nW)  Power(nW)
------------------------------------------------
-regfile     517 33116.484 94493.863 127610.346
+| Instance | Cells | Leakage Power(nW) | Dynamic Power(nW) | Total Power(nW) |
+| :--- | :--- | :--- | :--- | :--- |
+| regfile | 517 | 33116.484 | 94493.863 | 127610.346 |
