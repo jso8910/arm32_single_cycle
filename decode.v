@@ -108,7 +108,7 @@ module decode(
     output reg [1:0]            address_gen_mode,
     output reg [2:0]            load_addressing_mode,
     output reg                  mem_op,             // Is this a memory operation?
-    output wire [3:0]           pc_offset,           // If the PC is used as an operand, it will have 4 or 8 added to it (depending on the shift type)
+    output wire [3:0]           pc_offset           // If the PC is used as an operand, it will have 4 or 8 added to it (depending on the shift type)
 );
     // ARMv4 decoder
     // User/privileged modes not implemented - all memory is accessible by anything
@@ -128,38 +128,7 @@ module decode(
         // Like I assume that there are better ways to do comparisons (eg identifying what parts of the instuction are unique or something)
         // but would a synthesizer identify that?
 
-        // bx
-        if (inst[27:4] == `BX_INST) begin
-            pc_op = 1'b1;
-            set_cpsr = 1'b0;
-
-            // ALU operation
-            // We are going to want to add Rn to 0
-            // So set rd_a = Rn, imm_val = 0
-            alu_op = `ALU_ADD;
-            imm_flag = 1'b1;
-            imm_val = 32'b0;
-            op2_shift_func = 2'b0;  // LSL is used as a placeholder, since LSL #0 has no meaning
-            op2_imm_shift_by = 8'b0;
-            op2_is_imm_shift = 1'b1;
-
-            // Registers
-            // No destination register here
-            wr_en_a = 1'b0;
-            wr_en_b = 1'b0;
-            wr_addr_a = 4'b0;
-            wr_addr_b = 4'b0;
-            rd_addr_a = inst[3:0];
-            rd_addr_b = 4'b0;
-            rd_addr_c = 4'b0;
-            rd_addr_d = 4'b0;
-
-            // Memory
-            mem_op = 1'b0;
-            we_data = 1'b0;
-            address_gen_mode = 2'b00;       // Irrelevant
-            load_addressing_mode = 3'b000;  // Irrelevant
-        end else if (inst[27:25] == `B_INST) begin
+        if (inst[27:25] == `B_INST) begin
             pc_op = 1'b1;
             set_cpsr = 1'b0;
 
@@ -226,8 +195,8 @@ module decode(
         // Shifted register data processing instuction
         // The thing which differentiates this from other operations is that either bit 7 or 4 will be 0
         // Whereas in eg mul, inst[7:4] = 1001
-        // The only other instuction with 27:25 == 000 and bit 7 == 0 is bx, already accounted for
-        end else if (inst[27:25] == `DATA_PROC_R && (inst[7] == 0 || inst[4] ==  0)) begin
+        // The only other instuction with 27:25 == 000 and bit 7 == 0 is bx which has a unique 24:20 == 0b10010, which would imply a TEQ but S bit not set
+        end else if (inst[27:25] == `DATA_PROC_R && (inst[7] == 0 || inst[4] ==  0) && inst[24:20] != 5'b10010) begin
             // These operations don't write their results
             if (inst[24:21] == `ALU_TST || inst[24:21] == `ALU_TEQ || inst[24:21] == `ALU_CMP || inst[24:21] == `ALU_CMN) begin
                 pc_op = 1'b0;
@@ -353,37 +322,6 @@ module decode(
             rd_addr_b = 4'b0000;        // No register addition
             rd_addr_c = 4'b0000;        // No shift
             rd_addr_d = inst[15:12];    // Rd - Read port D is connected to the input of memory
-        // SWP
-        end else if (inst[27:23] == `SWP_UPPER && inst[11:4] == `SWP_LOWER) begin
-            pc_op = 0;    // PC cannot be an operand
-            set_cpsr = 1'b0;
-
-            // Memory
-            mem_op = 1'b1;
-            we_data = 1'b1;     // We always write to memory on a swap
-            address_gen_mode = `OFFSET;   // This doesn't matter, but using offset just to avoid writeback
-            // Always unsigned, either word or byte
-            load_addressing_mode = `ZEXT | (inst[22] ? `WORD : `BYTE);
-
-            // ALU operation
-            // inst[23] indicates whether to do Rn + Offset or Rd - Offset
-            alu_op = `ALU_ADD;
-            imm_flag = 1'b1;
-            imm_val = 32'b0;
-            op2_shift_func = 2'b00;      // LSL (00)
-            op2_imm_shift_by = 8'b0;
-            op2_is_imm_shift = 1'b1;
-
-            // Registers
-            // Port B is used for writing the value from memory
-            wr_en_a = 1'b0;
-            wr_en_b = 1'b1;
-            wr_addr_a = 4'b0;
-            wr_addr_b = inst[15:12];    // Rd - memory is put into this register
-            rd_addr_a = inst[19:16];    // Rn, memory address
-            rd_addr_b = 4'b0000;        // No addition
-            rd_addr_c = 4'b0000;        // No shift
-            rd_addr_d = inst[3:0];      // Rm - value to put into memory. Read port D is connected to the input of memory
         end else begin // Undefined instuction, do nothing
             // This also includes instuctions I have not implemented, like:
             //      - MRS, MSR (PSR transfer)

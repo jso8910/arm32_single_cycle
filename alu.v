@@ -36,7 +36,7 @@ module alu(
     reg [32:0] res_long;
     always @(*) begin
         nzcv[3] = alu_out_1[31];  // Negative flag
-        nzcv[2] = out_2_is_res ? {alu_out_1, alu_out_2} == 64'b0 : alu_out_1 == 32'b0;  // zero flag
+        nzcv[2] = alu_out_1 == 32'b0;  // zero flag
         // Logical operations set to shifter output (which maintains previous carry if op is LSL #0)
         case (func)
             `ALU_MOV, `ALU_MVN: nzcv[1] = shifter_cout;

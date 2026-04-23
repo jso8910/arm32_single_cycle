@@ -17,7 +17,7 @@ module regfile
     input [RWIDTH-1:0]  next_pc,    // new
     input [RWIDTH-1:0]  data_in_a,  // changed
     input [RWIDTH-1:0]  data_in_b,  // new
-    output [RWIDTH-1:0] reg_a, reg_b, reg_c, reg_d,
+    output [RWIDTH-1:0] reg_a, reg_b, reg_c, reg_d
 );
     // Register file with two read ports, and two write port (this is a change)
     // Asynchronous read, synchronous write

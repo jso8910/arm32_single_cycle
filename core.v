@@ -135,7 +135,7 @@ module arm32_core(
         .address_gen_mode(address_gen_mode),
         .load_addressing_mode(load_addressing_mode),
         .mem_op(mem_op),
-        .pc_offset(pc_offset),
+        .pc_offset(pc_offset)
     );
 
     always @(posedge clk or negedge rst) begin
@@ -184,7 +184,7 @@ module arm32_core_system(
         .cs(1'b0),
         .we(1'b0),
         .clk(clk),
-        .addr(pc[`AWIDTH-1:0]),
+        .addr(pc[`AWIDTH-1:0])
     );
 
     // Data memory
@@ -217,7 +217,7 @@ module arm32_core_system(
         .reg_a(op_a),
         .reg_b(reg_b),
         .reg_c(op_c),
-        .reg_d(op_d),
+        .reg_d(op_d)
     );
 
     // CPU core
