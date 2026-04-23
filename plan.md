@@ -57,6 +57,15 @@ Extra ALU output port (only used for branch with link, which I don't need), extr
 # Results
 Using NangateOpenCellLibrary. At default effort level for all synthesis steps. This does not include any modeling of SRAM/DRAM (they should be *much* more efficient with fewer load/store options).
 
+## Summary
+Core area: 86.3% reduction
+
+Register file area: 79.4% reduction
+
+Core power consumption: 90.0% reduction
+
+Register file power consumption: 78.2% reduction
+
 ## Pre-optimization
 The pre-optimization core comes from [commit 2f70516](https://github.com/jso8910/arm32_single_cycle/commit/2f705167262c7e440b85862999b1019a05d15e77)
 ### Core area
