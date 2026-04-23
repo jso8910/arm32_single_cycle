@@ -206,7 +206,7 @@ module decode(
             imm_flag = 1'b1;    // (inst[25])
             imm_val = {{24{1'b0}}, inst[7:0]};      // 8 bit immediate, zero extended to 32 bits
             op2_shift_func = `ROR;                  // Rotate the immediate
-            op2_imm_shift_by = {{3{1'b0}}, inst[11:8], 1'b0};
+            op2_imm_shift_by = 8'b0;                // Immediate rotates are unsupported
             op2_is_imm_shift = 1'b1;
 
             // Registers
@@ -255,62 +255,6 @@ module decode(
             rd_addr_b = inst[3:0];     // Rm
             rd_addr_c = inst[11:8];    // Rs (or a random slice of the immediate which will be ignoed, who knows!)
             rd_addr_d = 4'b0;
-
-            // Memory
-            mem_op = 1'b0;
-            we_data = 1'b0;
-            address_gen_mode = 2'b00;       // Irrelevant
-            load_addressing_mode = 3'b000;  // Irrelevant
-        end else if (inst[27:22] == `MUL_PART_A && inst[7:4] == `MUL_PART_B) begin  // MUL and MLA
-            // No register can be the PC
-            pc_op = 1'b0;
-            set_cpsr = inst[20];
-
-            // ALU operation
-            alu_op = {1'b1, inst[24:21]};   // Bit 21 is the accumulate bit
-            imm_flag = 1'b0;
-            imm_val = 32'b0;                // LSL is used as a placeholder, since LSL #0 has no meaning. Carry bit can be set to arbitrary value
-            op2_shift_func = 2'b0;
-            op2_imm_shift_by = 8'b0;
-            op2_is_imm_shift = 1'b1;
-
-            // Registers
-            wr_en_a = 1'b1;
-            wr_en_b = 1'b0;
-            wr_addr_a = inst[19:16];   // Rd
-            wr_addr_b = 4'b0;
-            rd_addr_a = inst[11:8];   // Rs
-            rd_addr_b = inst[3:0];     // Rm
-            rd_addr_c = inst[15:12];    // Rn
-            rd_addr_d = 4'b0;
-
-            // Memory
-            mem_op = 1'b0;
-            we_data = 1'b0;
-            address_gen_mode = 2'b00;       // Irrelevant
-            load_addressing_mode = 3'b000;  // Irrelevant
-        end else if (inst[27:23] == `MULL_PART_A && inst[7:4] == `MUL_PART_B) begin  // MULL MLAL
-            // No register can be the PC
-            pc_op = 1'b0;
-            set_cpsr = inst[20];
-
-            // ALU operation
-            alu_op = {1'b1, inst[24:21]};   // Bit 21 is the accumulate bit, 22 indicates if signed
-            imm_flag = 1'b0;
-            imm_val = 32'b0;
-            op2_shift_func = 2'b0;          // LSL is used as a placeholder, since LSL #0 has no meaning. Carry bit can be set to arbitrary value
-            op2_imm_shift_by = 8'b0;
-            op2_is_imm_shift = 1'b1;
-
-            // Registers
-            wr_en_a = 1'b1;
-            wr_en_b = 1'b1;
-            wr_addr_a = inst[15:12];    // RdLo
-            wr_addr_b = inst[19:16];    // RdHi
-            rd_addr_a = inst[11:8];     // Rs
-            rd_addr_b = inst[3:0];      // Rm
-            rd_addr_c = inst[19:16];    // RdHi
-            rd_addr_d = inst[15:12];    // RdLo
 
             // Memory
             mem_op = 1'b0;

@@ -11,6 +11,7 @@ S: used
 Registers: eliminate registers above R5, R0 never needs to be a destination
 Operand 2 (immediate): no need for rotate
 Operand 2 (register): only LSR is used (and only for one instruction, so this is a *potential* program-modification case)
+- Also, this is always 1. Never more
 
 # Multiply
 Unused
