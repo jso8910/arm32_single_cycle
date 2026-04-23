@@ -3,6 +3,7 @@
 //   R0 = The value being searched for
 // Outputs:
 //   R1 = The address of the value if found, or -1 if not found
+// Static instruction count: 17
 
 binary_search:
 
@@ -23,7 +24,6 @@ search_loop:
     BEQ found           // If equal, we found the target!
 
     BLT search_right    // If memory[mid] < target, search the right half
-                        // (Assuming signed 8-bit integers. Use BLO for unsigned)
 
 search_left:
     SUB R3, R4, #1      // high = mid - 1

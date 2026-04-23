@@ -54,6 +54,8 @@ Already unimplemented
 # Misc
 Extra ALU output port (only used for branch with link, which I don't need), extra register write port (port B), extra register read ports (C (used for register-shifted registers) and D (D is used for data writing, but I'm never doing that)).
 
+Also, removing all conditions other than the ones described in the branch section.
+
 # Results
 Using NangateOpenCellLibrary. At default effort level for all synthesis steps. This does not include any modeling of SRAM/DRAM (they should be *much* more efficient with fewer load/store options).
 
