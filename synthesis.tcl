@@ -4,11 +4,11 @@ file mkdir "../outputs"
 set all_files [glob -nocomplain ../*.v*]
 set filtered_files [lsearch -all -inline -not -exact $all_files "../core_tb.v"]
 
-read_hdl -sv $filtered_files
 set_db library /vol/ece303/genus_tutorial/NangateOpenCellLibrary_typical.lib
 set_db lef_library /vol/ece303/genus_tutorial/NangateOpenCellLibrary.lef
 
 foreach top_module {arm32_core regfile} {
+    read_hdl -sv $filtered_files
     elaborate $top_module
     current_design $top_module
 
