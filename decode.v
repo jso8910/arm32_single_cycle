@@ -208,7 +208,7 @@ module decode(
             imm_val = 32'b0;
             op2_shift_func = inst[6:5];
             op2_imm_shift_by = {{3{1'b0}}, inst[11:7]};
-            op2_is_imm_shift = ~inst[4];
+            op2_is_imm_shift = 1'b1;
 
             // Registers
 

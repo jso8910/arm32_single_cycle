@@ -25,7 +25,7 @@
 `define ALU_SMLAL   5'b10111    // {RdHi, RdLo} <- Rm * Rs + {RdHi, RdLo} (signed)
 
 module alu(
-    input [31:0]        op_a, op_b, op_c, op_d,
+    input [31:0]        op_a, op_b,
     input [4:0]         func,
     input [3:0]         prev_nzcv,
     input               shifter_cout,
@@ -58,28 +58,11 @@ module alu(
 
     always @(*) begin
         case (func)
-            // `ALU_AND: res_long = op_a & op_b;
-            // `ALU_EOR: res_long = op_a ^ op_b;
             `ALU_SUB: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + 1;
-            // `ALU_RSB: res_long = {1'b0, op_b} + ~({1'b0, op_a}) + 1;
             `ALU_ADD: res_long = {1'b0, op_a} + op_b;
-            // `ALU_ADC: res_long = {1'b0, op_a} + op_b + prev_nzcv[1];
-            // `ALU_SBC: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + prev_nzcv[1];
-            // `ALU_RSC: res_long = {1'b0, op_b} + ~({1'b0, op_a}) + prev_nzcv[1];
-            // `ALU_TST: res_long = op_a & op_b;
-            // `ALU_TEQ: res_long = op_a ^ op_b;
             `ALU_CMP: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + 1;
-            // `ALU_CMN: res_long = {1'b0, op_a} + op_b;
-            // `ALU_ORR: res_long = op_a | op_b;
             `ALU_MOV: res_long = op_b;
-            // `ALU_BIC: res_long = op_a & (~op_b);
             `ALU_MVN: res_long = ~op_b;
-            // `ALU_MUL: res_long = op_a * op_b;
-            // `ALU_MLA: res_long = op_a * op_b + op_c;
-            // `ALU_UMULL: res_long = {32'b0, op_a} * {32'b0, op_b};
-            // `ALU_SMULL: res_long = $signed({{32{op_a[31]}}, op_a}) * $signed({{32{op_b[31]}}, op_b});
-            // `ALU_UMLAL: res_long = {32'b0, op_a} * {32'b0, op_b} + {op_c, op_d};
-            // `ALU_SMLAL: res_long = $signed({{32{op_a[31]}}, op_a}) * $signed({{32{op_b[31]}}, op_b}) + $signed({op_c, op_d});
             default: res_long = 64'bx;
         endcase
     end

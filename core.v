@@ -6,7 +6,7 @@ module arm32_core(
     input rst,
     input [`IWIDTH-1:0]     inst,
     input [`DWIDTH-1:0]     dram_dout,
-    input [`WWIDTH-1:0]     op_a, reg_b, op_c, op_d,
+    input [`WWIDTH-1:0]     op_a, reg_b,
 
     // Regfile inputs
 
@@ -80,7 +80,7 @@ module arm32_core(
     register_shift_unit register_shift_unit_op2 (
         .in(imm_flag ? imm_val : reg_b),
         .func(op2_shift_func),
-        .amount(op2_is_imm_shift ? op2_imm_shift_by : op_c[7:0]),
+        .amount(op2_imm_shift_by),
         .is_imm_rot(imm_flag),
         .cin(prev_nzcv[1]),
         .result(op_b),
@@ -91,8 +91,6 @@ module arm32_core(
     alu alu_inst (
         .op_a(op_a),
         .op_b(op_b),
-        .op_c(op_c),
-        .op_d(op_d),
         .func(alu_op),
         .prev_nzcv(prev_nzcv),
         .shifter_cout(shifter_cout),
@@ -149,7 +147,7 @@ module arm32_core_system(
 );
     wire [`IWIDTH-1:0]     inst;
     wire [`DWIDTH-1:0]     dram_dout;
-    wire [`WWIDTH-1:0]     op_a, reg_b, op_c, op_d;
+    wire [`WWIDTH-1:0]     op_a, reg_b;
 
     wire                  condition_fulfilled;
     // DMEM controls
@@ -189,7 +187,7 @@ module arm32_core_system(
     sram dram (
         .dataOut(dram_dout),
         .func(load_addressing_mode),
-        .dataIn(op_d),
+        .dataIn(32'b0),
         .cs(cs_data),
         .we(we_data & condition_fulfilled),
         .clk(clk),
@@ -210,9 +208,7 @@ module arm32_core_system(
         .next_pc(next_pc_seq),
         .data_in_a(mem_op ? dram_dout : alu_out_1),
         .reg_a(op_a),
-        .reg_b(reg_b),
-        .reg_c(op_c),
-        .reg_d(op_d)
+        .reg_b(reg_b)
     );
 
     // CPU core
@@ -221,7 +217,7 @@ module arm32_core_system(
         .rst(rst),
         .inst(inst),
         .dram_dout(dram_dout),
-        .op_a(op_a), .reg_b(reg_b), .op_c(op_c), .op_d(op_d),
+        .op_a(op_a), .reg_b(reg_b),
         .condition_fulfilled(condition_fulfilled),
         .cs_data(cs_data),
         .load_addressing_mode(load_addressing_mode),

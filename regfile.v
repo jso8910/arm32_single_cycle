@@ -14,7 +14,7 @@ module regfile
     input [3:0]         pc_offset,  // new
     input [RWIDTH-1:0]  next_pc,    // new
     input [RWIDTH-1:0]  data_in_a,  // changed
-    output [RWIDTH-1:0] reg_a, reg_b, reg_c, reg_d
+    output [RWIDTH-1:0] reg_a, reg_b
 );
     // Register file with two read ports, and two write port (this is a change)
     // Asynchronous read, synchronous write
@@ -39,6 +39,4 @@ module regfile
     // Read logic
     assign reg_a = (rd_addr_a == 4'b1111) ? (next_pc + pc_offset) : regarray[rd_addr_a];
     assign reg_b = (rd_addr_b == 4'b1111) ? (next_pc + pc_offset) : regarray[rd_addr_b];
-    assign reg_c = (rd_addr_c == 4'b1111) ? (next_pc + pc_offset) : regarray[rd_addr_c];
-    assign reg_d = (rd_addr_d == 4'b1111) ? (next_pc + pc_offset) : regarray[rd_addr_d];
 endmodule

@@ -10,7 +10,7 @@ Opcode: MOV, CMP, ADD, SUB, MVN
 S: used
 Registers: eliminate registers above R5, R0 never needs to be a destination
 Operand 2 (immediate): no need for rotate
-Operand 2 (register): only LSR is used (and only for one instruction, so this is a *potential* program-modification case)
+Operand 2 (register): only LSR is used (and only for one instruction, so this is a *potential* program-modification case). Also, no need for shift by register (register output c).
 - Also, this is always 1. Never more
 
 # Multiply
@@ -52,4 +52,4 @@ L: unused
 Already unimplemented
 
 # Misc
-Extra ALU output port (only used for branch with link, which I don't need), extra register read/write ports where possible
+Extra ALU output port (only used for branch with link, which I don't need), extra register write port (port B), extra register read ports (C (used for register-shifted registers) and D (D is used for data writing, but I'm never doing that)).
