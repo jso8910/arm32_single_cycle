@@ -25,5 +25,8 @@ foreach top_module {arm32_core regfile} {
 
     write_hdl > ../outputs/${top_module}_syn.v
     write_sdc > ../outputs/${top_module}_constraints_output.sdc
+
+    # Clear the design from memory so the next iteration starts fresh
+    rm [find / -design $top_module]
 }
 exit
