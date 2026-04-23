@@ -55,13 +55,14 @@ Already unimplemented
 Extra ALU output port (only used for branch with link, which I don't need), extra register write port (port B), extra register read ports (C (used for register-shifted registers) and D (D is used for data writing, but I'm never doing that)).
 
 # Results
-Using NangateOpenCellLibrary. At default effort level for all synthesis steps.
+Using NangateOpenCellLibrary. At default effort level for all synthesis steps. This does not include any modeling of SRAM/DRAM (they should be *much* more efficient with fewer load/store options).
 
 ## Pre-optimization
 ### Core area
  Instance  Module  Cell Count  Cell Area  Net Area   Total Area
 ----------------------------------------------------------------
 arm32_core               3872   7008.568  6378.705    13387.273
+
 ### Core power
                     Leakage    Dynamic     Total
  Instance   Cells  Power(nW)  Power(nW)  Power(nW)
@@ -80,8 +81,24 @@ Instance  Cells  Power(nW)  Power(nW)  Power(nW)
 regfile    3797 122982.806 462685.326 585668.133
 
 ## Post-optimization
-Core area:
-Core power:
+### Core area
+ Instance  Module  Cell Count  Cell Area  Net Area   Total Area
+----------------------------------------------------------------
+arm32_core                532    943.502   885.126     1828.628
 
-Register file area:
-Register file power:
+### Core power
+                   Leakage   Dynamic    Total
+ Instance   Cells Power(nW) Power(nW) Power(nW)
+------------------------------------------------
+arm32_core    532 20286.430 41329.279 61615.709
+
+### Register file area
+Instance Module  Cell Count  Cell Area  Net Area   Total Area
+--------------------------------------------------------------
+regfile                 517   1792.042   997.864     2789.906
+
+### Register file power
+                 Leakage   Dynamic     Total
+Instance  Cells Power(nW) Power(nW)  Power(nW)
+-----------------------------------------------
+regfile     517 33116.484 94493.863 127610.346
