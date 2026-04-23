@@ -55,14 +55,29 @@ Already unimplemented
 Extra ALU output port (only used for branch with link, which I don't need), extra register write port (port B), extra register read ports (C (used for register-shifted registers) and D (D is used for data writing, but I'm never doing that)).
 
 # Results
-Using NangateOpenCellLibrary.
+Using NangateOpenCellLibrary. At default effort level for all synthesis steps.
 
 ## Pre-optimization
-Core area:
-Core power:
+### Core area
+ Instance  Module  Cell Count  Cell Area  Net Area   Total Area
+----------------------------------------------------------------
+arm32_core               3872   7008.568  6378.705    13387.273
+### Core power
+                    Leakage    Dynamic     Total
+ Instance   Cells  Power(nW)  Power(nW)  Power(nW)
+---------------------------------------------------
+arm32_core   3872 151261.261 466081.621 617342.882
 
-Register file area:
-Register file power:
+### Register file area
+Instance Module  Cell Count  Cell Area  Net Area   Total Area
+--------------------------------------------------------------
+regfile                3797   6740.706  6779.092    13519.798
+
+### Register file power
+                  Leakage    Dynamic     Total
+Instance  Cells  Power(nW)  Power(nW)  Power(nW)
+-------------------------------------------------
+regfile    3797 122982.806 462685.326 585668.133
 
 ## Post-optimization
 Core area:

@@ -25,7 +25,7 @@ module regfile
     // Write logic
     always @(posedge clk or negedge rst) begin
         if (!rst) begin
-            for (i = 0; i < 15; i++) begin
+            for (i = 0; i <= 5; i++) begin
                 regarray[i] <= {RWIDTH{1'b0}};
             end
         end else begin
