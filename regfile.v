@@ -4,19 +4,16 @@ module regfile
 #(parameter RWIDTH = `WWIDTH)
 (
     input [3:0]         wr_addr_a,  // changed
-    input [3:0]         wr_addr_b,  // new
     input [3:0] 	    rd_addr_a,
     input [3:0] 	    rd_addr_b,
     input [3:0] 	    rd_addr_c,  // new
     input [3:0] 	    rd_addr_d,  // new
     input 		        wr_en_a,    // changed
-    input 		        wr_en_b,    // new
     input 		        clk,
     input 		        rst,
     input [3:0]         pc_offset,  // new
     input [RWIDTH-1:0]  next_pc,    // new
     input [RWIDTH-1:0]  data_in_a,  // changed
-    input [RWIDTH-1:0]  data_in_b,  // new
     output [RWIDTH-1:0] reg_a, reg_b, reg_c, reg_d
 );
     // Register file with two read ports, and two write port (this is a change)
@@ -34,9 +31,6 @@ module regfile
         end else begin
             // R15 isn't stored in this register file, it is written to by
             // sending a value to nextPcLogic and setting pc_write
-            if (wr_en_b && wr_addr_b != 15)
-                regarray[wr_addr_b] <= data_in_b;
-            // Port A is second to give priority
             if (wr_en_a && wr_addr_a != 15)
                 regarray[wr_addr_a] <= data_in_a;
         end

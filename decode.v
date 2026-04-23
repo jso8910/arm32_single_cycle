@@ -92,14 +92,13 @@ module decode(
     output reg                  imm_flag,       // When imm_flag is set, rd_addr_b is ignored in place of imm_val ROR imm_rot_amt
                                 we_data,
                                 wr_en_a,
-                                wr_en_b,
                                 pc_op,          // Flag for whether r15 could be modified (potential branch or any operation with r15). Write signal
                                 set_cpsr,
     output wire [3:0]           condition_code,
     output reg [4:0]            alu_op,
 
     // Operand addresses/generation information. wr is write signals for destinations, rd (read) is for sources
-    output reg [3:0]            wr_addr_a, wr_addr_b,
+    output reg [3:0]            wr_addr_a,
     output reg [3:0]            rd_addr_a, rd_addr_b, rd_addr_c, rd_addr_d,
     output reg [1:0]            op2_shift_func,
     output reg [7:0]            op2_imm_shift_by,
@@ -145,10 +144,8 @@ module decode(
 
             // Registers
             // No destination register here
-            wr_en_a = 1'b0;
-            wr_en_b = inst[24];     // Link bit - ALU outputs next_pc (in1) from out2 on an add operation
+            wr_en_a = 1'b0;         // Branch with link is never used
             wr_addr_a = 4'b0;
-            wr_addr_b = 4'b1110;    // Link register
             rd_addr_a = 4'b1111;    // Operand 1 (added to immediate in this case) is PC
             rd_addr_b = 4'b0;
             rd_addr_c = 4'b0;
@@ -179,9 +176,7 @@ module decode(
             op2_is_imm_shift = 1'b1;
 
             // Registers
-            wr_en_b = 1'b0;
             wr_addr_a = inst[15:12];   // Rd
-            wr_addr_b = 4'b0;
             rd_addr_a = inst[19:16];   // Rn
             rd_addr_b = 4'b0;
             rd_addr_c = 4'b0;
@@ -217,9 +212,7 @@ module decode(
 
             // Registers
 
-            wr_en_b = 1'b0;
             wr_addr_a = inst[15:12];   // Rd
-            wr_addr_b = 4'b0;
             rd_addr_a = inst[19:16];   // Rn
             rd_addr_b = inst[3:0];     // Rm
             rd_addr_c = inst[11:8];    // Rs (or a random slice of the immediate which will be ignoed, who knows!)
@@ -252,10 +245,8 @@ module decode(
             op2_is_imm_shift = 1'b1;
 
             // Registers
-            wr_en_a = 1'b0;    // Never do writeback
-            wr_en_b = 1'b1;    // We always write to the register file, with the loaded value
-            wr_addr_a = inst[19:16];    // Rn, for writeback
-            wr_addr_b = inst[15:12];    // Rd, for LDR operations
+            wr_en_a = 1'b1;    // Always write to register file
+            wr_addr_a = inst[15:12];    // Rd
             rd_addr_a = inst[19:16];    // Rn
             rd_addr_b = inst[3:0];      // Rm - or nonsense if imm_flag
             rd_addr_c = 4'b0000;        // A register cannot be used as the shift
@@ -278,9 +269,7 @@ module decode(
 
             // Registers
             wr_en_a = 1'b0;
-            wr_en_b = 1'b0;
             wr_addr_a = 4'b0;
-            wr_addr_b = 4'b0;
             rd_addr_a = 4'b0;
             rd_addr_b = 4'b0;
             rd_addr_c = 4'b0;

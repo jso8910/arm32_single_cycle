@@ -50,3 +50,6 @@ L: unused
 
 # Coprocessor data operations
 Already unimplemented
+
+# Misc
+Extra ALU output port (only used for branch with link, which I don't need), extra register read/write ports where possible

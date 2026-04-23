@@ -19,15 +19,16 @@ module arm32_core(
     // Operand outputs
 
     // ALU outputs
-    output [`DWIDTH-1:0]    alu_out_1, alu_out_2,
+    output [`DWIDTH-1:0]    alu_out_1,
 
     // Regfile control signals
     output [3:0]            rd_addr_a, rd_addr_b, rd_addr_c, rd_addr_d,
-    output [3:0]            wr_addr_a, wr_addr_b,
-    output                  wr_en_a, wr_en_b,
+    output [3:0]            wr_addr_a,
+    output                  wr_en_a,
     output [3:0]            pc_offset,
     output [`WWIDTH-1:0]    next_pc_seq,
     output [1:0]            address_gen_mode,
+    output                  mem_op,
 
     // IMEM controls
     output [`AWIDTH-1:0] pc
@@ -47,7 +48,6 @@ module arm32_core(
     wire [7:0] op2_imm_shift_by;
     wire op2_is_imm_shift;
     wire [`WWIDTH-1:0] imm_val;
-    wire mem_op;
     wire [4:0] alu_op;
 
     //--ALU
@@ -97,7 +97,6 @@ module arm32_core(
         .prev_nzcv(prev_nzcv),
         .shifter_cout(shifter_cout),
         .alu_out_1(alu_out_1),
-        .alu_out_2(alu_out_2),
         .nzcv(nzcv)
     );
 
@@ -117,13 +116,11 @@ module arm32_core(
         .imm_flag(imm_flag),
         .we_data(we_data),
         .wr_en_a(wr_en_a),
-        .wr_en_b(wr_en_b),
         .pc_op(pc_op),
         .set_cpsr(set_cpsr),
         .condition_code(condition_code),
         .alu_op(alu_op),
         .wr_addr_a(wr_addr_a),
-        .wr_addr_b(wr_addr_b),
         .rd_addr_a(rd_addr_a),
         .rd_addr_b(rd_addr_b),
         .rd_addr_c(rd_addr_c),
@@ -163,15 +160,16 @@ module arm32_core_system(
     // Operand outputs
 
     // ALU outputs
-    wire [`DWIDTH-1:0]    alu_out_1, alu_out_2;
+    wire [`DWIDTH-1:0]    alu_out_1;
 
     // Regfile control signals
     wire [3:0]            rd_addr_a, rd_addr_b, rd_addr_c, rd_addr_d;
-    wire [3:0]            wr_addr_a, wr_addr_b;
-    wire                  wr_en_a, wr_en_b;
+    wire [3:0]            wr_addr_a;
+    wire                  wr_en_a;
     wire [3:0]            pc_offset;
     wire [`WWIDTH-1:0]    next_pc_seq;
     wire [1:0]            address_gen_mode;
+    wire                  mem_op;
 
     // Instruction memory
     wire [`AWIDTH-1:0] pc;
@@ -201,19 +199,16 @@ module arm32_core_system(
     // Register file
     regfile regfile_inst (
         .wr_addr_a(wr_addr_a),
-        .wr_addr_b(wr_addr_b),
         .rd_addr_a(rd_addr_a),
         .rd_addr_b(rd_addr_b),
         .rd_addr_c(rd_addr_c),
         .rd_addr_d(rd_addr_d),
         .wr_en_a(wr_en_a & condition_fulfilled),
-        .wr_en_b(wr_en_b & condition_fulfilled),
         .clk(clk),
         .rst(rst),
         .pc_offset(pc_offset),
         .next_pc(next_pc_seq),
-        .data_in_a(alu_out_1),
-        .data_in_b(mem_op ? dram_dout : alu_out_2),
+        .data_in_a(mem_op ? dram_dout : alu_out_1),
         .reg_a(op_a),
         .reg_b(reg_b),
         .reg_c(op_c),
@@ -231,13 +226,14 @@ module arm32_core_system(
         .cs_data(cs_data),
         .load_addressing_mode(load_addressing_mode),
         .we_data(we_data),
-        .alu_out_1(alu_out_1), .alu_out_2(alu_out_2),
+        .alu_out_1(alu_out_1),
         .rd_addr_a(rd_addr_a), .rd_addr_b(rd_addr_b), .rd_addr_c(rd_addr_c), .rd_addr_d(rd_addr_d),
-        .wr_addr_a(wr_addr_a), .wr_addr_b(wr_addr_b),
-        .wr_en_a(wr_en_a), .wr_en_b(wr_en_b),
+        .wr_addr_a(wr_addr_a),
+        .wr_en_a(wr_en_a),
         .pc_offset(pc_offset),
         .next_pc_seq(next_pc_seq),
         .address_gen_mode(address_gen_mode),
-        .pc(pc)
+        .pc(pc),
+        .mem_op(mem_op)
     );
 endmodule

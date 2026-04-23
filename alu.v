@@ -30,7 +30,6 @@ module alu(
     input [3:0]         prev_nzcv,
     input               shifter_cout,
     output wire [31:0]  alu_out_1,
-    output wire [31:0]  alu_out_2,
     output reg [3:0]    nzcv
 );
     reg [32:0] res_long;
@@ -85,7 +84,4 @@ module alu(
         endcase
     end
     assign alu_out_1 = res_long[31:0];
-
-    // Output op_a from port 2
-    assign alu_out_2 = op_a;
 endmodule
