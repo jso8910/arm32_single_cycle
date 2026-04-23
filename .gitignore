@@ -3,3 +3,6 @@ my_design
 binsearch
 test.mem
 *.vcd
+binsearch
+profiling/
+outputs/
