@@ -1,4 +1,5 @@
 .DS_Store
 my_design
+binsearch
 test.mem
 *.vcd
