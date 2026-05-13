@@ -30,7 +30,7 @@ module arm32_core_tb;
             $readmemh("workloads/binsearch/dmem.mem", uut.dram.MEM, 0, 255);
             $readmemh("workloads/binsearch/imem.mem", uut.inst_mem.MEM, 0, 255);
 
-            uut.regfile_inst.regarray[0] = i; // Load some initial values into register as input
+            uut.regfile_inst.regarray[0] = i * 2 + 1; // Load some initial values into register as input
 
             prev_pc = -4;
             prev_prev_pc = -8;
