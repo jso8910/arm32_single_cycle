@@ -54,7 +54,6 @@ module arm32_core(
     wire [7:0] op2_imm_shift_by;
     wire op2_is_imm_shift;
     wire [`WWIDTH-1:0] imm_val;
-    wire mem_op;
     wire [4:0] alu_op;
 
     //--ALU

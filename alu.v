@@ -38,7 +38,7 @@ module alu(
     assign out_2_is_res = func[4:2] == 3'b101;   // If out_2 is a result (ie long multiplication)
     reg [63:0] res_long;
     always @(*) begin
-        nzcv[3] = alu_out_1[31];  // Negative flag
+        nzcv[3] = out_2_is_res ? alu_out_2[31] : alu_out_1[31];  // Negative flag
         nzcv[2] = out_2_is_res ? {alu_out_1, alu_out_2} == 64'b0 : alu_out_1 == 32'b0;  // zero flag
         // Logical operations set to shifter output (which maintains previous carry if op is LSL #0)
         case (func)
@@ -75,15 +75,15 @@ module alu(
         case (func)
             `ALU_AND: res_long = op_a & op_b;
             `ALU_EOR: res_long = op_a ^ op_b;
-            `ALU_SUB: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + 1;
-            `ALU_RSB: res_long = {1'b0, op_b} + ~({1'b0, op_a}) + 1;
+            `ALU_SUB: res_long = {1'b0, op_a} + ({1'b0, ~op_b}) + 1;
+            `ALU_RSB: res_long = {1'b0, op_b} + ({1'b0, ~op_a}) + 1;
             `ALU_ADD: res_long = {1'b0, op_a} + op_b;
             `ALU_ADC: res_long = {1'b0, op_a} + op_b + prev_nzcv[1];
-            `ALU_SBC: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + prev_nzcv[1];
-            `ALU_RSC: res_long = {1'b0, op_b} + ~({1'b0, op_a}) + prev_nzcv[1];
+            `ALU_SBC: res_long = {1'b0, op_a} + ({1'b0, ~op_b}) + prev_nzcv[1];
+            `ALU_RSC: res_long = {1'b0, op_b} + ({1'b0, ~op_a}) + prev_nzcv[1];
             `ALU_TST: res_long = op_a & op_b;
             `ALU_TEQ: res_long = op_a ^ op_b;
-            `ALU_CMP: res_long = {1'b0, op_a} + ~({1'b0, op_b}) + 1;
+            `ALU_CMP: res_long = {1'b0, op_a} + ({1'b0, ~op_b}) + 1;
             `ALU_CMN: res_long = {1'b0, op_a} + op_b;
             `ALU_ORR: res_long = op_a | op_b;
             `ALU_MOV: res_long = op_b;

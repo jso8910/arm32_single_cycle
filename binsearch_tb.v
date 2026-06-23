@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-module arm32_core_tb;
+module arm32_binsearch_tb;
 
     // 1. Signals
     reg clk;
@@ -53,7 +53,7 @@ module arm32_core_tb;
     // // 5. Optional: Dump waveforms for viewing in GTKWave or Vivado
     initial begin
         $dumpfile("arm32_simulation.vcd");
-        $dumpvars(0, arm32_core_tb);
+        $dumpvars(0, arm32_binsearch_tb);
     end
 
 endmodule
