@@ -1,8 +1,26 @@
 file mkdir "../profiling"
 file mkdir "../outputs"
 
-set all_files [glob -nocomplain ../*.v*]
-set filtered_files [lsearch -all -inline -not -exact $all_files "../core_tb.v"]
+set all_files [glob -nocomplain ../*.v ../*.sv]
+
+set filtered_files {}
+foreach file $all_files {
+    set filename [file tail $file]
+
+    if {$filename ni {
+        arraysort_tb.v
+        arraysum_tb.v
+        binsearch_tb.v
+        matmul_tb.v
+        strcmp_tb.v
+        NangateOpenCellLibrary.v
+    }} {
+        lappend filtered_files $file
+    }
+}
+
+puts "RTL files being synthesized:"
+puts [join $filtered_files "\n"]
 
 set_db library /vol/ece303/genus_tutorial/NangateOpenCellLibrary_typical.lib
 set_db lef_library /vol/ece303/genus_tutorial/NangateOpenCellLibrary.lef

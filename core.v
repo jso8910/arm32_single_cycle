@@ -1,6 +1,10 @@
 `timescale 1ns / 1ps
 `include "params.vh"
 
+`ifndef ARM32_CORE_IMPL
+`define ARM32_CORE_IMPL arm32_core
+`endif
+
 module arm32_core(
     input clk,
     input rst,
@@ -256,7 +260,7 @@ module arm32_core_system(
     );
 
     // CPU core
-    arm32_core core_inst (
+    `ARM32_CORE_IMPL core_inst (
         .clk(clk),
         .rst(rst),
         .inst(inst),
