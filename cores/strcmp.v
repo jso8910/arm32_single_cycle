@@ -3076,8 +3076,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        .C2 (n_703), .ZN (n_1420));
   AOI222_X1 g47871__5266(.A1 (n_1346), .A2 (n_982), .B1 (n_967), .B2
        (n_5), .C1 (n_1080), .C2 (n_8), .ZN (n_1419));
-  OAI22_X1 g47872__2250(.A1 (n_1376), .A2 (n_745), .B1 (n_1311), .B2
-       (n_749), .ZN (n_1418));
+//  OAI22_X1 g47872__2250(.A1 (n_1376), .A2 (n_745), .B1 (n_1311), .B2
+//       (n_749), .ZN (n_1418));
   OAI222_X1 g47873__6083(.A1 (n_1146), .A2
        (register_shift_unit_op2_n_14349), .B1
        (register_shift_unit_op2_n_13591), .B2
@@ -3109,28 +3109,28 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_989), .C2 (n_863), .ZN (n_1404));
   OAI221_X1 g47887__9682(.A (n_1350), .B1 (n_950), .B2
        (op2_shift_func[0]), .C1 (n_1067), .C2 (n_776), .ZN (n_1403));
-  NOR3_X1 g47888__2683(.A1 (n_1333), .A2 (n_1527), .A3 (n_703), .ZN
-       (n_1402));
+//  NOR3_X1 g47888__2683(.A1 (n_1333), .A2 (n_1527), .A3 (n_703), .ZN
+//       (n_1402));
   AOI221_X1 g47889__1309(.A (n_1006), .B1 (n_1146), .B2 (n_17), .C1
        (n_1299), .C2 (n_750), .ZN (n_1401));
-  INV_X1 g47890(.A (n_1391), .ZN (n_1400));
+//  INV_X1 g47890(.A (n_1391), .ZN (n_1400));
   INV_X1 g47891(.A (n_1383), .ZN (n_1399));
   INV_X1 g47892(.A (n_1397), .ZN (n_1398));
   INV_X1 g47893(.A (n_1395), .ZN (n_1396));
-  OAI22_X1 g47894__6877(.A1 (n_1332), .A2 (n_763), .B1 (n_1298), .B2
-       (n_1186), .ZN (n_1391));
+//  OAI22_X1 g47894__6877(.A1 (n_1332), .A2 (n_763), .B1 (n_1298), .B2
+//       (n_1186), .ZN (n_1391));
   OAI221_X1 g47895__2900(.A (n_1361), .B1 (n_939), .B2 (n_901), .C1
        (n_1309), .C2 (n_745), .ZN (n_1390));
   AOI221_X1 g47896__2391(.A (n_1123), .B1 (n_994), .B2 (n_5), .C1
        (n_1293), .C2 (n_753), .ZN (n_1389));
   OAI221_X1 g47897__7675(.A (n_1320), .B1 (n_1270), .B2 (n_766), .C1
        (register_shift_unit_op2_n_13361), .C2 (n_1186), .ZN (n_1388));
-  AOI22_X1 g47898__7118(.A1 (n_1347), .A2 (n_744), .B1 (n_1231), .B2
-       (n_750), .ZN (n_1387));
+//  AOI22_X1 g47898__7118(.A1 (n_1347), .A2 (n_744), .B1 (n_1231), .B2
+//       (n_750), .ZN (n_1387));
   OAI22_X1 g47899__8757(.A1 (n_930), .A2 (op2_shift_func[0]), .B1
        (n_1344), .B2 (n_2608), .ZN (n_1386));
-  AOI22_X1 g47900__1786(.A1 (n_1348), .A2 (n_750), .B1 (n_1159), .B2
-       (n_744), .ZN (n_1385));
+//  AOI22_X1 g47900__1786(.A1 (n_1348), .A2 (n_750), .B1 (n_1159), .B2
+//       (n_744), .ZN (n_1385));
   OAI221_X1 g47901__5953(.A (n_1264), .B1 (n_1297), .B2 (n_752), .C1
        (n_1096), .C2 (n_776), .ZN (n_1384));
   OAI22_X1 g47902__5703(.A1 (n_1332), .A2 (n_749), .B1 (n_1053), .B2
@@ -3181,26 +3181,26 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   OAI211_X1 g47924__6877(.A (n_633), .B (n_1167), .C1 (n_1207), .C2
        (n_742), .ZN (n_1375));
   INV_X1 g47925(.A (n_1351), .ZN (n_1365));
-  INV_X1 g47926(.A (n_1360), .ZN (n_1361));
-  INV_X1 g47927(.A (n_1358), .ZN (n_1359));
+//  INV_X1 g47926(.A (n_1360), .ZN (n_1361));
+//  INV_X1 g47927(.A (n_1358), .ZN (n_1359));
   OAI22_X1 g47928__2900(.A1 (n_1037), .A2 (n_884), .B1 (n_1309), .B2
        (n_749), .ZN (n_1357));
   AOI22_X1 g47929__2391(.A1 (n_1301), .A2 (n_818), .B1 (n_1236), .B2
        (n_808), .ZN (n_1356));
-  OAI22_X1 g47930__7675(.A1 (n_1165), .A2 (n_745), .B1 (n_1311), .B2
-       (register_shift_unit_op2_n_13335), .ZN (n_1355));
-  OAI22_X1 g47931__7118(.A1 (n_1161), .A2 (n_766), .B1 (n_1312), .B2
-       (n_1186), .ZN (n_1354));
-  AOI22_X1 g47932__8757(.A1 (n_1248), .A2 (n_754), .B1 (n_1310), .B2
-       (n_764), .ZN (n_1353));
+//  OAI22_X1 g47930__7675(.A1 (n_1165), .A2 (n_745), .B1 (n_1311), .B2
+//       (register_shift_unit_op2_n_13335), .ZN (n_1355));
+//  OAI22_X1 g47931__7118(.A1 (n_1161), .A2 (n_766), .B1 (n_1312), .B2
+//       (n_1186), .ZN (n_1354));
+//  AOI22_X1 g47932__8757(.A1 (n_1248), .A2 (n_754), .B1 (n_1310), .B2
+//       (n_764), .ZN (n_1353));
   OAI21_X1 g47933__1786(.A (n_1330), .B1 (n_1023), .B2
        (register_shift_unit_op2_n_13369), .ZN (n_1352));
   OAI22_X1 g47934__5953(.A1 (n_1298), .A2 (n_752), .B1 (n_1053), .B2
        (n_776), .ZN (n_1351));
 //  AOI22_X1 g47935__5703(.A1 (n_1295), .A2 (n_753), .B1 (n_1247), .B2
 //       (n_1529), .ZN (n_1350));
-  OAI22_X1 g47936__7114(.A1 (n_1314), .A2 (n_1186), .B1 (n_1160), .B2
-       (n_766), .ZN (n_1349));
+//  OAI22_X1 g47936__7114(.A1 (n_1314), .A2 (n_1186), .B1 (n_1160), .B2
+//       (n_766), .ZN (n_1349));
 //  OAI22_X1 g47937__5266(.A1 (n_1297), .A2 (n_749), .B1 (n_1094), .B2
 //       (register_shift_unit_op2_n_13335), .ZN (n_1364));
 //  AOI22_X1 g47938__2250(.A1 (n_1109), .A2 (n_17), .B1 (n_1293), .B2
@@ -3211,11 +3211,11 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //       (register_shift_unit_op2_n_13335), .ZN (n_1360));
 //  OAI22_X1 g47941__5795(.A1 (n_1298), .A2 (n_749), .B1 (n_1051), .B2
 //       (register_shift_unit_op2_n_13335), .ZN (n_1358));
-  INV_X1 g47942(.A (n_1346), .ZN (n_1345));
-  INV_X1 g47943(.A (n_1344), .ZN (register_shift_unit_op2_n_13594));
+//  INV_X1 g47942(.A (n_1346), .ZN (n_1345));
+//  INV_X1 g47943(.A (n_1344), .ZN (register_shift_unit_op2_n_13594));
   AOI221_X1 g47944__7344(.A (n_1315), .B1 (n_816), .B2 (n_1055), .C1
        (n_798), .C2 (n_1508), .ZN (n_1343));
-  NOR2_X1 g47945__1840(.A1 (n_1308), .A2 (n_1157), .ZN (n_1342));
+//  NOR2_X1 g47945__1840(.A1 (n_1308), .A2 (n_1157), .ZN (n_1342));
   NOR2_X1 g47946__5019(.A1 (n_1318), .A2
        (register_shift_unit_op2_n_13369), .ZN (n_1341));
 //  OAI21_X1 g47947__1857(.A (n_1265), .B1 (n_1272), .B2
@@ -3228,16 +3228,16 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_1337));
 //  OAI21_X1 g47952__1474(.A (n_1223), .B1 (n_1279), .B2
 //       (register_shift_unit_op2_n_13369), .ZN (n_1335));
-  NAND2_X1 g47953__4547(.A1 (register_shift_unit_op2_n_13361), .A2
-       (n_753), .ZN (register_shift_unit_op2_n_15903));
+//  NAND2_X1 g47953__4547(.A1 (register_shift_unit_op2_n_13361), .A2
+//       (n_753), .ZN (register_shift_unit_op2_n_15903));
   AOI221_X2 g47954__9682(.A (n_1314), .B1 (n_4), .B2
        (register_shift_unit_op2_n_13374), .C1 (n_1521), .C2 (n_762),
        .ZN (n_1348));
   AND3_X1 g47955__2683(.A1 (n_1302), .A2 (n_1184), .A3 (n_864), .ZN
        (n_1347));
-  NAND2_X1 g47956__1309(.A1 (n_1311), .A2 (op2_shift_func[0]), .ZN
-       (n_1346));
-  NOR2_X1 g47957__6877(.A1 (n_1299), .A2 (n_702), .ZN (n_1344));
+//  NAND2_X1 g47956__1309(.A1 (n_1311), .A2 (op2_shift_func[0]), .ZN
+//       (n_1346));
+//  NOR2_X1 g47957__6877(.A1 (n_1299), .A2 (n_702), .ZN (n_1344));
 //  INV_X1 g47958(.A (n_1321), .ZN (n_1334));
   AOI22_X1 g47960__2900(.A1 (n_1277), .A2 (n_952), .B1 (n_928), .B2
        (n_5), .ZN (n_1330));
@@ -3265,10 +3265,10 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_1230), .B2 (n_733), .C1 (n_1228), .C2 (n_737), .ZN (n_1333));
   OAI211_X1 g47972__2703(.A (n_1313), .B (n_1167), .C1 (n_1208), .C2
        (n_742), .ZN (n_1332));
-  AOI221_X2 g47973__5795(.A (n_702), .B1 (n_912), .B2 (n_1528), .C1
-       (n_1230), .C2 (n_717), .ZN (n_1331));
+//  AOI221_X2 g47973__5795(.A (n_702), .B1 (n_912), .B2 (n_1528), .C1
+//       (n_1230), .C2 (n_717), .ZN (n_1331));
   INV_X1 g47974(.A (n_1305), .ZN (n_1319));
-  INV_X1 g47975(.A (n_1312), .ZN (n_1313));
+//  INV_X1 g47975(.A (n_1312), .ZN (n_1313));
   INV_X1 g47976(.A (n_1309), .ZN (n_1310));
 //  NAND2_X1 g47978__7344(.A1 (n_1269), .A2 (n_744), .ZN (n_1307));
   AOI221_X1 g47979__1840(.A (n_1262), .B1 (n_1215), .B2 (n_741), .C1
@@ -3288,16 +3288,16 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //       (n_775), .C2 (n_1033), .ZN (n_1316));
 //  OAI221_X1 g47986__1474(.A (n_1283), .B1 (n_1103), .B2 (n_725), .C1
 //       (n_775), .C2 (n_1064), .ZN (n_1315));
-  AOI221_X2 g47987__4547(.A (n_702), .B1 (n_909), .B2 (n_1528), .C1
-       (n_1219), .C2 (n_717), .ZN (n_1314));
-  AOI221_X1 g47988__9682(.A (n_702), .B1 (n_1199), .B2 (n_1528), .C1
-       (n_1208), .C2 (n_717), .ZN (n_1312));
+//  AOI221_X2 g47987__4547(.A (n_702), .B1 (n_909), .B2 (n_1528), .C1
+//       (n_1219), .C2 (n_717), .ZN (n_1314));
+//  AOI221_X1 g47988__9682(.A (n_702), .B1 (n_1199), .B2 (n_1528), .C1
+//       (n_1208), .C2 (n_717), .ZN (n_1312));
   OAI21_X1 g47989__2683(.A (n_1282), .B1 (n_1189), .B2 (n_1528), .ZN
        (n_1311));
   OAI221_X1 g47990__1309(.A (n_1226), .B1 (n_1206), .B2 (n_1528), .C1
        (n_893), .C2 (n_733), .ZN (n_1309));
-  AOI221_X2 g47991__6877(.A (n_702), .B1 (n_910), .B2 (n_1528), .C1
-       (n_1207), .C2 (n_717), .ZN (n_1308));
+//  AOI221_X2 g47991__6877(.A (n_702), .B1 (n_910), .B2 (n_1528), .C1
+//       (n_1207), .C2 (n_717), .ZN (n_1308));
   INV_X1 g47992(.A (n_1285), .ZN (n_1302));
   INV_X1 g47993(.A (n_1301), .ZN (n_1300));
   INV_X1 g47994(.A (n_1296), .ZN (n_1295));
@@ -3333,11 +3333,11 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_1294));
   OAI21_X1 g48010__7344(.A (n_1255), .B1 (n_1233), .B2 (n_1528), .ZN
        (register_shift_unit_op2_n_13361));
-  INV_X1 g48011(.A (n_1278), .ZN (n_1277));
+//  INV_X1 g48011(.A (n_1278), .ZN (n_1277));
 //  NOR2_X1 g48012__1840(.A1 (n_1231), .A2
 //       (register_shift_unit_op2_n_13562), .ZN (n_1276));
-  AOI221_X1 g48013__5019(.A (n_1222), .B1 (n_1155), .B2 (n_741), .C1
-       (n_1090), .C2 (n_734), .ZN (n_1275));
+//  AOI221_X1 g48013__5019(.A (n_1222), .B1 (n_1155), .B2 (n_741), .C1
+//       (n_1090), .C2 (n_734), .ZN (n_1275));
 //  NAND2_X1 g48014__1857(.A1 (n_1247), .A2 (n_744), .ZN (n_1274));
 //  NOR2_X1 g48015__9906(.A1 (n_1253), .A2
 //       (register_shift_unit_op2_n_13563), .ZN (n_1273));
@@ -3349,7 +3349,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //  OR2_X1 g48020__4547(.A1 (n_1234), .A2 (n_717), .ZN (n_1280));
 //  OAI221_X1 g48021__9682(.A (n_1255), .B1 (n_1198), .B2 (n_725), .C1
 //       (n_1107), .C2 (n_775), .ZN (n_1279));
-  NOR2_X1 g48022__2683(.A1 (n_1231), .A2 (n_702), .ZN (n_1278));
+//  NOR2_X1 g48022__2683(.A1 (n_1231), .A2 (n_702), .ZN (n_1278));
 //  OAI33_X1 g48023__1309(.A1 (n_1196), .A2 (n_717), .A3
 //       (op2_shift_func[0]), .B1 (n_1121), .B2 (n_735), .B3 (n_702), .ZN
 //       (n_1267));
@@ -3368,8 +3368,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_1261));
 //  OAI221_X1 g48030__1786(.A (n_1256), .B1 (n_1188), .B2 (n_725), .C1
 //       (n_1093), .C2 (n_775), .ZN (n_1272));
-  OAI21_X1 g48031__5953(.A (n_1258), .B1 (n_1206), .B2 (n_737), .ZN
-       (n_1271));
+//  OAI21_X1 g48031__5953(.A (n_1258), .B1 (n_1206), .B2 (n_737), .ZN
+//       (n_1271));
   OAI221_X1 g48032__5703(.A (register_shift_unit_op2_n_13352), .B1
        (n_1199), .B2 (n_737), .C1 (n_911), .C2 (n_733), .ZN (n_1270));
   OAI22_X1 g48033__7114(.A1 (n_1205), .A2 (n_737), .B1 (n_1197), .B2
@@ -3377,7 +3377,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   AOI22_X1 g48034__5266(.A1 (n_1208), .A2 (n_736), .B1 (n_1173), .B2
        (n_732), .ZN (n_1268));
 //  INV_X1 g48035(.A (n_1259), .ZN (n_1260));
-  INV_X1 g48036(.A (n_1257), .ZN (n_1258));
+//  INV_X1 g48036(.A (n_1257), .ZN (n_1258));
   INV_X1 g48037(.A (n_1245), .ZN (n_1244));
   OR2_X1 g48038__2250(.A1 (n_1207), .A2 (n_1528), .ZN (n_1243));
   AND2_X1 g48039__6083(.A1 (n_1212), .A2 (n_1167), .ZN (n_1242));
@@ -3408,8 +3408,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   INV_X1 g48057(.A (n_1229), .ZN (n_1230));
   OAI221_X1 g48058__6877(.A (n_1204), .B1 (n_801), .B2 (n_1066), .C1
        (n_804), .C2 (n_1004), .ZN (n_1227));
-  AOI22_X1 g48059__2900(.A1 (n_1197), .A2 (n_1528), .B1 (n_4), .B2
-       (n_741), .ZN (n_1226));
+//  AOI22_X1 g48059__2900(.A1 (n_1197), .A2 (n_1528), .B1 (n_4), .B2
+//       (n_741), .ZN (n_1226));
   AOI21_X1 g48060__2391(.A (n_825), .B1 (n_1199), .B2 (n_790), .ZN
        (n_1225));
   OAI22_X1 g48061__7675(.A1 (n_920), .A2
@@ -3417,8 +3417,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (register_shift_unit_op2_n_13609), .B2 (n_745), .ZN (n_1224));
 //  OAI21_X1 g48062__7118(.A (n_824), .B1 (n_9), .B2 (n_792), .ZN
 //       (n_1223));
-  OAI22_X1 g48063__8757(.A1 (n_1193), .A2 (n_740), .B1 (n_1062), .B2
-       (n_725), .ZN (n_1222));
+//  OAI22_X1 g48063__8757(.A1 (n_1193), .A2 (n_740), .B1 (n_1062), .B2
+//       (n_725), .ZN (n_1222));
   OAI221_X1 g48064__1786(.A (n_1203), .B1 (n_1066), .B2 (n_805), .C1
        (n_1004), .C2 (n_801), .ZN (n_1221));
   AOI221_X1 g48065__5953(.A (n_1058), .B1 (n_947), .B2 (n_756), .C1
@@ -3459,7 +3459,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (op2_shift_func[0]), .ZN (n_1212));
   NOR2_X1 g48081__3772(.A1 (n_1197), .A2 (n_892), .ZN (n_1219));
   NAND2_X1 g48083__4547(.A1 (n_1197), .A2 (n_733), .ZN (n_1218));
-  NAND2_X1 g48084__9682(.A1 (n_1185), .A2 (n_702), .ZN (n_1216));
+//  NAND2_X1 g48084__9682(.A1 (n_1185), .A2 (n_702), .ZN (n_1216));
   INV_X1 g48085(.A (n_1206), .ZN (n_1205));
   AOI22_X1 g48086__2683(.A1 (n_950), .A2 (n_756), .B1 (n_1177), .B2
        (n_810), .ZN (n_1204));
@@ -3482,11 +3482,11 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (register_shift_unit_op2_n_13373), .ZN (n_1196));
   OAI221_X1 g48096__5953(.A (n_748), .B1 (n_1120), .B2 (n_1109), .C1
        (n_797), .C2 (n_984), .ZN (n_1195));
-  NOR2_X1 g48097__5703(.A1 (n_1158), .A2
-       (register_shift_unit_op2_n_13335), .ZN (n_1194));
+//  NOR2_X1 g48097__5703(.A1 (n_1158), .A2
+//       (register_shift_unit_op2_n_13335), .ZN (n_1194));
   AOI221_X1 g48098__7114(.A (n_1140), .B1 (n_1516), .B2 (n_744), .C1
        (n_1517), .C2 (n_750), .ZN (n_1193));
-  NOR2_X1 g48099__5266(.A1 (n_1147), .A2 (n_739), .ZN (n_1192));
+//  NOR2_X1 g48099__5266(.A1 (n_1147), .A2 (n_739), .ZN (n_1192));
   AOI221_X1 g48100__2250(.A (n_1042), .B1 (n_1515), .B2 (n_744), .C1
        (n_1524), .C2 (n_748), .ZN (n_1191));
   NOR2_X1 g48101__6083(.A1 (n_1171), .A2 (n_1122), .ZN (n_1201));
@@ -3496,9 +3496,9 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   NOR2_X1 g48104__7344(.A1 (n_1171), .A2 (n_1131), .ZN (n_1198));
   NOR2_X1 g48105__1840(.A1 (n_1153), .A2 (n_718), .ZN (n_1197));
   INV_X1 g48106(.A (register_shift_unit_op2_n_13609), .ZN (n_9));
-  INV_X1 g48107(.A (n_1186), .ZN (n_1185));
-  OAI21_X1 g48108__5019(.A (n_741), .B1 (n_1134), .B2 (n_4), .ZN
-       (n_1184));
+//  INV_X1 g48107(.A (n_1186), .ZN (n_1185));
+//  OAI21_X1 g48108__5019(.A (n_741), .B1 (n_1134), .B2 (n_4), .ZN
+//       (n_1184));
   AOI221_X1 g48109__1857(.A (n_1168), .B1 (n_827), .B2 (n_1011), .C1
        (n_799), .C2 (n_1496), .ZN (n_1183));
 //  OAI22_X1 g48110__9906(.A1 (n_909), .A2 (n_733), .B1
@@ -3518,15 +3518,15 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   OAI21_X1 g48117__2683(.A (op2_shift_func[0]), .B1
        (register_shift_unit_op2_n_13372), .B2 (n_735), .ZN
        (register_shift_unit_op2_n_13609));
-  NAND3_X1 g48118__1309(.A1 (register_shift_unit_op2_n_13352), .A2
-       (n_7), .A3 (register_shift_unit_op2_n_13326), .ZN (n_1186));
+//  NAND3_X1 g48118__1309(.A1 (register_shift_unit_op2_n_13352), .A2
+//       (n_7), .A3 (register_shift_unit_op2_n_13326), .ZN (n_1186));
   INV_X1 g48119(.A (n_1176), .ZN (n_1177));
   INV_X1 g48120(.A (n_1174), .ZN (n_1175));
   INV_X1 g48121(.A (n_1169), .ZN (n_1170));
   INV_X1 g48122(.A (n_1165), .ZN (n_1164));
   INV_X1 g48123(.A (n_1163), .ZN (n_1162));
   INV_X1 g48124(.A (n_1160), .ZN (n_1159));
-  INV_X1 g48125(.A (n_1157), .ZN (n_1156));
+//  INV_X1 g48125(.A (n_1157), .ZN (n_1156));
   OAI221_X1 g48126__6877(.A (n_862), .B1 (n_1107), .B2
        (register_shift_unit_op2_n_13332), .C1 (n_984), .C2
        (register_shift_unit_op2_n_13335), .ZN (n_1155));
@@ -3550,7 +3550,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_899), .B2 (n_737), .C1 (n_956), .C2 (n_733), .ZN (n_1160));
   OAI221_X1 g48140__5795(.A (register_shift_unit_op2_n_13352), .B1
        (n_909), .B2 (n_737), .C1 (n_899), .C2 (n_733), .ZN (n_1158));
-  OR2_X1 g48141__7344(.A1 (n_4), .A2 (n_739), .ZN (n_1157));
+//  OR2_X1 g48141__7344(.A1 (n_4), .A2 (n_739), .ZN (n_1157));
   INV_X1 g48142(.A (register_shift_unit_op2_n_13597), .ZN (n_1146));
   OAI22_X1 g48143__1840(.A1 (n_1064), .A2
        (register_shift_unit_op2_n_13335), .B1 (n_1115), .B2
@@ -3608,19 +3608,19 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //  NOR2_X1 g48173__5795(.A1 (n_1121), .A2 (n_698), .ZN (n_1130));
   NOR2_X1 g48174__7344(.A1 (n_1114), .A2
        (register_shift_unit_op2_n_13373), .ZN (n_1128));
-  NOR2_X1 g48175__1840(.A1 (n_1113), .A2 (n_717), .ZN (n_1127));
+//  NOR2_X1 g48175__1840(.A1 (n_1113), .A2 (n_717), .ZN (n_1127));
   AOI21_X1 g48176__5019(.A (n_1122), .B1 (n_1506), .B2 (n_698), .ZN
        (n_1126));
   AOI211_X2 g48177__1857(.A (n_1108), .B (n_1110), .C1 (n_747), .C2
        (reg_b[25]), .ZN (n_1125));
   INV_X1 g48178(.A (n_1121), .ZN (n_1524));
-  NOR2_X1 g48179__9906(.A1 (n_1112), .A2
-       (register_shift_unit_op2_n_13381), .ZN (n_1120));
+//  NOR2_X1 g48179__9906(.A1 (n_1112), .A2
+//       (register_shift_unit_op2_n_13381), .ZN (n_1120));
   NOR2_X1 g48180__8780(.A1 (n_1495), .A2
        (register_shift_unit_op2_n_13332), .ZN (n_1119));
 //  NOR2_X1 g48181__4296(.A1 (n_1107), .A2 (n_698), .ZN (n_1122));
-  NAND2_X1 g48182__3772(.A1 (register_shift_unit_op2_n_13368), .A2
-       (n_8), .ZN (register_shift_unit_op2_n_15902));
+//  NAND2_X1 g48182__3772(.A1 (register_shift_unit_op2_n_13368), .A2
+//       (n_8), .ZN (register_shift_unit_op2_n_15902));
   AOI21_X1 g48183__1474(.A (n_1108), .B1 (n_747), .B2 (reg_b[27]), .ZN
        (n_1121));
   INV_X1 g48184(.A (n_1117), .ZN (n_1525));
@@ -3642,8 +3642,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_1113));
   AND3_X1 g48195__2391(.A1 (n_1101), .A2 (n_188), .A3 (n_215), .ZN
        (n_1110));
-  OAI221_X1 g48196__7675(.A (n_1106), .B1 (n_1030), .B2 (n_725), .C1
-       (n_984), .C2 (n_775), .ZN (n_1112));
+//  OAI221_X1 g48196__7675(.A (n_1106), .B1 (n_1030), .B2 (n_725), .C1
+//       (n_984), .C2 (n_775), .ZN (n_1112));
   OAI221_X1 g48197__7118(.A (n_1072), .B1 (n_1093), .B2
        (register_shift_unit_op2_n_13373), .C1
        (register_shift_unit_op2_n_13407), .C2 (n_1075), .ZN (n_1111));
@@ -3681,9 +3681,9 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_1094));
   AOI22_X2 g48217__8780(.A1 (n_747), .A2 (reg_b[23]), .B1 (n_1084), .B2
        (n_188), .ZN (n_1093));
-  OAI222_X1 g48218__4296(.A1 (n_839), .A2 (n_745), .B1 (n_1075), .B2
-       (register_shift_unit_op2_n_13335), .C1 (n_949), .C2 (n_749), .ZN
-       (n_1090));
+//  OAI222_X1 g48218__4296(.A1 (n_839), .A2 (n_745), .B1 (n_1075), .B2
+//       (register_shift_unit_op2_n_13335), .C1 (n_949), .C2 (n_749), .ZN
+//       (n_1090));
 //  OR2_X1 g48219__3772(.A1 (n_1082), .A2 (n_717), .ZN (n_1091));
 //  OAI22_X1 g48220__1474(.A1 (register_shift_unit_op2_n_13406), .A2
 //       (n_1075), .B1 (n_1064), .B2 (n_730), .ZN (n_1088));
@@ -3700,7 +3700,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_799), .C2 (n_1509), .ZN (n_1081));
   MUX2_X1 g48227__2391(.A (n_1073), .B (n_1045), .S (n_719), .Z
        (n_1082));
-  INV_X1 g48228(.A (n_1079), .ZN (n_1080));
+//  INV_X1 g48228(.A (n_1079), .ZN (n_1080));
 //  OAI221_X1 g48229__7675(.A (n_1074), .B1 (n_996), .B2 (n_725), .C1
 //       (n_949), .C2 (n_775), .ZN (n_1079));
   AOI221_X1 g48230__7118(.A (n_1043), .B1 (n_16), .B2 (n_1508), .C1
@@ -3731,8 +3731,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_1065));
   AOI22_X1 g48245__1840(.A1 (n_747), .A2 (reg_b[21]), .B1 (n_1057), .B2
        (n_188), .ZN (n_1064));
-  AOI222_X1 g48246__5019(.A1 (n_1500), .A2 (n_17), .B1 (n_1501), .B2
-       (n_744), .C1 (n_1502), .C2 (n_750), .ZN (n_1062));
+//  AOI222_X1 g48246__5019(.A1 (n_1500), .A2 (n_17), .B1 (n_1501), .B2
+//       (n_744), .C1 (n_1502), .C2 (n_750), .ZN (n_1062));
   OAI22_X1 g48247__1857(.A1 (register_shift_unit_op2_n_13373), .A2
        (n_1050), .B1 (n_1033), .B2 (register_shift_unit_op2_n_13407),
        .ZN (n_1061));
@@ -3771,9 +3771,9 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //  OAI22_X1 g48266__5953(.A1 (n_1033), .A2
 //       (register_shift_unit_op2_n_13406), .B1 (n_1020), .B2 (n_730),
 //       .ZN (n_1043));
-  OAI22_X1 g48267__5703(.A1 (n_1033), .A2
-       (register_shift_unit_op2_n_13335), .B1 (n_841), .B2 (n_749), .ZN
-       (n_1042));
+//  OAI22_X1 g48267__5703(.A1 (n_1033), .A2
+//       (register_shift_unit_op2_n_13335), .B1 (n_841), .B2 (n_749), .ZN
+//       (n_1042));
   MUX2_X1 g48268__7114(.A (n_1033), .B (n_1020), .S (n_698), .Z
        (n_1045));
   HA_X1 g48269__5266(.A (n_1026), .B (inst[18]), .CO (n_1040), .S
@@ -3851,8 +3851,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_1001));
   AOI22_X2 g48311__5019(.A1 (n_747), .A2 (reg_b[17]), .B1 (n_992), .B2
        (n_188), .ZN (n_1000));
-  OAI21_X1 g48312__1857(.A (n_17), .B1 (n_985), .B2 (n_702), .ZN
-       (n_998));
+//  OAI21_X1 g48312__1857(.A (n_17), .B1 (n_985), .B2 (n_702), .ZN
+//       (n_998));
   OAI22_X1 g48313__9906(.A1 (register_shift_unit_op2_n_13373), .A2
        (n_984), .B1 (register_shift_unit_op2_n_13407), .B2 (n_965), .ZN
        (n_997));
@@ -3861,7 +3861,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //       (n_801), .ZN (n_995));
   MUX2_X1 g48316__3772(.A (n_988), .B (n_889), .S (n_1528), .Z (n_994));
   MUX2_X1 g48317__1474(.A (n_965), .B (n_984), .S (n_1510), .Z (n_996));
-  INV_X1 g48318(.A (register_shift_unit_op2_n_17078), .ZN (n_993));
+//  INV_X1 g48318(.A (register_shift_unit_op2_n_17078), .ZN (n_993));
   HA_X1 g48319__4547(.A (n_976), .B (inst[15]), .CO (n_991), .S
        (n_992));
 //  NAND2_X1 g48320__9682(.A1 (register_shift_unit_op2_n_13351), .A2
@@ -4031,7 +4031,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   MUX2_X1 g48419__9682(.A (n_861), .B (n_834), .S (n_719), .Z (n_895));
   AOI221_X2 g48420__2683(.A (n_854), .B1 (n_1515), .B2 (n_728), .C1
        (n_1516), .C2 (n_729), .ZN (n_894));
-  INV_X1 g48421(.A (n_892), .ZN (n_893));
+//  INV_X1 g48421(.A (n_892), .ZN (n_893));
   HA_X1 g48422__1309(.A (n_837), .B (inst[11]), .CO (n_887), .S
        (n_888));
   NOR2_X1 g48423__6877(.A1 (n_1502), .A2
@@ -4043,7 +4043,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_800), .ZN (n_883));
   OAI22_X1 g48427__7118(.A1 (n_836), .A2 (n_797), .B1 (n_845), .B2
        (n_800), .ZN (n_882));
-  NOR2_X1 g48428__8757(.A1 (n_860), .A2 (n_719), .ZN (n_892));
+//  NOR2_X1 g48428__8757(.A1 (n_860), .A2 (n_719), .ZN (n_892));
   NOR2_X1 g48429__1786(.A1 (n_870), .A2 (n_735), .ZN (n_891));
   AOI221_X2 g48430__5953(.A (n_830), .B1 (n_1526), .B2 (n_729), .C1
        (n_1522), .C2 (n_728), .ZN (n_890));
@@ -4076,14 +4076,14 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (register_shift_unit_op2_n_13373), .B1 (n_788), .B2
        (register_shift_unit_op2_n_13407), .ZN (n_867));
   NOR2_X1 g48446__8780(.A1 (n_846), .A2 (n_819), .ZN (n_866));
-  AOI22_X1 g48447__4296(.A1 (n_1518), .A2 (n_744), .B1 (n_1519), .B2
-       (n_750), .ZN (n_865));
-  OR3_X1 g48448__3772(.A1 (n_833), .A2 (n_733), .A3 (n_730), .ZN
-       (n_864));
+//  AOI22_X1 g48447__4296(.A1 (n_1518), .A2 (n_744), .B1 (n_1519), .B2
+//       (n_750), .ZN (n_865));
+//  OR3_X1 g48448__3772(.A1 (n_833), .A2 (n_733), .A3 (n_730), .ZN
+//       (n_864));
   OAI22_X1 g48449__1474(.A1 (n_822), .A2 (n_797), .B1 (n_842), .B2
        (n_800), .ZN (n_863));
-  AOI22_X1 g48450__4547(.A1 (n_832), .A2 (n_744), .B1 (n_1522), .B2
-       (n_750), .ZN (n_862));
+//  AOI22_X1 g48450__4547(.A1 (n_832), .A2 (n_744), .B1 (n_1522), .B2
+//       (n_750), .ZN (n_862));
   AOI21_X1 g48451__9682(.A (n_851), .B1 (n_1516), .B2 (n_1510), .ZN
        (n_871));
   AND2_X1 g48452__2683(.A1 (n_849), .A2 (n_850), .ZN (n_870));
@@ -4160,7 +4160,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (register_shift_unit_op2_n_13332), .ZN (n_822));
   NAND2_X1 g48498__8757(.A1 (n_786), .A2 (n_748), .ZN (n_821));
   NAND2_X1 g48499__1786(.A1 (n_788), .A2 (n_748), .ZN (n_820));
-  NAND2_X1 g48500__5953(.A1 (n_797), .A2 (n_761), .ZN (n_827));
+//  NAND2_X1 g48500__5953(.A1 (n_797), .A2 (n_761), .ZN (n_827));
   NAND2_X1 g48501__5703(.A1 (n_790), .A2 (n_717), .ZN (n_826));
 //  NAND2_X1 g48502__7114(.A1 (n_791), .A2 (n_7), .ZN (n_824));
 //  INV_X1 g48503(.A (n_818), .ZN (n_817));
@@ -4171,17 +4171,17 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (reg_b[7]), .ZN (n_813));
   AOI22_X1 g48507__6083(.A1 (n_781), .A2 (inst[6]), .B1 (n_747), .B2
        (reg_b[6]), .ZN (n_812));
-  NOR2_X1 g48508__2703(.A1 (n_799), .A2
-       (register_shift_unit_op2_n_13332), .ZN (n_819));
+//  NOR2_X1 g48508__2703(.A1 (n_799), .A2
+//       (register_shift_unit_op2_n_13332), .ZN (n_819));
 //  NOR2_X1 g48509__5795(.A1 (n_789), .A2 (n_762), .ZN (n_818));
-  NAND2_X1 g48510__7344(.A1 (n_800), .A2 (n_761), .ZN (n_816));
+//  NAND2_X1 g48510__7344(.A1 (n_800), .A2 (n_761), .ZN (n_816));
   AND2_X1 g48511__1840(.A1 (n_785), .A2 (n_666), .ZN (n_815));
   INV_X1 g48512(.A (n_808), .ZN (n_807));
 //  INV_X1 g48513(.A (n_806), .ZN (n_805));
 //  INV_X1 g48514(.A (n_804), .ZN (n_803));
 //  INV_X1 g48515(.A (n_802), .ZN (n_801));
-  INV_X1 g48516(.A (n_800), .ZN (n_799));
-  INV_X1 g48517(.A (n_798), .ZN (n_797));
+//  INV_X1 g48516(.A (n_800), .ZN (n_799));
+//  INV_X1 g48517(.A (n_798), .ZN (n_797));
   NAND2_X1 g48518__5019(.A1 (n_762), .A2 (prev_nzcv[1]), .ZN
        (register_shift_unit_op2_n_15042));
 //  NOR2_X1 g48519__1857(.A1 (register_shift_unit_op2_n_13576), .A2
@@ -4193,9 +4193,9 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //  AND2_X1 g48523__3772(.A1 (n_770), .A2 (n_1528), .ZN (n_806));
 //  NAND2_X1 g48524__1474(.A1 (n_771), .A2 (n_1528), .ZN (n_804));
 //  NOR2_X1 g48525__4547(.A1 (n_772), .A2 (n_1528), .ZN (n_802));
-  NAND2_X1 g48526__9682(.A1 (n_762), .A2
-       (register_shift_unit_op2_n_13381), .ZN (n_800));
-  NAND2_X1 g48527__2683(.A1 (n_782), .A2 (n_748), .ZN (n_798));
+//  NAND2_X1 g48526__9682(.A1 (n_762), .A2
+//       (register_shift_unit_op2_n_13381), .ZN (n_800));
+//  NAND2_X1 g48527__2683(.A1 (n_782), .A2 (n_748), .ZN (n_798));
 //  INV_X1 g48528(.A (n_792), .ZN (n_791));
   INV_X1 g48529(.A (n_790), .ZN (n_789));
   INV_X1 g48530(.A (n_788), .ZN (n_1517));
@@ -4227,7 +4227,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //       (register_shift_unit_op2_n_13795));
   NAND2_X1 g48549__2250(.A1 (register_shift_unit_op2_n_13577), .A2
        (n_711), .ZN (n_784));
-  NAND2_X1 g48550__6083(.A1 (n_734), .A2 (n_692), .ZN (n_782));
+//  NAND2_X1 g48550__6083(.A1 (n_734), .A2 (n_692), .ZN (n_782));
   AND2_X1 g48551__2703(.A1 (n_746), .A2 (n_655), .ZN (n_781));
   NOR2_X1 g48552__5795(.A1 (register_shift_unit_op2_n_13419), .A2
        (op2_shift_func[1]), .ZN (n_780));
@@ -4238,8 +4238,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //  NAND2_X2 g48556__1857(.A1 (n_734), .A2 (n_1510), .ZN (n_775));
 //  INV_X1 g48557(.A (n_771), .ZN (n_772));
   INV_X1 g48558(.A (n_768), .ZN (n_767));
-  INV_X1 g48559(.A (n_766), .ZN (n_765));
-  INV_X1 g48560(.A (n_764), .ZN (n_763));
+//  INV_X1 g48559(.A (n_766), .ZN (n_765));
+//  INV_X1 g48560(.A (n_764), .ZN (n_763));
 //  INV_X1 g48561(.A (n_762), .ZN (register_shift_unit_op2_n_13374));
 //  INV_X1 g48562(.A (n_761), .ZN (n_760));
 //  NAND2_X1 g48563__9906(.A1 (n_750), .A2 (op2_shift_func[0]), .ZN
@@ -4253,15 +4253,15 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //       (register_shift_unit_op2_n_13333));
   NOR2_X1 g48568__4547(.A1 (n_17), .A2
        (register_shift_unit_op2_n_13562), .ZN (n_768));
-  AND2_X1 g48569__9682(.A1 (register_shift_unit_op2_n_13335), .A2
-       (n_739), .ZN (n_766));
-  NOR2_X1 g48570__2683(.A1 (register_shift_unit_op2_n_13335), .A2
-       (register_shift_unit_op2_n_13326), .ZN (n_764));
+//  AND2_X1 g48569__9682(.A1 (register_shift_unit_op2_n_13335), .A2
+//       (n_739), .ZN (n_766));
+//  NOR2_X1 g48570__2683(.A1 (register_shift_unit_op2_n_13335), .A2
+//       (register_shift_unit_op2_n_13326), .ZN (n_764));
 //  NOR2_X1 g48571__1309(.A1 (n_735), .A2 (n_1510), .ZN (n_762));
 //  AND2_X1 g48572__6877(.A1 (n_748), .A2 (n_703), .ZN (n_761));
 //  INV_X1 g48574(.A (n_758), .ZN (n_757));
 //  INV_X1 g48575(.A (n_756), .ZN (n_755));
-  INV_X1 g48576(.A (register_shift_unit_op2_n_13354), .ZN (n_754));
+//  INV_X1 g48576(.A (register_shift_unit_op2_n_13354), .ZN (n_754));
 //  INV_X1 g48577(.A (n_753), .ZN (n_752));
 //  INV_X1 g48578(.A (register_shift_unit_op2_n_13335), .ZN (n_17));
 //  INV_X1 g48579(.A (n_750), .ZN (n_749));
@@ -4278,8 +4278,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (n_5));
 //  NAND2_X1 g48587__8757(.A1 (n_717), .A2 (n_7), .ZN (n_758));
 //  NOR2_X1 g48588__1786(.A1 (n_2608), .A2 (n_723), .ZN (n_756));
-  NAND2_X1 g48589__5953(.A1 (n_1529), .A2 (n_703), .ZN
-       (register_shift_unit_op2_n_13354));
+//  NAND2_X1 g48589__5953(.A1 (n_1529), .A2 (n_703), .ZN
+//       (register_shift_unit_op2_n_13354));
 //  AND2_X2 g48590__5703(.A1 (n_1527), .A2 (op2_shift_func[0]), .ZN
 //       (n_753));
 //  NAND2_X2 g48591__7114(.A1 (n_2608), .A2 (n_1527), .ZN
@@ -4292,7 +4292,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   INV_X1 g48596(.A (n_742), .ZN (n_743));
   INV_X1 g48597(.A (n_737), .ZN (n_736));
 //  INV_X1 g48598(.A (n_735), .ZN (n_734));
-  INV_X1 g48599(.A (n_733), .ZN (n_732));
+//  INV_X1 g48599(.A (n_733), .ZN (n_732));
   INV_X1 g48600(.A (register_shift_unit_op2_n_13369), .ZN (n_8));
 //  INV_X2 g48601(.A (n_730), .ZN (n_729));
 //  INV_X2 g48602(.A (register_shift_unit_op2_n_13406), .ZN (n_728));
@@ -4302,14 +4302,14 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   NAND2_X1 g48606__5795(.A1 (n_717), .A2 (n_702), .ZN (n_742));
 //  NOR2_X1 g48607__7344(.A1 (n_719), .A2 (n_717), .ZN (n_741));
 //  NAND2_X1 g48608__1840(.A1 (n_719), .A2 (n_1528), .ZN (n_740));
-  NAND2_X1 g48609__5019(.A1 (n_1527), .A2
-       (register_shift_unit_op2_n_13326), .ZN (n_739));
+//  NAND2_X1 g48609__5019(.A1 (n_1527), .A2
+//       (register_shift_unit_op2_n_13326), .ZN (n_739));
 //  NAND2_X1 g48610__1857(.A1 (n_1528), .A2 (n_7), .ZN (n_738));
   NAND2_X1 g48611__9906(.A1 (n_717), .A2 (op2_shift_func[0]), .ZN
        (n_737));
 //  NAND2_X1 g48612__8780(.A1 (n_717), .A2 (n_719), .ZN (n_735));
-  NAND2_X1 g48613__4296(.A1 (n_1528), .A2 (op2_shift_func[0]), .ZN
-       (n_733));
+//  NAND2_X1 g48613__4296(.A1 (n_1528), .A2 (op2_shift_func[0]), .ZN
+//       (n_733));
   NAND2_X1 g48614__3772(.A1 (n_7), .A2 (op2_shift_func[0]), .ZN
        (register_shift_unit_op2_n_13369));
 //  NAND2_X1 g48615__1474(.A1 (n_718), .A2 (n_1510), .ZN (n_730));
@@ -4406,15 +4406,15 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   HA_X1 g48682__7344(.A (n_678), .B (inst[6]), .CO (n_682), .S (n_683));
   AOI22_X1 g48683__1840(.A1 (n_679), .A2 (n_188), .B1 (n_657), .B2
        (inst[11]), .ZN (n_681));
-  AND4_X1 g48684__5019(.A1 (n_676), .A2 (inst[9]), .A3 (inst[10]), .A4
-       (inst[11]), .ZN (n_680));
+//  AND4_X1 g48684__5019(.A1 (n_676), .A2 (inst[9]), .A3 (inst[10]), .A4
+//       (inst[11]), .ZN (n_680));
   HA_X1 g48685__1857(.A (n_674), .B (inst[5]), .CO (n_678), .S (n_679));
   AOI22_X1 g48686__9906(.A1 (n_675), .A2 (n_188), .B1 (n_657), .B2
        (inst[10]), .ZN (n_677));
-  NOR2_X1 g48687__8780(.A1 (n_673), .A2 (inst[7]), .ZN (n_676));
+//  NOR2_X1 g48687__8780(.A1 (n_673), .A2 (inst[7]), .ZN (n_676));
   HA_X1 g48688__4296(.A (n_669), .B (inst[4]), .CO (n_674), .S (n_675));
-  NAND4_X1 g48689__3772(.A1 (n_668), .A2 (n_646), .A3 (inst[21]), .A4
-       (inst[16]), .ZN (n_673));
+//  NAND4_X1 g48689__3772(.A1 (n_668), .A2 (n_646), .A3 (inst[21]), .A4
+//       (inst[16]), .ZN (n_673));
 //  NAND2_X1 g48690__1474(.A1 (n_671), .A2 (decode_inst_n_12), .ZN
 //       (decode_inst_n_1693));
   AOI22_X1 g48691__4547(.A1 (n_670), .A2 (n_188), .B1 (n_657), .B2
@@ -4422,8 +4422,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //  NOR3_X1 g48692__9682(.A1 (n_667), .A2 (decode_inst_n_4270), .A3
 //       (decode_inst_n_5604), .ZN (n_671));
   HA_X1 g48693__2683(.A (n_663), .B (inst[3]), .CO (n_669), .S (n_670));
-  AND4_X1 g48694__1309(.A1 (n_661), .A2 (inst[17]), .A3 (inst[18]), .A4
-       (inst[19]), .ZN (n_668));
+//  AND4_X1 g48694__1309(.A1 (n_661), .A2 (inst[17]), .A3 (inst[18]), .A4
+//       (inst[19]), .ZN (n_668));
   NAND3_X1 g48695__6877(.A1 (decode_inst_n_2873), .A2 (n_14), .A3
        (decode_inst_n_1666), .ZN (decode_inst_n_4270));
 //  INV_X1 g48696(.A (n_667), .ZN (decode_inst_n_2466));
@@ -4439,8 +4439,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //       (decode_inst_n_2873));
 //  OR4_X1 g48703__1786(.A1 (n_649), .A2 (decode_inst_n_5171), .A3
 //       (inst[9]), .A4 (inst[8]), .ZN (n_662));
-  NOR4_X1 g48704__5953(.A1 (decode_inst_n_70), .A2 (n_641), .A3
-       (decode_inst_n_5171), .A4 (inst[20]), .ZN (n_661));
+//  NOR4_X1 g48704__5953(.A1 (decode_inst_n_70), .A2 (n_641), .A3
+//       (decode_inst_n_5171), .A4 (inst[20]), .ZN (n_661));
 //  NAND2_X1 g48705__5703(.A1 (n_660), .A2 (inst[23]), .ZN
 //       (decode_inst_n_12));
   NOR2_X1 g48706__7114(.A1 (n_657), .A2 (n_655), .ZN
@@ -4493,9 +4493,9 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   INV_X1 g48739(.A (inst[27]), .ZN (n_636));
   INV_X1 g48740(.A (inst[22]), .ZN (n_198));
   INV_X1 drc_bufs48750(.A (n_1052), .ZN (n_632));
-  INV_X1 drc_bufs48766(.A (n_1331), .ZN (n_634));
+//  INV_X1 drc_bufs48766(.A (n_1331), .ZN (n_634));
   INV_X1 drc_bufs48770(.A (n_880), .ZN (n_631));
-  INV_X1 drc_bufs48778(.A (n_1308), .ZN (n_633));
+//  INV_X1 drc_bufs48778(.A (n_1308), .ZN (n_633));
   NAND2_X1 g32569__8757(.A1 (n_589), .A2 (n_529), .ZN
        (alu_inst_n_2414));
   NAND2_X1 g32570__1786(.A1 (n_591), .A2 (n_536), .ZN
@@ -5472,7 +5472,7 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        .A4 (alu_out_1[10]), .ZN (n_174));
   OAI22_X1 g33914(.A1 (n_171), .A2 (register_shift_unit_op2_n_13419),
        .B1 (n_172), .B2 (register_shift_unit_op2_n_13354), .ZN (n_173));
-  NOR2_X1 g33915(.A1 (n_170), .A2 (n_21), .ZN (n_172));
+//  NOR2_X1 g33915(.A1 (n_170), .A2 (n_21), .ZN (n_172));
   NOR2_X1 g33916(.A1 (n_170), .A2 (n_75), .ZN (n_171));
 //  AOI211_X1 g33917(.A (op2_shift_func[0]), .B (n_168), .C1 (n_166), .C2
 //       (n_20), .ZN (n_170));
@@ -5654,8 +5654,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
 //       (register_shift_unit_op2_n_13325), .ZN (n_74));
   NAND4_X1 g34046(.A1 (n_32), .A2 (n_2602), .A3 (n_43), .A4
        (alu_inst_n_9258), .ZN (n_73));
-  AOI22_X1 g34047(.A1 (n_50), .A2 (n_1523), .B1 (n_52), .B2 (n_1502),
-       .ZN (n_72));
+//  AOI22_X1 g34047(.A1 (n_50), .A2 (n_1523), .B1 (n_52), .B2 (n_1502),
+//       .ZN (n_72));
   AOI22_X1 g34048(.A1 (n_53), .A2 (n_1500), .B1 (n_54), .B2 (n_1501),
        .ZN (n_71));
   NAND2_X2 g34050(.A1 (n_58), .A2 (condition_fulfilled), .ZN (n_79));
@@ -5663,22 +5663,22 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        .ZN (n_70));
   AOI22_X1 g34052(.A1 (n_53), .A2 (n_1498), .B1 (n_50), .B2 (n_1521),
        .ZN (n_69));
-  AOI22_X1 g34053(.A1 (n_50), .A2 (n_1520), .B1 (n_52), .B2 (n_1505),
-       .ZN (n_68));
+//  AOI22_X1 g34053(.A1 (n_50), .A2 (n_1520), .B1 (n_52), .B2 (n_1505),
+//       .ZN (n_68));
   AOI22_X1 g34054(.A1 (n_53), .A2 (n_1506), .B1 (n_54), .B2 (n_1526),
        .ZN (n_67));
-  AOI22_X1 g34055(.A1 (n_50), .A2 (n_1524), .B1 (n_52), .B2 (n_1514),
-       .ZN (n_66));
+//  AOI22_X1 g34055(.A1 (n_50), .A2 (n_1524), .B1 (n_52), .B2 (n_1514),
+//       .ZN (n_66));
   AOI22_X1 g34056(.A1 (n_53), .A2 (n_1507), .B1 (n_54), .B2 (n_1515),
        .ZN (n_65));
-  AOI22_X1 g34057(.A1 (n_50), .A2 (n_1512), .B1 (n_52), .B2 (n_1509),
-       .ZN (n_64));
-  AOI22_X1 g34058(.A1 (n_54), .A2 (n_1511), .B1 (n_52), .B2 (n_1497),
-       .ZN (n_63));
-  AOI22_X1 g34059(.A1 (n_50), .A2 (n_1525), .B1 (n_52), .B2 (n_1517),
-       .ZN (n_62));
-  AOI22_X1 g34060(.A1 (n_1503), .A2 (n_50), .B1 (n_52), .B2 (n_1519),
-       .ZN (n_61));
+//  AOI22_X1 g34057(.A1 (n_50), .A2 (n_1512), .B1 (n_52), .B2 (n_1509),
+//       .ZN (n_64));
+//  AOI22_X1 g34058(.A1 (n_54), .A2 (n_1511), .B1 (n_52), .B2 (n_1497),
+//       .ZN (n_63));
+//  AOI22_X1 g34059(.A1 (n_50), .A2 (n_1525), .B1 (n_52), .B2 (n_1517),
+//       .ZN (n_62));
+//  AOI22_X1 g34060(.A1 (n_1503), .A2 (n_50), .B1 (n_52), .B2 (n_1519),
+//       .ZN (n_61));
   OR4_X1 g34061(.A1 (n_27), .A2 (n_28), .A3 (alu_inst_n_2649), .A4
        (alu_inst_n_2651), .ZN (n_60));
   OAI22_X1 g34062(.A1 (n_2601), .A2 (n_8), .B1
@@ -5688,13 +5688,13 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (decode_inst_n_1110), .ZN (n_58));
   AOI21_X1 g34064(.A (n_47), .B1 (n_24), .B2 (alu_inst_n_964), .ZN
        (n_57));
-  AOI21_X1 g34065(.A (register_shift_unit_op2_n_13591), .B1
-       (register_shift_unit_op2_n_14349), .B2 (n_22), .ZN (n_51));
-  NOR2_X1 g34066(.A1 (n_41), .A2 (n_1510), .ZN (n_56));
-  NOR2_X1 g34067(.A1 (n_40), .A2 (n_1510), .ZN (n_55));
-  AND2_X1 g34068(.A1 (n_31), .A2 (n_1529), .ZN (n_54));
-  AND2_X1 g34069(.A1 (n_31), .A2 (n_2608), .ZN (n_53));
-  NOR2_X2 g34070(.A1 (n_31), .A2 (n_2608), .ZN (n_52));
+//  AOI21_X1 g34065(.A (register_shift_unit_op2_n_13591), .B1
+//       (register_shift_unit_op2_n_14349), .B2 (n_22), .ZN (n_51));
+//  NOR2_X1 g34066(.A1 (n_41), .A2 (n_1510), .ZN (n_56));
+//  NOR2_X1 g34067(.A1 (n_40), .A2 (n_1510), .ZN (n_55));
+//  AND2_X1 g34068(.A1 (n_31), .A2 (n_1529), .ZN (n_54));
+//  AND2_X1 g34069(.A1 (n_31), .A2 (n_2608), .ZN (n_53));
+//  NOR2_X2 g34070(.A1 (n_31), .A2 (n_2608), .ZN (n_52));
 //  AOI21_X1 g34071(.A (n_37), .B1 (bulk_reglist[15]), .B2 (inst[20]),
 //       .ZN (n_49));
   NAND2_X1 g34072(.A1 (n_42), .A2 (prev_nzcv[0]), .ZN (n_48));
@@ -5706,11 +5706,11 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   AOI221_X1 g34076(.A (n_39), .B1 (register_shift_unit_op2_n_13368),
        .B2 (n_5), .C1 (register_shift_unit_op2_n_13597), .C2 (n_8), .ZN
        (n_44));
-  NOR2_X2 g34077(.A1 (n_31), .A2 (n_1529), .ZN (n_50));
+//  NOR2_X2 g34077(.A1 (n_31), .A2 (n_1529), .ZN (n_50));
   INV_X1 g34078(.A (n_42), .ZN (n_43));
-  INV_X1 g34079(.A (n_41), .ZN (n_40));
-  OAI22_X1 g34080(.A1 (register_shift_unit_op2_n_13594), .A2 (n_7), .B1
-       (n_1293), .B2 (register_shift_unit_op2_n_13577), .ZN (n_39));
+//  INV_X1 g34079(.A (n_41), .ZN (n_40));
+//  OAI22_X1 g34080(.A1 (register_shift_unit_op2_n_13594), .A2 (n_7), .B1
+//       (n_1293), .B2 (register_shift_unit_op2_n_13577), .ZN (n_39));
   OAI21_X1 g34081(.A (alu_inst_n_5655), .B1 (n_0), .B2 (n_12), .ZN
        (n_38));
 //  AOI21_X1 g34082(.A (decode_inst_n_70), .B1 (decode_inst_n_5537), .B2
@@ -5724,8 +5724,8 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (register_shift_unit_op2_n_13325), .ZN (n_33));
   NAND3_X1 g34087(.A1 (alu_inst_n_4890), .A2 (alu_inst_n_4889), .A3
        (n_13), .ZN (n_42));
-  OAI21_X1 g34088(.A (register_shift_unit_op2_n_13795), .B1 (n_16), .B2
-       (n_1528), .ZN (n_41));
+//  OAI21_X1 g34088(.A (register_shift_unit_op2_n_13795), .B1 (n_16), .B2
+//       (n_1528), .ZN (n_41));
   OR4_X1 g34089(.A1 (alu_inst_n_2622), .A2 (alu_inst_n_2623), .A3
        (alu_inst_n_2624), .A4 (alu_inst_n_2625), .ZN (n_30));
   OR4_X1 g34090(.A1 (alu_inst_n_2626), .A2 (alu_inst_n_2627), .A3
@@ -5740,18 +5740,18 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (alu_inst_n_2643), .A4 (alu_inst_n_2644), .ZN (n_25));
   XNOR2_X1 g34095(.A (alu_out_1[31]), .B (op_b[31]), .ZN (n_24));
   XOR2_X1 g34096(.A (alu_out_1[31]), .B (op_a[31]), .Z (n_32));
-  XNOR2_X1 g34097(.A (register_shift_unit_op2_n_13374), .B (n_1527),
-       .ZN (n_31));
-  NAND2_X1 g34098(.A1 (register_shift_unit_op2_n_13351), .A2 (n_17),
-       .ZN (n_23));
-  NAND2_X1 g34099(.A1 (n_8), .A2 (register_shift_unit_op2_n_13325), .ZN
-       (n_22));
-  NAND2_X1 g34100(.A1 (register_shift_unit_op2_n_15903), .A2
-       (register_shift_unit_op2_n_15902), .ZN (n_21));
+//  XNOR2_X1 g34097(.A (register_shift_unit_op2_n_13374), .B (n_1527),
+//       .ZN (n_31));
+//  NAND2_X1 g34098(.A1 (register_shift_unit_op2_n_13351), .A2 (n_17),
+//       .ZN (n_23));
+//  NAND2_X1 g34099(.A1 (n_8), .A2 (register_shift_unit_op2_n_13325), .ZN
+//       (n_22));
+//  NAND2_X1 g34100(.A1 (register_shift_unit_op2_n_15903), .A2
+//       (register_shift_unit_op2_n_15902), .ZN (n_21));
   OR2_X1 g34101(.A1 (alu_inst_n_2638), .A2 (alu_inst_n_2639), .ZN
        (n_18));
-  NAND2_X1 g34102(.A1 (register_shift_unit_op2_n_13406), .A2
-       (register_shift_unit_op2_n_13407), .ZN (n_20));
+//  NAND2_X1 g34102(.A1 (register_shift_unit_op2_n_13406), .A2
+//       (register_shift_unit_op2_n_13407), .ZN (n_20));
   NAND2_X1 g34103(.A1 (decode_inst_n_4097), .A2 (inst[20]), .ZN (n_19));
 //  INV_X1 g34110(.A (bulk_load_enable), .ZN (n_11));
   INV_X1 g34111(.A (alu_inst_n_2652), .ZN (n_10));
@@ -14948,189 +14948,277 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
        (alu_inst_n_9258), .ZN (n_2609));
   OR2_X1 g49238(.A1 (n_2610), .A2 (op_b[31]), .ZN (n_2611));
   AOI21_X1 g3(.A (n_284), .B1 (n_282), .B2 (op_a[31]), .ZN (n_2610));
-  assign n_242 = 1'b1;
   assign n_656 = 1'b1;
   assign decode_inst_n_1666 = 1'b1;
-  assign bulk_reglist[12] = 1'b0;
-  assign bulk_store_enable = 1'b0;
-  assign bulk_reglist[9] = 1'b0;
-  assign bulk_reglist[0] = 1'b0;
-  assign bulk_reglist[13] = 1'b0;
   assign bulk_reglist[2] = 1'b0;
-  assign bulk_reglist[1] = 1'b0;
-  assign bulk_reglist[5] = 1'b0;
   assign bulk_reglist[6] = 1'b0;
-  assign bulk_reglist[14] = 1'b0;
+  assign bulk_reglist[9] = 1'b0;
+  assign bulk_reglist[3] = 1'b0;
+  assign bulk_store_enable = 1'b0;
+  assign bulk_reglist[12] = 1'b0;
   assign bulk_reglist[10] = 1'b0;
+  assign bulk_reglist[8] = 1'b0;
   assign n_199 = 1'b0;
   assign bulk_reglist[15] = 1'b0;
   assign n_219 = 1'b0;
-  assign bulk_reglist[4] = 1'b0;
-  assign bulk_reglist[3] = 1'b0;
-  assign bulk_reglist[11] = 1'b0;
-  assign bulk_reglist[8] = 1'b0;
   assign bulk_reglist[7] = 1'b0;
+  assign n_218 = 1'b1;
+  assign bulk_reglist[4] = 1'b0;
   assign bulk_load_enable = 1'b0;
-  assign n_11 = 1'b1;
-  assign n_649 = 1'b1;
-  assign n_660 = 1'b0;
-  assign decode_inst_n_2873 = 1'b1;
-  assign decode_inst_n_12 = 1'b1;
-  assign alu_op[4] = 1'b0;
-  assign n_13 = 1'b1;
-  assign n_191 = 1'b0;
-  assign n_227 = 1'b1;
-  assign n_228 = 1'b1;
-  assign n_229 = 1'b1;
-  assign n_226 = 1'b1;
-  assign n_662 = 1'b1;
-  assign n_667 = 1'b0;
-  assign decode_inst_n_2466 = 1'b1;
-  assign decode_inst_n_5175 = 1'b1;
-  assign load_addressing_mode[2] = 1'b0;
-  assign n_657 = 1'b0;
-  assign decode_inst_n_14 = 1'b1;
-  assign load_addressing_mode[0] = 1'b0;
-  assign we_data = 1'b0;
-  assign n_321 = 1'b1;
-  assign n_357 = 1'b0;
-  assign n_671 = 1'b0;
-  assign decode_inst_n_1693 = 1'b1;
-  assign n_232 = 1'b1;
-  assign address_gen_mode[1] = 1'b0;
+  assign n_661 = 1'b0;
+  assign n_668 = 1'b0;
+  assign n_673 = 1'b1;
+  assign n_676 = 1'b0;
+  assign n_680 = 1'b0;
   assign decode_inst_n_76 = 1'b1;
-  assign rd_addr_c[1] = 1'b0;
-  assign rd_addr_c[3] = 1'b0;
-  assign rd_addr_c[2] = 1'b0;
-  assign rd_addr_c[0] = 1'b0;
-  assign rd_addr_b[1] = 1'b0;
-  assign rd_addr_b[0] = 1'b0;
-  assign rd_addr_b[3] = 1'b0;
   assign pc_offset[3] = 1'b0;
-  assign n_696 = 1'b1;
   assign n_695 = 1'b1;
-  assign n_693 = 1'b1;
-  assign n_694 = 1'b1;
   assign op2_is_imm_shift = 1'b1;
   assign register_shift_unit_op2_n_13325 = 1'b0;
+  assign n_696 = 1'b1;
+  assign n_693 = 1'b1;
   assign n_703 = 1'b1;
+  assign n_694 = 1'b1;
+  assign n_242 = 1'b1;
+  assign bulk_reglist[13] = 1'b0;
+  assign bulk_reglist[1] = 1'b0;
+  assign bulk_reglist[14] = 1'b0;
   assign register_shift_unit_op2_n_13326 = 1'b0;
-  assign n_37 = 1'b0;
-  assign n_49 = 1'b1;
-  assign n_236 = 1'b1;
-  assign wr_addr_a[3] = 1'b0;
+  assign decode_inst_n_5175 = 1'b1;
+  assign n_657 = 1'b0;
+  assign load_addressing_mode[2] = 1'b0;
+  assign decode_inst_n_14 = 1'b1;
+  assign address_gen_mode[1] = 1'b0;
+  assign load_addressing_mode[0] = 1'b0;
+  assign bulk_reglist[5] = 1'b0;
+  assign n_713 = 1'b1;
+  assign n_719 = 1'b1;
+  assign n_718 = 1'b0;
+  assign n_2608 = 1'b1;
+  assign register_shift_unit_op2_n_13419 = 1'b0;
+  assign n_1529 = 1'b0;
+  assign register_shift_unit_op2_n_13354 = 1'b1;
   assign n_714 = 1'b1;
   assign n_7 = 1'b1;
-  assign n_1527 = 1'b0;
-  assign n_2608 = 1'b1;
+  assign n_750 = 1'b0;
+  assign n_749 = 1'b1;
   assign register_shift_unit_op2_n_13332 = 1'b0;
   assign n_748 = 1'b1;
   assign n_761 = 1'b1;
   assign n_760 = 1'b0;
-  assign register_shift_unit_op2_n_13419 = 1'b0;
-  assign n_1529 = 1'b0;
-  assign n_750 = 1'b0;
-  assign n_749 = 1'b1;
-  assign n_745 = 1'b1;
-  assign n_744 = 1'b0;
-  assign register_shift_unit_op2_n_13335 = 1'b1;
-  assign n_17 = 1'b0;
-  assign n_707 = 1'b1;
-  assign n_717 = 1'b1;
-  assign n_758 = 1'b0;
-  assign n_757 = 1'b1;
-  assign n_1528 = 1'b0;
-  assign n_738 = 1'b1;
-  assign n_713 = 1'b1;
-  assign n_719 = 1'b1;
-  assign n_735 = 1'b0;
-  assign n_718 = 1'b0;
-  assign n_725 = 1'b1;
-  assign n_724 = 1'b0;
-  assign n_769 = 1'b1;
-  assign n_740 = 1'b1;
-  assign n_741 = 1'b0;
-  assign alu_inst_n_4890 = 1'b1;
-  assign n_245 = 1'b0;
-  assign n_244 = 1'b1;
+  assign n_11 = 1'b1;
+  assign bulk_reglist[0] = 1'b0;
+  assign n_37 = 1'b0;
+  assign n_49 = 1'b1;
+  assign n_94 = 1'b0;
+  assign n_649 = 1'b1;
+  assign n_662 = 1'b1;
+  assign n_667 = 1'b0;
+  assign decode_inst_n_2466 = 1'b1;
+  assign load_addressing_mode[1] = 1'b0;
+  assign we_data = 1'b0;
+  assign n_660 = 1'b0;
+  assign decode_inst_n_2873 = 1'b1;
+  assign n_671 = 1'b0;
+  assign decode_inst_n_12 = 1'b1;
+  assign n_321 = 1'b1;
+  assign n_357 = 1'b0;
+  assign n_236 = 1'b1;
+  assign wr_addr_a[3] = 1'b0;
+  assign alu_op[4] = 1'b0;
+  assign n_13 = 1'b1;
+  assign rd_addr_b[3] = 1'b0;
+  assign rd_addr_b[0] = 1'b0;
+  assign n_501 = 1'b1;
+  assign n_502 = 1'b0;
+  assign alu_inst_n_4805 = 1'b1;
+  assign alu_inst_n_2064 = 1'b0;
+  assign alu_inst_mul_95_68_Y_mul_92_39_n_69 = 1'b1;
+  assign alu_inst_n_4807_BAR = 1'b0;
+  assign n_364 = 1'b1;
+  assign n_499 = 1'b0;
+  assign n_503 = 1'b0;
+  assign n_2605 = 1'b0;
+  assign alu_inst_n_4893 = 1'b1;
+  assign n_363 = 1'b1;
+  assign n_505 = 1'b0;
+  assign alu_inst_n_9258 = 1'b1;
+  assign decode_inst_n_1693 = 1'b1;
   assign n_547 = 1'b1;
+  assign alu_inst_n_1962 = 1'b1;
+  assign n_12 = 1'b0;
+  assign alu_inst_n_4916 = 1'b1;
+  assign alu_inst_n_4890 = 1'b1;
   assign n_247 = 1'b0;
-  assign n_288 = 1'b0;
-  assign n_298 = 1'b0;
-  assign n_318 = 1'b0;
-  assign n_310 = 1'b0;
-  assign n_297 = 1'b0;
+  assign n_246 = 1'b1;
+  assign n_245 = 1'b0;
+  assign n_306 = 1'b0;
+  assign n_303 = 1'b0;
+  assign n_305 = 1'b0;
   assign n_285 = 1'b0;
   assign n_311 = 1'b0;
   assign n_314 = 1'b0;
-  assign n_292 = 1'b0;
-  assign n_316 = 1'b0;
-  assign n_303 = 1'b0;
-  assign n_299 = 1'b0;
-  assign n_306 = 1'b0;
-  assign n_309 = 1'b0;
-  assign n_313 = 1'b0;
-  assign n_293 = 1'b0;
-  assign n_294 = 1'b0;
-  assign n_246 = 1'b1;
-  assign n_295 = 1'b0;
-  assign n_308 = 1'b0;
-  assign n_291 = 1'b0;
-  assign n_315 = 1'b0;
-  assign n_286 = 1'b0;
   assign n_290 = 1'b0;
+  assign n_309 = 1'b0;
+  assign n_295 = 1'b0;
   assign n_304 = 1'b0;
-  assign n_301 = 1'b0;
+  assign n_292 = 1'b0;
+  assign n_315 = 1'b0;
+  assign n_318 = 1'b0;
   assign n_289 = 1'b0;
-  assign n_302 = 1'b0;
-  assign n_305 = 1'b0;
-  assign n_300 = 1'b0;
   assign n_296 = 1'b0;
+  assign n_308 = 1'b0;
   assign n_287 = 1'b0;
-  assign n_2605 = 1'b0;
-  assign n_511 = 1'b0;
-  assign alu_inst_n_4893 = 1'b1;
+  assign n_301 = 1'b0;
+  assign n_291 = 1'b0;
+  assign n_313 = 1'b0;
+  assign n_288 = 1'b0;
+  assign n_294 = 1'b0;
+  assign n_297 = 1'b0;
+  assign n_293 = 1'b0;
+  assign n_298 = 1'b0;
+  assign n_300 = 1'b0;
+  assign n_244 = 1'b1;
+  assign n_286 = 1'b0;
+  assign n_299 = 1'b0;
+  assign n_240 = 1'b0;
+  assign n_282 = 1'b0;
   assign n_187 = 1'b0;
-  assign alu_inst_n_2310 = 1'b0;
-  assign alu_inst_n_2297 = 1'b0;
-  assign alu_inst_n_2311 = 1'b0;
-  assign alu_inst_n_2295 = 1'b0;
-  assign alu_inst_n_2307 = 1'b0;
-  assign alu_inst_n_2293 = 1'b0;
-  assign alu_inst_n_2316 = 1'b0;
-  assign alu_inst_n_2313 = 1'b0;
   assign alu_inst_n_2312 = 1'b0;
-  assign alu_inst_n_2305 = 1'b0;
-  assign alu_inst_n_2315 = 1'b0;
-  assign alu_inst_n_2318 = 1'b0;
-  assign alu_inst_n_2317 = 1'b0;
-  assign alu_inst_n_2303 = 1'b0;
-  assign alu_inst_n_2298 = 1'b0;
-  assign alu_inst_n_2299 = 1'b0;
-  assign alu_inst_n_2314 = 1'b0;
-  assign alu_inst_n_2296 = 1'b0;
-  assign alu_inst_n_2324 = 1'b0;
-  assign alu_inst_n_2308 = 1'b0;
-  assign alu_inst_n_2320 = 1'b0;
-  assign alu_inst_n_2301 = 1'b0;
-  assign alu_inst_n_2321 = 1'b0;
-  assign alu_inst_n_2306 = 1'b0;
+  assign alu_inst_n_2295 = 1'b0;
   assign alu_inst_n_2302 = 1'b0;
-  assign alu_inst_n_2300 = 1'b0;
+  assign alu_inst_n_2305 = 1'b0;
+  assign alu_inst_n_2296 = 1'b0;
   assign alu_inst_n_2323 = 1'b0;
-  assign alu_inst_n_2294 = 1'b0;
-  assign alu_inst_n_2319 = 1'b0;
-  assign alu_inst_n_2304 = 1'b0;
+  assign alu_inst_n_2298 = 1'b0;
+  assign alu_inst_n_2307 = 1'b0;
+  assign alu_inst_n_2320 = 1'b0;
+  assign alu_inst_n_2310 = 1'b0;
+  assign alu_inst_n_2321 = 1'b0;
   assign alu_inst_n_2322 = 1'b0;
-  assign alu_inst_n_4807_BAR = 1'b0;
-  assign n_363 = 1'b1;
-  assign n_364 = 1'b1;
+  assign alu_inst_n_2306 = 1'b0;
+  assign alu_inst_n_2315 = 1'b0;
+  assign alu_inst_n_2293 = 1'b0;
+  assign alu_inst_n_2300 = 1'b0;
+  assign alu_inst_n_2316 = 1'b0;
+  assign alu_inst_n_2304 = 1'b0;
+  assign alu_inst_n_2314 = 1'b0;
+  assign alu_inst_n_2309 = 1'b0;
+  assign alu_inst_n_2319 = 1'b0;
+  assign alu_inst_n_2318 = 1'b0;
+  assign alu_inst_n_2308 = 1'b0;
+  assign alu_inst_n_2311 = 1'b0;
+  assign alu_inst_n_2313 = 1'b0;
+  assign alu_inst_n_2324 = 1'b0;
+  assign alu_inst_n_2297 = 1'b0;
+  assign alu_inst_n_2299 = 1'b0;
+  assign alu_inst_n_2294 = 1'b0;
+  assign n_511 = 1'b0;
+  assign n_191 = 1'b0;
+  assign n_229 = 1'b1;
+  assign rd_addr_c[3] = 1'b0;
+  assign n_227 = 1'b1;
+  assign rd_addr_c[2] = 1'b0;
+  assign n_226 = 1'b1;
+  assign rd_addr_c[1] = 1'b0;
+  assign n_228 = 1'b1;
+  assign rd_addr_c[0] = 1'b0;
+  assign n_232 = 1'b1;
+  assign alu_inst_n_2317 = 1'b0;
+  assign n_754 = 1'b0;
+  assign n_707 = 1'b1;
+  assign n_717 = 1'b1;
+  assign n_725 = 1'b1;
+  assign n_724 = 1'b0;
+  assign n_769 = 1'b1;
+  assign n_741 = 1'b0;
+  assign n_758 = 1'b0;
+  assign n_757 = 1'b1;
+  assign n_735 = 1'b0;
+  assign n_734 = 1'b1;
+  assign register_shift_unit_op2_n_13333 = 1'b0;
+  assign n_1528 = 1'b0;
+  assign n_738 = 1'b1;
+  assign n_740 = 1'b1;
+  assign n_1527 = 1'b0;
+  assign n_739 = 1'b1;
+  assign n_745 = 1'b1;
+  assign n_744 = 1'b0;
+  assign register_shift_unit_op2_n_13335 = 1'b1;
+  assign n_766 = 1'b1;
+  assign n_765 = 1'b0;
+  assign n_764 = 1'b0;
+  assign n_763 = 1'b1;
+  assign n_17 = 1'b0;
+  assign alu_inst_n_2301 = 1'b0;
+  assign n_310 = 1'b0;
+  assign n_302 = 1'b0;
+  assign rd_addr_b[1] = 1'b0;
+  assign n_316 = 1'b0;
+  assign bulk_reglist[11] = 1'b0;
+  assign n_862 = 1'b1;
+  assign n_865 = 1'b1;
+  assign n_1042 = 1'b0;
+  assign n_1062 = 1'b1;
+  assign n_1090 = 1'b0;
+  assign n_1105 = 1'b0;
+  assign n_1127 = 1'b0;
+  assign n_509 = 1'b0;
+  assign n_527 = 1'b1;
+  assign n_525 = 1'b1;
+  assign n_540 = 1'b1;
+  assign n_526 = 1'b1;
+  assign n_517 = 1'b1;
+  assign n_546 = 1'b1;
+  assign n_539 = 1'b1;
+  assign n_535 = 1'b1;
+  assign n_531 = 1'b1;
+  assign n_536 = 1'b1;
+  assign n_541 = 1'b1;
+  assign n_538 = 1'b1;
+  assign n_544 = 1'b1;
+  assign n_534 = 1'b1;
+  assign n_522 = 1'b1;
+  assign n_520 = 1'b1;
+  assign n_543 = 1'b1;
+  assign n_524 = 1'b1;
+  assign n_523 = 1'b1;
+  assign n_542 = 1'b1;
+  assign n_521 = 1'b1;
+  assign n_545 = 1'b1;
+  assign n_519 = 1'b1;
+  assign n_518 = 1'b1;
+  assign n_530 = 1'b1;
+  assign n_528 = 1'b1;
+  assign n_533 = 1'b1;
+  assign alu_inst_n_2421 = 1'b0;
+  assign n_532 = 1'b1;
+  assign n_529 = 1'b1;
+  assign n_515 = 1'b1;
+  assign n_537 = 1'b1;
+  assign n_516 = 1'b1;
+  assign n_1222 = 1'b0;
+  assign n_1275 = 1'b1;
   assign n_690 = 1'b1;
   assign register_shift_unit_op2_n_13563 = 1'b1;
   assign n_709 = 1'b0;
   assign register_shift_unit_op2_n_13381 = 1'b1;
+  assign n_692 = 1'b0;
+  assign n_782 = 1'b1;
+  assign n_798 = 1'b0;
+  assign n_797 = 1'b1;
+  assign n_827 = 1'b0;
+  assign n_1186 = 1'b1;
+  assign n_1185 = 1'b0;
+  assign n_1157 = 1'b1;
+  assign n_1156 = 1'b0;
   assign register_shift_unit_op2_n_13577 = 1'b1;
-  assign n_795 = 1'b0;
+  assign n_1167 = 1'b1;
+  assign n_1216 = 1'b1;
+  assign n_778 = 1'b1;
+  assign n_777 = 1'b0;
+  assign n_756 = 1'b0;
+  assign n_755 = 1'b1;
   assign n_806 = 1'b0;
   assign n_805 = 1'b1;
   assign n_771 = 1'b0;
@@ -15139,243 +15227,255 @@ module strcmp_core(clk, rst, inst, dram_dout, bulk_data_sram,
   assign n_772 = 1'b1;
   assign n_802 = 1'b0;
   assign n_801 = 1'b1;
-  assign n_778 = 1'b1;
-  assign n_777 = 1'b0;
-  assign n_756 = 1'b0;
-  assign n_755 = 1'b1;
-  assign register_shift_unit_op2_n_14349 = 1'b1;
-  assign n_792 = 1'b1;
+  assign n_795 = 1'b0;
   assign n_811 = 1'b0;
+  assign n_792 = 1'b1;
+  assign n_791 = 1'b0;
+  assign n_824 = 1'b1;
+  assign n_823 = 1'b0;
+  assign n_22 = 1'b1;
+  assign register_shift_unit_op2_n_14349 = 1'b1;
+  assign n_733 = 1'b1;
+  assign n_732 = 1'b0;
   assign n_753 = 1'b0;
   assign n_752 = 1'b1;
-  assign n_692 = 1'b0;
   assign n_691 = 1'b1;
   assign n_698 = 1'b1;
-  assign n_1510 = 1'b0;
-  assign n_730 = 1'b1;
-  assign n_729 = 1'b0;
-  assign n_762 = 1'b1;
-  assign register_shift_unit_op2_n_13374 = 1'b0;
-  assign n_818 = 1'b0;
-  assign n_817 = 1'b1;
-  assign register_shift_unit_op2_n_13407 = 1'b1;
-  assign n_727 = 1'b0;
   assign register_shift_unit_op2_n_13406 = 1'b1;
   assign n_728 = 1'b0;
   assign register_shift_unit_op2_n_13373 = 1'b0;
   assign n_16 = 1'b1;
   assign register_shift_unit_op2_n_13795 = 1'b1;
-  assign alu_inst_n_1962 = 1'b1;
-  assign n_12 = 1'b0;
-  assign alu_inst_n_4805 = 1'b1;
-  assign alu_inst_n_2064 = 1'b0;
-  assign alu_inst_mul_95_68_Y_mul_92_39_n_69 = 1'b1;
-  assign n_499 = 1'b0;
-  assign n_503 = 1'b0;
-  assign n_501 = 1'b1;
-  assign n_505 = 1'b0;
-  assign alu_inst_n_4916 = 1'b1;
-  assign n_509 = 1'b0;
-  assign n_535 = 1'b1;
-  assign n_517 = 1'b1;
-  assign n_536 = 1'b1;
-  assign n_546 = 1'b1;
-  assign n_543 = 1'b1;
-  assign alu_inst_n_2421 = 1'b0;
-  assign n_537 = 1'b1;
-  assign n_527 = 1'b1;
-  assign n_542 = 1'b1;
-  assign n_538 = 1'b1;
-  assign n_533 = 1'b1;
-  assign n_526 = 1'b1;
-  assign n_524 = 1'b1;
-  assign n_540 = 1'b1;
-  assign n_530 = 1'b1;
-  assign n_545 = 1'b1;
-  assign n_528 = 1'b1;
-  assign n_520 = 1'b1;
-  assign n_541 = 1'b1;
-  assign n_544 = 1'b1;
-  assign n_532 = 1'b1;
-  assign n_534 = 1'b1;
-  assign n_529 = 1'b1;
-  assign n_518 = 1'b1;
-  assign n_539 = 1'b1;
-  assign n_522 = 1'b1;
-  assign n_521 = 1'b1;
-  assign n_519 = 1'b1;
-  assign n_531 = 1'b1;
-  assign n_516 = 1'b1;
-  assign n_525 = 1'b1;
-  assign n_523 = 1'b1;
-  assign n_515 = 1'b1;
-  assign alu_inst_n_9258 = 1'b1;
-  assign n_502 = 1'b0;
-  assign n_507 = 1'b1;
-  assign n_240 = 1'b0;
-  assign n_282 = 1'b0;
-  assign alu_inst_n_2309 = 1'b0;
-  assign n_1043 = 1'b0;
-  assign n_1105 = 1'b0;
-  assign n_1088 = 1'b0;
-  assign n_1032 = 1'b1;
-  assign n_1063 = 1'b1;
-  assign n_1048 = 1'b1;
-  assign n_828 = 1'b1;
-  assign n_1087 = 1'b0;
-  assign n_1072 = 1'b1;
-  assign n_1059 = 1'b0;
-  assign n_1097 = 1'b0;
-  assign n_1135 = 1'b1;
-  assign n_1091 = 1'b1;
-  assign n_1106 = 1'b1;
-  assign n_1074 = 1'b1;
-  assign n_903 = 1'b0;
-  assign n_915 = 1'b1;
-  assign n_849 = 1'b1;
-  assign n_902 = 1'b1;
-  assign n_36 = 1'b1;
-  assign n_35 = 1'b0;
-  assign n_885 = 1'b0;
-  assign n_1102 = 1'b0;
-  assign n_1104 = 1'b1;
-  assign n_932 = 1'b1;
-  assign n_935 = 1'b1;
-  assign n_908 = 1'b1;
-  assign n_952 = 1'b0;
-  assign n_1016 = 1'b1;
-  assign n_1085 = 1'b0;
-  assign n_734 = 1'b1;
-  assign register_shift_unit_op2_n_13333 = 1'b0;
-  assign n_775 = 1'b1;
-  assign n_938 = 1'b0;
-  assign n_929 = 1'b0;
-  assign n_939 = 1'b0;
-  assign n_1067 = 1'b0;
-  assign n_1079 = 1'b0;
-  assign n_940 = 1'b0;
-  assign n_1168 = 1'b0;
-  assign n_1096 = 1'b0;
-  assign n_941 = 1'b0;
-  assign register_shift_unit_op2_n_13380 = 1'b0;
-  assign n_945 = 1'b1;
-  assign n_94 = 1'b0;
-  assign n_1122 = 1'b0;
-  assign n_2607 = 1'b0;
-  assign n_1276 = 1'b0;
-  assign n_1131 = 1'b0;
-  assign n_1130 = 1'b0;
-  assign n_1256 = 1'b1;
-  assign n_1255 = 1'b1;
-  assign n_74 = 1'b0;
+  assign n_41 = 1'b0;
+  assign n_40 = 1'b1;
+  assign n_1267 = 1'b0;
+  assign n_1510 = 1'b0;
+  assign n_56 = 1'b1;
+  assign n_1184 = 1'b1;
+  assign n_1223 = 1'b0;
   assign n_1291 = 1'b1;
-  assign n_1307 = 1'b1;
-  assign n_1257 = 1'b0;
+  assign n_1289 = 1'b0;
+  assign n_1323 = 1'b1;
+  assign n_1255 = 1'b1;
+  assign n_55 = 1'b0;
+  assign n_762 = 1'b1;
+  assign n_800 = 1'b0;
+  assign n_816 = 1'b1;
+  assign n_799 = 1'b1;
+  assign n_819 = 1'b0;
+  assign n_818 = 1'b0;
+  assign n_817 = 1'b1;
+  assign n_51 = 1'b0;
+  assign n_36 = 1'b1;
+  assign n_74 = 1'b0;
+  assign n_35 = 1'b0;
+  assign register_shift_unit_op2_n_13374 = 1'b0;
+  assign n_31 = 1'b1;
+  assign n_53 = 1'b1;
+  assign n_52 = 1'b0;
+  assign n_54 = 1'b0;
+  assign n_63 = 1'b1;
+  assign n_50 = 1'b0;
+  assign n_68 = 1'b1;
+  assign n_62 = 1'b1;
+  assign n_66 = 1'b1;
+  assign n_72 = 1'b1;
+  assign n_61 = 1'b1;
+  assign n_64 = 1'b1;
+  assign n_730 = 1'b1;
+  assign n_1088 = 1'b0;
+  assign n_729 = 1'b0;
+  assign n_1072 = 1'b1;
+  assign n_828 = 1'b1;
+  assign n_1043 = 1'b0;
+  assign n_864 = 1'b1;
+  assign n_1059 = 1'b0;
+  assign n_775 = 1'b1;
+  assign n_1142 = 1'b0;
+  assign n_1016 = 1'b1;
+  assign n_1048 = 1'b1;
+  assign n_1053 = 1'b0;
+  assign n_1226 = 1'b1;
+  assign n_1265 = 1'b0;
   assign n_1274 = 1'b1;
+  assign n_1288 = 1'b0;
   assign n_1259 = 1'b0;
   assign n_1260 = 1'b1;
-  assign n_1182 = 1'b0;
-  assign n_1167 = 1'b1;
-  assign n_1267 = 1'b0;
-  assign n_1142 = 1'b0;
-  assign n_1281 = 1'b0;
-  assign n_1284 = 1'b1;
-  assign n_1318 = 1'b0;
-  assign n_1363 = 1'b1;
-  assign n_1282 = 1'b1;
-  assign n_1423 = 1'b1;
-  assign n_1317 = 1'b0;
-  assign n_1279 = 1'b0;
-  assign n_1172 = 1'b0;
-  assign n_1322 = 1'b0;
-  assign n_1292 = 1'b1;
-  assign n_1364 = 1'b0;
-  assign n_1280 = 1'b1;
-  assign n_1338 = 1'b0;
-  assign n_1316 = 1'b0;
-  assign n_1283 = 1'b1;
-  assign n_1350 = 1'b1;
-  assign n_1315 = 1'b0;
-  assign n_1272 = 1'b0;
-  assign n_1037 = 1'b0;
-  assign n_1360 = 1'b0;
-  assign n_968 = 1'b0;
-  assign n_1362 = 1'b0;
-  assign n_1273 = 1'b0;
-  assign n_1478 = 1'b0;
+  assign n_849 = 1'b1;
+  assign n_951 = 1'b0;
+  assign n_1023 = 1'b0;
+  assign n_983 = 1'b1;
+  assign n_998 = 1'b1;
+  assign n_23 = 1'b1;
+  assign register_shift_unit_op2_n_17078 = 1'b1;
+  assign n_993 = 1'b0;
+  assign n_989 = 1'b0;
+  assign n_941 = 1'b0;
+  assign n_929 = 1'b0;
+  assign n_1312 = 1'b0;
+  assign n_1313 = 1'b1;
+  assign n_1354 = 1'b0;
+  assign n_1331 = 1'b0;
+  assign n_634 = 1'b1;
+  assign register_shift_unit_op2_n_13380 = 1'b0;
+  assign n_945 = 1'b1;
+  assign n_964 = 1'b0;
+  assign n_902 = 1'b1;
+  assign n_1063 = 1'b1;
+  assign n_1091 = 1'b1;
+  assign n_1096 = 1'b0;
   assign n_999 = 1'b1;
+  assign n_1067 = 1'b0;
+  assign n_1032 = 1'b1;
+  assign n_1037 = 1'b0;
+  assign n_939 = 1'b0;
+  assign n_1074 = 1'b1;
+  assign n_1079 = 1'b0;
+  assign n_1080 = 1'b1;
+  assign n_1085 = 1'b0;
+  assign n_1131 = 1'b0;
+  assign n_1282 = 1'b1;
+  assign n_1371 = 1'b0;
+  assign n_1402 = 1'b0;
+  assign n_1279 = 1'b0;
+  assign n_1335 = 1'b1;
+  assign n_1130 = 1'b0;
+  assign n_1281 = 1'b0;
+  assign n_1256 = 1'b1;
+  assign n_1307 = 1'b1;
+  assign n_1326 = 1'b0;
+  assign n_892 = 1'b0;
+  assign n_893 = 1'b1;
+  assign n_1257 = 1'b0;
+  assign n_1258 = 1'b1;
+  assign n_1271 = 1'b0;
+  assign n_885 = 1'b0;
   assign n_1005 = 1'b0;
-  assign n_1456 = 1'b1;
-  assign n_1202 = 1'b1;
+  assign n_968 = 1'b0;
+  assign n_1273 = 1'b0;
   assign n_1010 = 1'b0;
-  assign n_1017 = 1'b1;
-  assign register_shift_unit_op2_n_13685 = 1'b0;
-  assign n_46 = 1'b1;
-  assign n_1472 = 1'b0;
-  assign n_1053 = 1'b0;
-  assign n_1471 = 1'b1;
-  assign n_1013 = 1'b1;
-  assign n_1019 = 1'b0;
+  assign n_938 = 1'b0;
+  assign n_1122 = 1'b0;
+  assign n_1284 = 1'b1;
+  assign register_shift_unit_op2_n_15903 = 1'b1;
+  assign n_1317 = 1'b0;
+  assign n_1369 = 1'b1;
+  assign n_1135 = 1'b1;
+  assign n_1202 = 1'b1;
+  assign n_1168 = 1'b0;
+  assign n_1318 = 1'b0;
+  assign n_1106 = 1'b1;
+  assign register_shift_unit_op2_n_15902 = 1'b1;
+  assign n_1465 = 1'b0;
+  assign alu_inst_mul_95_68_Y_mul_92_39_n_59 = 1'b1;
+  assign n_21 = 1'b0;
+  assign n_1363 = 1'b1;
+  assign n_1112 = 1'b0;
+  assign n_1120 = 1'b0;
+  assign n_1481 = 1'b1;
+  assign n_1484 = 1'b0;
+  assign n_1358 = 1'b0;
+  assign n_1359 = 1'b1;
+  assign n_1460 = 1'b0;
+  assign n_1391 = 1'b0;
+  assign n_1400 = 1'b1;
+  assign n_1418 = 1'b0;
+  assign n_1355 = 1'b0;
+  assign n_1346 = 1'b1;
+  assign n_1423 = 1'b1;
+  assign n_1470 = 1'b1;
+  assign n_1345 = 1'b0;
+  assign n_1276 = 1'b0;
+  assign n_1422 = 1'b0;
+  assign n_1442 = 1'b1;
+  assign n_1278 = 1'b0;
+  assign n_1277 = 1'b1;
+  assign n_1387 = 1'b1;
+  assign n_2607 = 1'b0;
+  assign n_1415 = 1'b1;
+  assign n_1172 = 1'b0;
+  assign register_shift_unit_op2_n_13407 = 1'b1;
+  assign n_20 = 1'b0;
   assign n_168 = 1'b1;
   assign n_170 = 1'b0;
+  assign n_172 = 1'b1;
+  assign n_908 = 1'b1;
+  assign n_1479 = 1'b0;
+  assign n_952 = 1'b0;
+  assign n_1013 = 1'b1;
+  assign n_727 = 1'b0;
+  assign n_1087 = 1'b0;
+  assign n_1488 = 1'b1;
+  assign n_1097 = 1'b0;
+  assign n_1292 = 1'b1;
+  assign n_982 = 1'b0;
+  assign n_974 = 1'b0;
+  assign n_961 = 1'b1;
+  assign n_969 = 1'b0;
+  assign n_1480 = 1'b0;
+  assign n_935 = 1'b1;
+  assign n_932 = 1'b1;
+  assign n_1431 = 1'b0;
+  assign n_1058 = 1'b0;
+  assign n_915 = 1'b1;
+  assign n_903 = 1'b0;
+  assign n_1102 = 1'b0;
+  assign n_1104 = 1'b1;
+  assign n_1487 = 1'b1;
+  assign n_995 = 1'b0;
+  assign n_1441 = 1'b0;
+  assign n_1019 = 1'b0;
   assign n_978 = 1'b1;
   assign n_1044 = 1'b1;
   assign n_1049 = 1'b0;
   assign n_1321 = 1'b0;
   assign n_1334 = 1'b1;
-  assign n_995 = 1'b0;
-  assign n_1058 = 1'b0;
-  assign n_1023 = 1'b0;
-  assign n_1422 = 1'b0;
-  assign n_1442 = 1'b1;
-  assign n_1484 = 1'b0;
-  assign n_1487 = 1'b1;
-  assign n_1358 = 1'b0;
-  assign n_1460 = 1'b0;
-  assign n_983 = 1'b1;
+  assign n_1308 = 1'b0;
+  assign n_633 = 1'b1;
+  assign n_1342 = 1'b0;
+  assign n_1192 = 1'b0;
+  assign n_1182 = 1'b0;
+  assign n_1314 = 1'b0;
+  assign n_1349 = 1'b0;
+  assign n_1385 = 1'b1;
+  assign n_1194 = 1'b0;
+  assign n_1353 = 1'b1;
+  assign n_940 = 1'b0;
+  assign n_1017 = 1'b1;
+  assign register_shift_unit_op2_n_13685 = 1'b0;
+  assign n_46 = 1'b1;
+  assign n_1272 = 1'b0;
+  assign n_1340 = 1'b1;
+  assign n_1283 = 1'b1;
+  assign n_1315 = 1'b0;
+  assign n_1370 = 1'b1;
+  assign n_1350 = 1'b1;
+  assign n_1478 = 1'b0;
+  assign n_1362 = 1'b0;
+  assign n_1456 = 1'b1;
+  assign n_1344 = 1'b0;
+  assign n_1472 = 1'b0;
+  assign register_shift_unit_op2_n_13594 = 1'b1;
+  assign n_39 = 1'b0;
   assign n_82 = 1'b0;
   assign n_95 = 1'b1;
-  assign register_shift_unit_op2_n_17078 = 1'b1;
-  assign n_1481 = 1'b1;
-  assign n_989 = 1'b0;
-  assign n_1028 = 1'b1;
-  assign n_951 = 1'b0;
-  assign n_1470 = 1'b1;
-  assign n_1488 = 1'b1;
-  assign n_969 = 1'b0;
-  assign n_982 = 1'b0;
-  assign n_974 = 1'b0;
-  assign n_961 = 1'b1;
-  assign n_1480 = 1'b0;
-  assign n_964 = 1'b0;
-  assign n_1465 = 1'b0;
-  assign alu_inst_mul_95_68_Y_mul_92_39_n_59 = 1'b1;
-  assign n_218 = 1'b1;
-  assign load_addressing_mode[1] = 1'b0;
-  assign n_791 = 1'b0;
-  assign n_824 = 1'b1;
-  assign n_1223 = 1'b0;
-  assign n_1335 = 1'b1;
-  assign n_1441 = 1'b0;
-  assign n_1265 = 1'b0;
-  assign n_1340 = 1'b1;
-  assign n_823 = 1'b0;
-  assign n_1323 = 1'b1;
-  assign n_1431 = 1'b0;
-  assign n_1326 = 1'b0;
+  assign n_1471 = 1'b1;
+  assign n_1364 = 1'b0;
+  assign n_1280 = 1'b1;
+  assign n_1316 = 1'b0;
   assign n_1373 = 1'b1;
   assign n_1430 = 1'b0;
-  assign n_1288 = 1'b0;
-  assign n_1370 = 1'b1;
-  assign n_1371 = 1'b0;
-  assign n_1415 = 1'b1;
-  assign n_1289 = 1'b0;
-  assign n_1369 = 1'b1;
-  assign n_1479 = 1'b0;
   assign n_1489 = 1'b0;
-  assign n_47 = 1'b0;
-  assign alu_inst_n_2194 = 1'b0;
+  assign n_1338 = 1'b0;
+  assign n_1360 = 1'b0;
+  assign n_1361 = 1'b1;
+  assign alu_inst_n_2303 = 1'b0;
+  assign n_1322 = 1'b0;
+  assign n_1028 = 1'b1;
   assign n_2600 = 1'b1;
+  assign alu_inst_n_2194 = 1'b0;
+  assign n_507 = 1'b1;
+  assign n_47 = 1'b0;
   assign alu_inst_n_5655 = 1'b1;
 endmodule
 
